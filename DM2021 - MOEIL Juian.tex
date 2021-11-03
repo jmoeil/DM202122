@@ -286,7 +286,7 @@ où nous avons à nouveau utilisé la représentation de la fonction exponentiel
 \end{align}
 En particulier, notons que $\norm{\alpha-\beta}^2$ est un nombre réel, tandis que $\alpha^*\beta-\beta^*\alpha$ est bien complexe. Nous pouvons alors réécrire \eqref{15} sous la forme
 \begin{align}
-  \braket{m}{n} &= e^{-\frac{1}{2}\norm{\alpha-\beta}^2}e^{-\frac{1}{2}\left(\alpha^*\beta-\beta^*\alpha\right)}
+  \braket{m}{n} &= e^{-\frac{1}{2}\norm{\alpha-\beta}^2}e^{-\frac{1}{2}\left(\alpha^*\beta-\beta^*\alpha\right)} = e^{-\frac{1}{2}\norm{\alpha-\beta}^2}e^{-iIm\left\{\alpha^*\beta\right\}}.
 \end{align}
 Nous observons finalement que
 \begin{align}
@@ -298,13 +298,15 @@ lorsque $\norm{\alpha-\beta}^2$ >> $1$.
 
 \subsubsection{Interprétation en terme de particules}
 
-Pour terminer cette section sur les opérateurs d'échelle, posons nous quelques questions statistiques sur l'état $\ket{\alpha}$, en interprétant cette fois les opérateurs $\bm{a}^\dagger$ et $\bm{a}$ en terme de particules. En effet, nous pouvons voir $\ket{n}$ comme contenant n particules d'énergie $\h\omega$ n'intéragissant pas entre-eux. Dans cette vision, l'opérateur annihilation $\bm{a}^\dagger$ peut-être vu comme traduisant le retrait d'une particule dans le système, et l'opérateur création $\bm{a}$ peut-être vu comme traduisant l'ajout d'une particule dans le système. Par exemple, l'état $\bm{a}^\dagger\bm{a}\bm{a}^\dagger\bm{a}$ traduit la création de deux particules à la suite de la destruction (annihilation) de deux autres.
+Pour terminer cette section sur les opérateurs d'échelle, posons nous quelques questions statistiques sur l'état $\ket{\alpha}$, en interprétant cette fois les opérateurs $\bm{a}^\dagger$ et $\bm{a}$ en terme de particules. En effet, nous pouvons voir $\ket{n}$ comme un système contenant n particules d'énergie $\h\omega$ n'intéragissant pas entre-eux. Dans cette vision, l'opérateur annihilation $\bm{a}^\dagger$ peut-être vu comme traduisant le retrait d'une particule dans le système. L'opérateur création $\bm{a}$ caractérise alors l'ajout d'une particule dans le système. Par exemple, l'opérateur $\bm{a}^\dagger\bm{a}\bm{a}^\dagger\bm{a}$ traduit la création de deux particules à la suite de la destruction (l'annihilation) de deux autres.\\
 
-Nous pouvons donc en déduire la probabilité de trouver $n$ particules dans l'état $\ket{n}$ en exploitant la règle de Born.
+La probabilité de trouver $n$ particules dans le système dans l'état $\ket{n}$ est donnée par la règle de Born.
 \begin{align}
   P(n) = \norm{\braket{n}{\alpha}}^2 = \frac{\left(\norm{\alpha}^{2}\right)^ne^{-\norm{\alpha}^2}}{n!}
 \end{align}
-Il s'agit d'une \emph{distribution de probabilité de Poisson}, de paramètre $\lambda = \norm{\alpha}^2$. Similairement, le nombre moyen de particules dans l'état $\ket{\alpha}$ s'exprime par la relation 
+Il s'agit d'une \emph{distribution de probabilité de Poisson}, de paramètre $\lambda = \norm{\alpha}^2$.\\
+
+Similairement, le nombre moyen de particules dans l'état $\ket{\alpha}$ s'exprime par la relation 
 \color{red} A completer. \color{black}
 
 \subsection{Opérateur déplacement}
@@ -443,7 +445,7 @@ La moyenne dans l'état $\ket{\psi(t)}$ est donnée par la relation
 On peut poser $\alpha = \norm{\alpha}e^{i\theta}$ : l'expression de la moyenne de l'opérateur position $X$ dans l'état $\ket{\alpha(t)}$ se simplifie alors grandement.
 \begin{align}
   \label{mean position}
-  \expval{X}{\alpha(t)} &= \sqrt{\frac{2\h}{m\omega}}\norm{\alpha}\cos(\omega t-\theta)
+  \expval{X}(t)&= \sqrt{\frac{2\h}{m\omega}}\norm{\alpha}\cos(\omega t-\theta)
 \end{align}
 
 \paragraph{Ecart quadratique moyen de la position}
@@ -460,7 +462,7 @@ où nous avons utiliser la relation de commutation des bosons pour mettre l'équ
 \end{align}
 Où nous avons posé $\alpha = \norm{\alpha}e^{i\theta}$. Nous trouvons finalement que 
 \begin{align}
-  \expval{X^2}{\alpha(t)} &= \frac{\h}{2m\omega}\left[4\norm{\alpha}^2\cos^2(\omega t-\theta)+1\right]
+  \expval{X^2}(t) &= \frac{\h}{2m\omega}\left[4\norm{\alpha}^2\cos^2(\omega t-\theta)+1\right]
 \end{align}
 
 En vertue de \eqref{ecart quadratique moyen}, nous avons alors que l'incertitude sur la position est donnée par
@@ -488,7 +490,7 @@ En posant $\alpha = \norm{\alpha}e^{i\theta}$, nous pouvons simplifier \eqref{45
 \begin{align}
   \expval{P}{\alpha(t)} &= -i\sqrt{\frac{m\h\omega}{2}}\norm{\alpha}\left(e^{i\theta}e^{-i\omega t}-e^{-i\theta}e^{i\omega t}\right)\\
   &= -i\sqrt{\frac{m\h\omega}{2}}\norm{\alpha} \left(-2i\sin\omega t-\theta\right)\\
-  \expval{P}{\alpha(t)} &= -\sqrt{2m\h\omega}\norm{\alpha}\sin(\omega t-\theta)
+  \expval{P}(t) &= -\sqrt{2m\h\omega}\norm{\alpha}\sin(\omega t-\theta)
 \end{align} 
 
 \paragraph{Ecart quadratique moyen de l'impulsion}
@@ -500,7 +502,7 @@ Du système $\eqref{P and X}$, nous apprenons que
 où nous avons exprimer l'égalité sous la \emph{forme normale}. Nous pouvons alors déterminer la moyenne de $P^2$, ce qui donne, sans surprise, un résultat tout à fais similaire à \eqref{Mean X^2}.
 \begin{align}
   \label{Mean P^2}
-  \expval{P^2}{\alpha(t)} &= \frac{m\h\omega}{2}\left[4\norm{\alpha}^2\sin^2(\omega t-\theta)+1\right]
+  \expval{P^2}(t)&= \frac{m\h\omega}{2}\left[4\norm{\alpha}^2\sin^2(\omega t-\theta)+1\right]
 \end{align}
 L'incertitude sur $P$ s'ensuit.
 \begin{align}
@@ -527,9 +529,11 @@ En vertue de l'expression de l'Hamiltonien d'un Oscillateur Harmonique, le calcu
 \begin{align}
   \expval{H}{\alpha(t)} &= \frac{1}{2m}\left(\expval{P^2}{\alpha(t)}\right) + \frac{m\omega^2}{2}\expval{X^2}{\alpha(t)}\\
   &= \frac{1}{2m} \left[\frac{m\h\omega}{2}\left(4\norm{\alpha}^2\sin^2(\omega t-\theta)+1\right)\right] + \frac{m\omega^2}{2}\left[\frac{\h}{2m\omega}\left(4\norm{\alpha}^2\cos^2(\omega t-\theta)+1\right)\right]\\
-  &= \frac{\h\omega}{2}\left(2\norm{\alpha}^2+1\right)
-\end{align}o
-Observons directement que, contrairement à la moyenne de la position et de l'impulsion, la moyenne de l'Hamiltonien semble être indépendant du temps. Cela fait sens: l'interprétation de l'Hamiltonien d'un système est celui de l'énergie totale présent dans celui-ci. Or, pour un système isolé - tel notre oscillateur harmonique - l'énergie totale doit être conservé, c'est à dire $\dot{H} = 0$.\\
+  \expval{H} &= \frac{\h\omega}{2}\left(2\norm{\alpha}^2+1\right)
+\end{align}
+\begin{remark}
+  Observons directement que, contrairement à la moyenne de la position et de l'impulsion, la moyenne de l'Hamiltonien semble être indépendant du temps. Cela fait sens: l'interprétation de l'Hamiltonien d'un système est celui de l'énergie totale présent dans celui-ci. Or, pour un système isolé - tel notre oscillateur harmonique - l'énergie totale doit être conservé, c'est à dire $\dot{H} = 0$.
+\end{remark}
 
 Pour calculer l'incertitude sur $H$, il y a essentiellement deux méthodes: la première (la méthode longue) consiste à déterminer $H^2$ en utilisant \eqref{Hamiltonien OH}, ce qui reviendrait à faire le calcul de la moyenne de $X^4,P^4$, etc. La seconde méthode, plus courte, revient à déterminer $H^2$ en exploitant son expression en terme des bosons. Appliquons cette dernière méthode:
 \begin{align}
@@ -541,7 +545,7 @@ La moyenne de $H^2$ est alors donné par:
   \expval{H^2}{\alpha(t)} &= \h^2\omega^2\left[\expval{a^\dagger a a^\dagger a}{\alpha(t)}+\expval{a^\dagger a}{\alpha(t)}+\frac{1}{4}\right]\\
   &= \h^2\omega^2\left[\norm{\alpha}^2\expval{aa^\dagger}{\alpha(t)}+\norm{\alpha}^2+\frac{1}{4}\right]\\
   &= \h^2\omega^2\left[\norm{\alpha}^2\expval{\mathbb{I}+a^\dagger a}{\alpha(t)}+\norm{\alpha}^2+\frac{1}{4}\right]\\
-  &= \h^2\omega^2\left[\norm{\alpha}^4+2\norm{\alpha}^2+\frac{1}{4}\right]
+  \expval{H^2}&= \h^2\omega^2\left[\norm{\alpha}^4+2\norm{\alpha}^2+\frac{1}{4}\right]
 \end{align}
 Sans surprise cette fois, la moyenne de $H^2$ est indépendante du temps. Pour finir, nous pouvons déterminer la valeur de l'incertitude de l'Hamiltonien selon la méthode usuelle:
 \begin{align}

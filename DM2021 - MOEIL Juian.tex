@@ -265,7 +265,7 @@ Cette dernière base est bien à distinguer de la base des états cohérents : e
 Maintenant que la différence entre les deux bases est claire, attelons-nous à montrer ce qui les relie. Introduisons la relation $\ket{n} = \frac{\left(\bm{a}^\dagger\right)^n}{\sqrt{n!}}\ket{0}$. 
 \begin{align}
   \braket{n}{\alpha} &= e^{-\frac{1}{2}\norm{\alpha}^2} \sum_m \frac{\alpha^m}{\sqrt{m!}}\braket{n}{m}
-  = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_m \frac{\left(\alpha\bm{a}^\dagger\right)^m}{m!}\braket{n}{0}
+  = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_m \frac{\left(\alpha\bm{a}^\dagger\right)^m}{m!}\braket{n}{0} = \frac{\alpha^ne^{-\frac{1}{2}\norm{\alpha}^2}}{\sqrt{n!}}
 \end{align}
 En particulier, nous avons alors que
 \begin{align}
@@ -295,6 +295,17 @@ Nous observons finalement que
 lorsque $\norm{\alpha-\beta}^2$ >> $1$.
 
 \subsubsection{Valeur propre de $a$ - solution algébrique}
+
+\subsubsection{Interprétation en terme de particules}
+
+Pour terminer cette section sur les opérateurs d'échelle, posons nous quelques questions statistiques sur l'état $\ket{\alpha}$, en interprétant cette fois les opérateurs $\bm{a}^\dagger$ et $\bm{a}$ en terme de particules. En effet, nous pouvons voir $\ket{n}$ comme contenant n particules d'énergie $\h\omega$ n'intéragissant pas entre-eux. Dans cette vision, l'opérateur annihilation $\bm{a}^\dagger$ peut-être vu comme traduisant le retrait d'une particule dans le système, et l'opérateur création $\bm{a}$ peut-être vu comme traduisant l'ajout d'une particule dans le système. Par exemple, l'état $\bm{a}^\dagger\bm{a}\bm{a}^\dagger\bm{a}$ traduit la création de deux particules à la suite de la destruction (annihilation) de deux autres.
+
+Nous pouvons donc en déduire la probabilité de trouver $n$ particules dans l'état $\ket{n}$ en exploitant la règle de Born.
+\begin{align}
+  P(n) = \norm{\braket{n}{\alpha}}^2 = \frac{\left(\norm{\alpha}^{2}\right)^ne^{-\norm{\alpha}^2}}{n!}
+\end{align}
+Il s'agit d'une \emph{distribution de probabilité de Poisson}, de paramètre $\lambda = \norm{\alpha}^2$. Similairement, le nombre moyen de particules dans l'état $\ket{\alpha}$ s'exprime par la relation 
+\color{red} A completer. \color{black}
 
 \subsection{Opérateur déplacement}
 Introduisons, pour tout nombre complexe $\alpha$, l'opérateur déplacement, noté $\bm{D}(\alpha)$, défini par la relation
@@ -380,7 +391,7 @@ Observons que $\ket{\alpha(t)}$ est normalisé. En effet,
 \end{align}
 où nous avons utilisé la représentation en terme de série de la fonction exponentielle.\\
 
-Nous voulons trouver la valeur de la relation $a\ket{\alpha(t)}$, afin de pouvoir faire les calculs dans les sous-sous-section qui suivent.
+Déterminons déjà la valeur de $a\ket{\alpha(t)}$, afin de faciliter les calculs dans la suite. 
 
 \begin{align}
   a\ket{\alpha(t)} = e^{-\frac{\norm{\alpha}^2}{2}}\left(\sum_{n\geq 0}\frac{\alpha^n}{\sqrt{n!}}e^{-i\left(\frac{1}{2}+n\right)\omega t}a\ket{n}\right)
@@ -394,7 +405,7 @@ Le terme en $n = 0$ n'a pas de sens: on pose alors $m=n-1$, afin de pouvoir ré�
   a\ket{\alpha(t)} &= \alpha e^{-i\omega t}e^{-\frac{\norm{\alpha}^2}{2}}\left(\sum_{m\geq 0}\frac{\alpha^{m}}{\sqrt{(m)!}}e^{-i\left(\frac{1}{2}+m    \right)\omega t}\ket{m}\right) = \alpha e^{-i\omega t}\ket{\alpha(t)}
 \end{align}
 
-Nous pouvons directement déduire de cette relation le hermitien de celle-ci:
+Cette relation nous indique directement la relation correspondante dans la base duale associée. 
 \begin{align}
   \bra{\alpha(t)}a^\dagger &= \bra{\alpha(t)}\alpha^*e^{i\omega t}
 \end{align}
@@ -445,9 +456,9 @@ où nous avons utiliser la relation de commutation des bosons pour mettre l'équ
 \begin{align}
   \expval{X^2}{\alpha(t)} &= \frac{\h}{2m\omega} \left(\expval{a^2}{\alpha(t)}+\expval{\left(a^\dagger\right)^2}{\alpha(t)}+2\expval{a^\dagger a}{\alpha(t)}+\braket{\alpha(t)}\right)\\
   &= \frac{\h}{2m\omega}\left[\left(\alpha e^{-i\omega t}\right)^2+\left(\alpha^*e^{i\omega t}\right)^2 +2\norm{\alpha}^2+1\right]\braket{\alpha(t)}\\
-  &= \frac{\h}{2m\omega}\left[\left(\alpha e^{-i\omega t}+\alpha^*e^{i\omega t}\right)^2+1\right]\label{Mean X^2}
+  &= \frac{\h}{2m\omega}\left[\left(\alpha e^{-i\omega t}+\alpha^*e^{i\omega t}\right)^2+1\right] = \frac{\h}{2m\omega}\left[\norm{\alpha}^2\left(e^{i\theta}e^{-i\omega t}+e^{-i\theta}e^{i\omega t}\right)^2+1\right]\label{Mean X^2}
 \end{align}
-En posant $\alpha = \norm{\alpha}e^{i\theta}$, nous trouvons finalement que 
+Où nous avons posé $\alpha = \norm{\alpha}e^{i\theta}$. Nous trouvons finalement que 
 \begin{align}
   \expval{X^2}{\alpha(t)} &= \frac{\h}{2m\omega}\left[4\norm{\alpha}^2\cos^2(\omega t-\theta)+1\right]
 \end{align}

@@ -309,8 +309,10 @@ La probabilité de trouver $n$ particules dans le système dans l'état $\ket{n}
 \end{align}
 Il s'agit d'une \emph{distribution de probabilité de Poisson}, de paramètre $\lambda = \norm{\alpha}^2$.\\
 
-Similairement, le nombre moyen de particules dans l'état $\ket{\alpha}$ s'exprime par la relation 
-\color{red} A completer. \color{black}
+Similairement, le nombre moyen de particules dans l'état $\ket{\alpha}$ s'exprime par la relation
+\begin{align}
+  \expval{\bm{N}} = \norm{\alpha}^2
+\end{align}
 
 \subsection{Opérateur déplacement}
 Introduisons, pour tout nombre complexe $\alpha$, l'opérateur déplacement, noté $\bm{D}(\alpha)$, défini par la relation
@@ -318,9 +320,40 @@ Introduisons, pour tout nombre complexe $\alpha$, l'opérateur déplacement, not
   \bm{D}(\alpha) = e^{\alpha \bm{a}^\dagger-\alpha^*\bm{a}}.
 \end{align}
 
-\begin{remark}
-  Nous pouvons similairement définir un état cohérent comme un état généré par l'opérateur déplacement $\bm{D}(\alpha)$ appliqué à l'état du vide $\ket{0}$, en admettant 
-\end{remark}
+\begin{property}[Relation de Glaubert]
+  \label{prop Glaubert}
+  Soit $\bm{A}$ et $\bm{B}$ deux opérateurs. L'égalité
+  \begin{align}
+    \label[]{Glaubert}
+    e^{\bm{A}}e^{\bm{B}} &= e^{\bm{A}+\bm{B}}e^{-\frac{1}{2}\left[\bm{A},\bm{B}\right]}
+  \end{align}
+  tient si et seulement si les opérateurs commutent avec $\left[\bm{A},\bm{B}\right]$.
+\end{property}
+
+\begin{lemma}
+  \label{lemme displacement}
+  L'opérateur déplacement peut - de manière tout à fais équivalente - être défini par la relation
+  \begin{align}
+    \bm{D}(\alpha) = e^{-\frac{1}{2}\norm{\alpha}^2\mathbb{I}}e^{\alpha\bm{a}^\dagger}e^{-\alpha^*\bm{a}}
+  \end{align}
+\end{lemma}
+\begin{proof}
+  Il suffit de remarquer que le commutateur $\left[\alpha\bm{a}^\dagger,-\alpha^*\bm{a}\right] = \norm{\alpha}^2\mathbb{I} \neq 0$ : en particulier, nous avons alors que tout opérateur $\bm{A}$ commute avec $\left[\alpha\bm{a}^\dagger,\alpha^\alpha\bm{a}\right]$, car tout opérateur commute avec l'opérateur identité. Les hypothèses de \ref{prop Glaubert} sont alors respectées : il suffit d'isoler l'exponentielle de la somme d'opérateurs dans \eqref{Glaubert} pour obtenir la relation recherchée.
+\end{proof}
+
+\begin{property}
+  Nous pouvons similairement définir un état cohérent comme un état généré par l'opérateur déplacement $\bm{D}(\alpha)$ appliqué à l'état du vide $\ket{0}$.
+\end{property}
+\begin{proof}
+  \begin{align}
+    \bm{D}(\alpha)\ket{0} &=  e^{-\frac{1}{2}\norm{\alpha}^2}e^{\alpha\bm{a}^\dagger}e^{-\alpha^*\bm{a}}\ket{0} = e^{-\frac{1}{2}\norm{\alpha}^2}e^{\alpha\bm{a}^\dagger} \sum_k \left(-1\right)^k \frac{\bm{a}^k}{k!}\ket{0}
+  \end{align}
+  Or, nous avons que $\sum_k \bm{a}^k\ket{0} = \bm{a}^0\ket{0} = \ket{0}$.
+  \begin{align}
+    \bm{D}(\alpha)\ket{0} &= e^{-\frac{1}{2}\norm{\alpha}^2}e^{\alpha\bm{a}^\dagger}\ket{0} =  e^{-\frac{1}{2}\norm{\alpha}^2} \sum_i \frac{\alpha^i}{i!}\left(\bm{a}^\dagger\right)^i\ket{0} = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_i \frac{\alpha^i}{i!}\ket{n} = \ket{\alpha}
+  \end{align}
+  Ce qui met en lumière la logique derrière le nom de cet opérateur déplacement $\bm{D}(\alpha)$.
+\end{proof}
 
 \subsubsection{Unitarité de l'opérateur déplacement}
 
@@ -333,15 +366,29 @@ Observons que $\bm{D}(\alpha)\bm{D}(-\alpha) = \mathbb{I}$. Montrer que $\bm{D}(
   \bm{D}^\dagger(\alpha) &= e^{\alpha^*\bm{a}-\alpha\bm{a}^\dagger} = \bm{D}(-\alpha) 
 \end{align}
 
-\subsubsection{Non-linéarité de l'opérateur déplacement}
+\subsubsection{Déplacement + Déplacement = Déplacement ?}
+\emph{Note : Je répond aux questions 3.b et 3.c ici.}
 
-Observons que l'opérateur déplacement n'est \emph{pas} linéaire:
+Considérons l'opérateur déplacement de paramètre $\alpha+\beta$. Celui-ci vaut - par définition,
 \begin{align}
-  \bm{D}(\alpha+\beta) &=  e^{\left(\alpha+\beta\right) \bm{a}^\dagger-\left(\alpha+\beta\right)^*\bm{a}}
-  = e^{\alpha \bm{a}^\dagger-\alpha^*\bm{a}} e^{\beta \bm{a}^\dagger-\beta^*\bm{a}}
+  \bm{D}(\alpha+\beta) &= \exp(\alpha\bm{a}^\dagger-\alpha^*\bm{a}+\beta\bm{a}^\dagger-\beta^*\bm{a})
 \end{align}
-\textbf{A COMPLETER}
+Ce qui revient à faire la somme de deux opérateurs ; soit $\bm{A} = \alpha\bm{a}^\dagger-\alpha^*\bm{a}$ et $\bm{B} = \beta\bm{a}^\dagger-\beta^*\bm{a}$.
+\begin{align}
+  \left[\bm{A},\bm{B}\right] &= \left[\alpha\bm{a}^\dagger-\alpha^*\bm{a},\beta\bm{a}^\dagger-\beta^*\bm{a}\right] = \alpha^*\beta-\alpha\beta^* = 2i Im(\alpha^*\beta)\mathbb{I}
+\end{align}
 
+En utilisant le même argument que dans la preuve du lemme \ref{lemme displacement}, nous avons donc que ($\bm{A},\bm{B}$) commutent avec leur commutateur. Alors, \eqref{Glaubert} nous autorise à écrire
+\begin{align}
+  \bm{D}(\alpha+\beta) &= e^{\alpha\bm{a}^\dagger-\alpha^*\bm{a}}e^{\beta\bm{a}^\dagger-\beta^*\bm{a}}e^{iIm(\alpha^*\beta)} = e^{iIm(\alpha^*\beta)}\bm{D}(\alpha)\bm{D}(\beta).
+\end{align}
+En particulier, en appliquant l'état du vide $\ket{0}$ sur $\bm{D}(\alpha+\beta)$, il est clair que
+\begin{align}
+  \bm{D}(\alpha+\beta)\ket{0} &= e^{iIm(\alpha^*\beta)}\bm{D}(\alpha)\bm{D}(\beta)\ket{0} = e^{iIm(\alpha^*\beta)}\bm{D}(\alpha)\ket{\beta} = e^{iIm(\alpha^*\beta)}\ket{\alpha+\beta}.
+\end{align}
+\begin{remark}
+  Le facteur de phase $e^{iIm(\alpha^*\beta)}$ est une phase globale, et n'a donc aucune importance physique.
+\end{remark}
 \subsection{Relation de fermeture}
 \begin{property}
   La base des états cohérents $\left\{\ket{\alpha} : \alpha\in\mathbb{C}\right\}$ admet la relation de fermeture
@@ -354,14 +401,46 @@ Observons que l'opérateur déplacement n'est \emph{pas} linéaire:
   \begin{align}
     \frac{1}{\pi}\int d^2\alpha \; \ket{\alpha}\bra{\alpha} &= \frac{1}{\pi}\sum_{n,m\geq 0} \frac{\ket{m}\bra{n}}{\sqrt{n!m!}} \left[\int d^2\alpha \; e^{-\norm{\alpha}^{2}} \bar{\alpha}^m\alpha^n\right]
   \end{align}
-  On passe en coordonnée polaire, en posant $\alpha = re^{i\cos}$ et $d^2\alpha = rdrd\theta$. Dès lors,
+  Passant en coordonnées polaires, en posant $\alpha=re^{i\theta}$ et $\alpha = rdrd\theta$.
   \begin{align}
-    \frac{1}{\pi}\int d^2\alpha \; \ket{\alpha}\bra{\alpha} &= \frac{1}{\pi}\sum_{n,m\geq 0} \frac{\ket{m}\bra{n}}{\sqrt{n!m!}}\int_0^{+\infty} dr \; re^{-r^2}r^{m+n} \; \int_0^{2\pi}d\theta \; e^{i\left(n-m\right)\theta}\\
-    &= 2\sum_n \frac{\ket{n}\bra{n}}{n!} \int_0^{+\infty}dr \; re^{-r^2}r^{2n}\\
-    &= \sum_n \frac{\ket{n}\bra{n}}{n!}\int_0^{+\infty}ds \; e^{-s}s^n = \sum_n \ket{n}\bra{n} = \mathbb{I}
+    \frac{1}{\pi}\int d^2\alpha \; \ket{\alpha}\bra{\alpha} &= \frac{1}{\pi}\sum_{n,m\geq 0}\frac{\ket{m}\bra{n}}{\sqrt{n!m!}}\left[\int_0^{+\infty}dr\; r^{m+n+1}e^{-r^2} \; \int_0^{2\pi}d\theta \; e^{i\left(n-m\right)\theta}\right]
   \end{align}
-  où nous avons effectué le changement de variable $r^2=s$ (soit donc que $ds = 2rdr$), ainsi que le fait que $\int_0^{+\infty} ds \; e^{-s}s^n = \Gamma(n+1) = n!$.
+  Or, il se trouve que\footnote{En effet, lorsque $n=m$, l'intégrant vaut 1. Lorsque $n\neq m$, nous avons l'intégrale de la combinaison linéaire de deux fonctions périodique sur une période ; ce qui est égal à 0.}
+  \begin{align}
+    \int_0^{2\pi}d\theta \; e^{i\left(n-m\right)\theta} &= 2\pi\delta_{n,m}
+  \end{align}
+
+Dès lors, l'intégrale se réduit à l'expression
+\begin{align}
+  \frac{1}{\pi}\int d^2\alpha \; \ketbra{\alpha} &= 2\sum_n \frac{\ketbra{n}}{n!}\left[\int_0^{+\infty}dr \; r^{2n+1}e^{-r^2} \right]
+\end{align}
+
+En effectuant le changement de variable $s = r^2$ (soit donc $ds = 2r \; dr$), il est claire que nous nous réduisons à $\Gamma(n+1) = n!$
+
+\begin{align}
+  \frac{1}{\pi}\int d^2\alpha \; \ket{\alpha}\bra{\alpha} &= \sum_n \ketbra{n} = \mathbb{I}
+\end{align}
+Ce qui conclut notre preuve.
+\begin{verbatim}
+  \end{proof}
+\end{verbatim}
 \end{proof}
+\subsubsection{Commentaire sur l'indépendance linéaire}
+
+Tout vecteur $\ket{\psi}$ dans la base de Hilbert (dans laquelle se trouve la base des états cohérents) peut donc s'écrire de
+\begin{align}
+  \ket{\psi} = \frac{1}{\pi}\int d^2\alpha \ket{\alpha}\braket{\alpha}{\psi}
+\end{align} 
+En particulier, si $\ket{\psi} = \ket{\beta}$ est dans la base des états cohérents, 
+\begin{align}
+  \ket{\beta} &= \frac{1}{\pi} \int d^2\alpha \ket{\alpha}\braket{\alpha}{\beta} = \frac{1}{\pi} \int d^2\alpha \ket{\alpha} \exp(-\frac{1}{2}\norm{\alpha-\beta}^2-\frac{1}{2}\left(\alpha^*\beta-\beta^*\alpha\right))
+\end{align}
+où nous avons utilisé la relation de non-orthogonalité des états cohérents. Cette équation montre que \emph{les états cohérents ne sont pas linéairement indépendants} : tout état cohérent $\ket{\alpha}$ peut s'écrire en terme d'un autre.
+
+\begin{remark}
+  Le terme "base des états cohérents" est donc un abus de language! Nous continuerons à l'utiliser\footnote{Surtout parceque la suite est déjà rédigée ...}, mais il faut garder que les états cohérents ne forment PAS une base.
+\end{remark}
+
 \section{Partie II - Oscillateur hamonique}
 \label{part 2}
 Considérons l'Hamiltonien classique d'un oscillateur harmonique, 
@@ -511,7 +590,7 @@ En posant $\alpha = \norm{\alpha}e^{i\theta}$, nous pouvons simplifier \eqref{45
 \begin{align}
   \expval{P}{\alpha(t)} &= -i\sqrt{\frac{m\h\omega}{2}}\norm{\alpha}\left(e^{i\theta}e^{-i\omega t}-e^{-i\theta}e^{i\omega t}\right)\\
   &= -i\sqrt{\frac{m\h\omega}{2}}\norm{\alpha} \left(-2i\sin\omega t-\theta\right)\\
-  \expval{P}(t) &= -\sqrt{2m\h\omega}\norm{\alpha}\sin(\omega t-\theta)
+  \expval{P}(t) &= -\sqrt{2m\h\omega}\norm{\alpha}\sin(\omega t-\theta) \label{mean P}
 \end{align} 
 
 \paragraph{Ecart quadratique moyen de l'impulsion}
@@ -536,9 +615,10 @@ L'incertitude sur $P$ s'ensuit.
 
 Avant de passer à la suite, quelques observations/commentaires sur les différentes quantités obtenue:
 \begin{itemize}
-  \item Les moyennes des opérateurs - et de leur carré - dépendent explicitement, périodiquement, du temps. 
+  \item Les moyennes des opérateurs - et de leur carré - dépendent explicitement, périodiquement, du temps.
   \item L'incertitude sur ces mêmes opérateurs, par contre, est indépendante du temps: à tout instant donné, l'incertitude sur la mesure de X (resp. de P) dans l'état $\ket{\alpha(t)}$ est la même.
-\end{itemize}
+  \item La moyenne de la position \eqref{mean position} et la moyenne de l'impulsion \eqref{mean P} oscillent \emph{de la même manière que dans la limite classique} ! On voit donc ici la véritable puissante de la notion d'état cohérent.
+\end{itemize} 
 
 \begin{remark}
   Attention cependant, l'état $\ket{\psi(t)} = \ket{\alpha(t)}$ sera, après une mesure, en vertue des postulats, projeté sur le sous-espace propre associé au résultat de la mesure. Les résultats que nous avons développé ici ne seront alors plus pertinents pour toute mesure ultérieure à la mesure.

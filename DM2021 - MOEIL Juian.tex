@@ -151,7 +151,7 @@ Nous allons étudier la notion d'\emph{état cohérent} dans un cadre unidimensi
 \subsection{Fonction d'onde la plus générale d'un état cohérent}
 Nous voulons déterminer la forme de la fonction d'onde la plus générale décrivant un état cohérent. Nous savons que ce dernier dépendra de trois paramètres réels, que nous prendrons dans cette discussion égales à $\expval{X},\expval{P}$ et $l = \sqrt{2}\Delta X$.
 
-Nous obtenons alors que $\psi(x) = \psi_0e^{-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar}}$, ce qui conclut presque cette section: il nous reste plus qu'à déterminer la constante de normalisation $\psi_0\in\mathbb{R}$. Pour ce faire, exploitons la propriété suivante:
+Nous obtenons alors que $\psi(x) = \psi_0 \; e^{-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar}}$, ce qui conclut presque cette section: il nous reste plus qu'à déterminer la constante de normalisation $\psi_0\in\mathbb{R}$. Pour ce faire, exploitons la propriété suivante:
 
 \begin{property}
     Pour toute fonction d'onde $\Psi(x,t)$, la condition de normalisation s'écrit 
@@ -164,16 +164,19 @@ Nous obtenons alors que $\psi(x) = \psi_0e^{-\frac{\left(x-\expval{X}\right)^2}{
   Voir cours théorique.
 \end{proof}
 
-En effectuant le changement de variable $u = x-\expval{X}$, on se retrouve à calculer l'intégrale gaussienne $\int_{-\infty}^{+\infty} du \; e^{-\left(\frac{u}{l}  \right)^2}$. Notons que, en toute généralité, il est possible de montrer que la valeur de $I = \int_0^{+\infty} dx \; e^{-\alpha x^2}$ est donnée par $I = \frac{1}{2}\sqrt{\frac{\pi}{\alpha}}$, pour tout $\alpha\in\mathbb{R}$. De même, notons que la parité de l'intégrande nous permet d'écrire que $2I = \int_{-\infty}^{+\infty} dx \; e^{-\alpha x^2}$ ; soit donc que $\int_{-\infty}^{+\infty} dx \; e^{-\alpha x^2} = \sqrt{\frac{\pi}{\alpha}}$.
+En réarrangeant les termes dans l'exponentielle, nous pouvons réécrire la fonction d'onde sous la forme
 \begin{align}
-  \psi_0^2 \int_{-\infty}^{\infty} du \; e^{-\frac{u^2}{l^2}} &= 1;\\
-  \psi_0^2 l\sqrt{\pi} &= 1.
+  \psi(x) &= \psi_0 \; \exp(-\frac{1}{2}\left(\frac{x}{l}\right)^2-\frac{\expval{X}^2}{2l^2}+x\left(\frac{\expval{X}}{l^2}+\frac{i\expval{P}}{\h}\right))
 \end{align}
-Cela impose la valeur de $\psi_0$ à $\sqrt{\frac{1}{l\sqrt{\pi}}}$. \color{red} Pas la solution recherchée. \textbf{Why}? \color{black} On en conclut que la fonction d'onde recherchée dans ce paragraphe est de la forme 
-\begin{equation}
-  \psi(x) = \frac{e^{-\frac{i}{2\h}\expval{X}\expval{P}}}{\left(\pi l^2\right)^{1/4}}e^{-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar}}
-\end{equation}
-
+La condition de normalisation nous indique alors que
+\begin{align}
+  \norm{\psi_0}^2 \exp(-\frac{\expval{X}^2}{l^2})\int_{-\infty}^{+\infty} dx \; \exp(-\left(\frac{x}{l}\right)^2+\frac{2\expval{X}}{l^2}) &= 1\\
+  \norm{\psi_0}^2 \sqrt{\pi l^2} &= 1 &\psi_0 = \frac{1}{\left(\pi l^2\right)^{1/4}}
+\end{align}
+Puisque le choix de phase ne change rien à la physique d'un système, nous sommes libre de prendre ce qui nous arrange le mieux. En particulier, nous pouvons donc écrire notre fonction d'onde 
+\begin{align}
+  \psi(x) &= \frac{\exp(-\frac{i}{2\pi}\expval{X}\expval{P})}{\left(\pi l^2\right)^{1/4}}\exp(-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar})
+\end{align}
 \subsection{Opérateurs d'échelle}
 \subsubsection{Commutateur $[a,a^\dagger]$}
 Soit $a = \frac{1}{\sqrt{2}} \left(\frac{X}{l}+\frac{ilP}{\hbar}\right)$ - l'opérateur destruction. Nous comprendrons plus tard, en étudiant ses propriétés, la logique derrière son nom. De sa définition, nous trouvons directement l'expression de la commutation des bosons:
@@ -225,7 +228,7 @@ Dans le cours théorique, nous avons introduit la base de Fock comme étant l'en
 \end{lemma}
 
 \begin{property}
-  L'opérateur nombre $\bm{N}$ est positif, dans le sens défini au cours : tout vecteur propre $\ket{n}$ de $\bm{N}$ est associé à un vecteur propre $n\geq 0$.
+  L'opérateur nombre $\bm{N}$ est positif, dans le sens défini au cours : tout vecteur propre $\ket{n}$ de $\bm{N}$ est associé à une valeur propre $n\geq 0$.
 \end{property}
 \begin{lemma}
   $[\bm{N},a]=-a$ et $[\bm{N},a^\dagger] = a^\dagger$
@@ -340,7 +343,25 @@ Observons que l'opérateur déplacement n'est \emph{pas} linéaire:
 \textbf{A COMPLETER}
 
 \subsection{Relation de fermeture}
-
+\begin{property}
+  La base des états cohérents $\left\{\ket{\alpha} : \alpha\in\mathbb{C}\right\}$ admet la relation de fermeture
+  \begin{align}
+    \frac{1}{\pi}\iint dRe(\alpha)dIm(\alpha) \; \ket{\alpha}\bra{\alpha} &= \mathbb{I}
+  \end{align}
+\end{property}
+\begin{proof}
+  Adoptons la notation $d^2\alpha = dRe(\alpha)dIm(\alpha)$. En vertue de la propriété \ref{coherent in fock}, nous avons
+  \begin{align}
+    \frac{1}{\pi}\int d^2\alpha \; \ket{\alpha}\bra{\alpha} &= \frac{1}{\pi}\sum_{n,m\geq 0} \frac{\ket{m}\bra{n}}{\sqrt{n!m!}} \left[\int d^2\alpha \; e^{-\norm{\alpha}^{2}} \bar{\alpha}^m\alpha^n\right]
+  \end{align}
+  On passe en coordonnée polaire, en posant $\alpha = re^{i\cos}$ et $d^2\alpha = rdrd\theta$. Dès lors,
+  \begin{align}
+    \frac{1}{\pi}\int d^2\alpha \; \ket{\alpha}\bra{\alpha} &= \frac{1}{\pi}\sum_{n,m\geq 0} \frac{\ket{m}\bra{n}}{\sqrt{n!m!}}\int_0^{+\infty} dr \; re^{-r^2}r^{m+n} \; \int_0^{2\pi}d\theta \; e^{i\left(n-m\right)\theta}\\
+    &= 2\sum_n \frac{\ket{n}\bra{n}}{n!} \int_0^{+\infty}dr \; re^{-r^2}r^{2n}\\
+    &= \sum_n \frac{\ket{n}\bra{n}}{n!}\int_0^{+\infty}ds \; e^{-s}s^n = \sum_n \ket{n}\bra{n} = \mathbb{I}
+  \end{align}
+  où nous avons effectué le changement de variable $r^2=s$ (soit donc que $ds = 2rdr$), ainsi que le fait que $\int_0^{+\infty} ds \; e^{-s}s^n = \Gamma(n+1) = n!$.
+\end{proof}
 \section{Partie II - Oscillateur hamonique}
 \label{part 2}
 Considérons l'Hamiltonien classique d'un oscillateur harmonique, 

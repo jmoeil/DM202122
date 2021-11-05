@@ -159,11 +159,6 @@ Nous obtenons alors que $\psi(x) = \psi_0 \; e^{-\frac{\left(x-\expval{X}\right)
         \int_{-\infty}^{+\infty}dx \; \norm{\Psi(x,t)}^2= 1.
     \end{equation}
 \end{property}
-
-\begin{proof}
-  Voir cours théorique.
-\end{proof}
-
 En réarrangeant les termes dans l'exponentielle, nous pouvons réécrire la fonction d'onde sous la forme
 \begin{align}
   \psi(x) &= \psi_0 \; \exp(-\frac{1}{2}\left(\frac{x}{l}\right)^2-\frac{\expval{X}^2}{2l^2}+x\left(\frac{\expval{X}}{l^2}+\frac{i\expval{P}}{\h}\right))
@@ -173,7 +168,7 @@ La condition de normalisation nous indique alors que
   \norm{\psi_0}^2 \exp(-\frac{\expval{X}^2}{l^2})\int_{-\infty}^{+\infty} dx \; \exp(-\left(\frac{x}{l}\right)^2+\frac{2\expval{X}}{l^2}) &= 1\\
   \norm{\psi_0}^2 \sqrt{\pi l^2} &= 1 &\psi_0 = \frac{1}{\left(\pi l^2\right)^{1/4}}
 \end{align}
-Puisque le choix de phase ne change rien à la physique d'un système, nous sommes libre de prendre ce qui nous arrange le mieux. En particulier, nous pouvons donc écrire notre fonction d'onde 
+Puisque le choix de phase globale n'a aucune importance physique, nous avons la liberté de prendre une phase de notre choix. En particulier, nous pouvons donc écrire\footnote{Je ne vois pas pourquoi on fait ce choix-là en particulier ...} 
 \begin{align}
   \psi(x) &= \frac{\exp(-\frac{i}{2\pi}\expval{X}\expval{P})}{\left(\pi l^2\right)^{1/4}}\exp(-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar})
 \end{align}
@@ -369,7 +364,7 @@ Observons que $\bm{D}(\alpha)\bm{D}(-\alpha) = \mathbb{I}$. Montrer que $\bm{D}(
 \subsubsection{Déplacement + Déplacement = Déplacement ?}
 \emph{Note : Je répond aux questions 3.b et 3.c ici.}
 
-Considérons l'opérateur déplacement de paramètre $\alpha+\beta$. Celui-ci vaut - par définition,
+Considérons l'opérateur déplacement de paramètre $\alpha+\beta$, pour tout $\alpha,\beta\in\mathbb{C}$. Celui-ci vaut, par définition,
 \begin{align}
   \bm{D}(\alpha+\beta) &= \exp(\alpha\bm{a}^\dagger-\alpha^*\bm{a}+\beta\bm{a}^\dagger-\beta^*\bm{a})
 \end{align}
@@ -387,7 +382,7 @@ En particulier, en appliquant l'état du vide $\ket{0}$ sur $\bm{D}(\alpha+\beta
   \bm{D}(\alpha+\beta)\ket{0} &= e^{iIm(\alpha^*\beta)}\bm{D}(\alpha)\bm{D}(\beta)\ket{0} = e^{iIm(\alpha^*\beta)}\bm{D}(\alpha)\ket{\beta} = e^{iIm(\alpha^*\beta)}\ket{\alpha+\beta}.
 \end{align}
 \begin{remark}
-  Le facteur de phase $e^{iIm(\alpha^*\beta)}$ est une phase globale, et n'a donc aucune importance physique.
+  Le facteur de phase $e^{iIm(\alpha^*\beta)}$ est une phase globale : elle n'a donc aucune importance physique ! 
 \end{remark}
 \subsection{Relation de fermeture}
 \begin{property}
@@ -542,10 +537,10 @@ La moyenne dans l'état $\ket{\psi(t)}$ est donnée par la relation
   &= \sqrt{\frac{\h}{2m\omega}} \left[\alpha e^{-i\omega t}+\alpha^*e^{i\omega t}\right]
 \end{align}
 
-On peut poser $\alpha = \norm{\alpha}e^{i\theta}$ : l'expression de la moyenne de l'opérateur position $X$ dans l'état $\ket{\alpha(t)}$ se simplifie alors grandement.
+On peut poser $\alpha = \norm{\alpha}e^{i\varphi}$ : l'expression de la moyenne de l'opérateur position $X$ dans l'état $\ket{\alpha(t)}$ se simplifie alors grandement.
 \begin{align}
   \label{mean position}
-  \expval{X}(t)&= \sqrt{\frac{2\h}{m\omega}}\norm{\alpha}\cos(\omega t-\theta)
+  \expval{X}(t)&= \sqrt{\frac{2\h}{m\omega}}\norm{\alpha}\cos(\omega t-\varphi)
 \end{align}
 
 \paragraph{Ecart quadratique moyen de la position}
@@ -558,11 +553,11 @@ où nous avons utiliser la relation de commutation des bosons pour mettre l'équ
 \begin{align}
   \expval{X^2}{\alpha(t)} &= \frac{\h}{2m\omega} \left(\expval{a^2}{\alpha(t)}+\expval{\left(a^\dagger\right)^2}{\alpha(t)}+2\expval{a^\dagger a}{\alpha(t)}+\braket{\alpha(t)}\right)\\
   &= \frac{\h}{2m\omega}\left[\left(\alpha e^{-i\omega t}\right)^2+\left(\alpha^*e^{i\omega t}\right)^2 +2\norm{\alpha}^2+1\right]\braket{\alpha(t)}\\
-  &= \frac{\h}{2m\omega}\left[\left(\alpha e^{-i\omega t}+\alpha^*e^{i\omega t}\right)^2+1\right] = \frac{\h}{2m\omega}\left[\norm{\alpha}^2\left(e^{i\theta}e^{-i\omega t}+e^{-i\theta}e^{i\omega t}\right)^2+1\right]\label{Mean X^2}
+  &= \frac{\h}{2m\omega}\left[\left(\alpha e^{-i\omega t}+\alpha^*e^{i\omega t}\right)^2+1\right] = \frac{\h}{2m\omega}\left[\norm{\alpha}^2\left(e^{i\varphi}e^{-i\omega t}+e^{-i\varphi}e^{i\omega t}\right)^2+1\right]\label{Mean X^2}
 \end{align}
-Où nous avons posé $\alpha = \norm{\alpha}e^{i\theta}$. Nous trouvons finalement que 
+Où nous avons posé $\alpha = \norm{\alpha}e^{i\varphi}$. Nous trouvons finalement que 
 \begin{align}
-  \expval{X^2}(t) &= \frac{\h}{2m\omega}\left[4\norm{\alpha}^2\cos^2(\omega t-\theta)+1\right]
+  \expval{X^2}(t) &= \frac{\h}{2m\omega}\left[4\norm{\alpha}^2\cos^2(\omega t-\varphi)+1\right]
 \end{align}
 
 En vertue de \eqref{ecart quadratique moyen}, nous avons alors que l'incertitude sur la position est donnée par
@@ -586,11 +581,11 @@ La moyenne dans l'état $\ket{\alpha(t)}$ est donnée par la relation
   \expval{P}{\alpha(t)} &= -i\sqrt{\frac{m\h\omega}{2}}\left(\expval{a}{\alpha(t)}-\expval{a^\dagger}{\alpha(t)}\right)\\
   &= -i\sqrt{\frac{m\h\omega}{2}}\left(\alpha e^{-i\omega t}-\alpha^*e^{i\omega t}\right)\label{45}
 \end{align}
-En posant $\alpha = \norm{\alpha}e^{i\theta}$, nous pouvons simplifier \eqref{45} : de la sorte, la moyenne de l'impulsion est donnée par une expression similaire à \eqref{mean position}.
+En posant $\alpha = \norm{\alpha}e^{i\varphi}$, nous pouvons simplifier \eqref{45} : de la sorte, la moyenne de l'impulsion est donnée par une expression similaire à \eqref{mean position}.
 \begin{align}
-  \expval{P}{\alpha(t)} &= -i\sqrt{\frac{m\h\omega}{2}}\norm{\alpha}\left(e^{i\theta}e^{-i\omega t}-e^{-i\theta}e^{i\omega t}\right)\\
-  &= -i\sqrt{\frac{m\h\omega}{2}}\norm{\alpha} \left(-2i\sin\omega t-\theta\right)\\
-  \expval{P}(t) &= -\sqrt{2m\h\omega}\norm{\alpha}\sin(\omega t-\theta) \label{mean P}
+  \expval{P}{\alpha(t)} &= -i\sqrt{\frac{m\h\omega}{2}}\norm{\alpha}\left(e^{i\varphi}e^{-i\omega t}-e^{-i\varphi}e^{i\omega t}\right)\\
+  &= -i\sqrt{\frac{m\h\omega}{2}}\norm{\alpha} \left(-2i\sin\omega t-\varphi\right)\\
+  \expval{P}(t) &= -\sqrt{2m\h\omega}\norm{\alpha}\sin(\omega t-\varphi) \label{mean P}
 \end{align} 
 
 \paragraph{Ecart quadratique moyen de l'impulsion}
@@ -602,11 +597,11 @@ Du système $\eqref{P and X}$, nous apprenons que
 où nous avons exprimer l'égalité sous la \emph{forme normale}. Nous pouvons alors déterminer la moyenne de $P^2$, ce qui donne, sans surprise, un résultat tout à fais similaire à \eqref{Mean X^2}.
 \begin{align}
   \label{Mean P^2}
-  \expval{P^2}(t)&= \frac{m\h\omega}{2}\left[4\norm{\alpha}^2\sin^2(\omega t-\theta)+1\right]
+  \expval{P^2}(t)&= \frac{m\h\omega}{2}\left[4\norm{\alpha}^2\sin^2(\omega t-\varphi)+1\right]
 \end{align}
 L'incertitude sur $P$ s'ensuit.
 \begin{align}
-  \Delta P &= \sqrt{\frac{m\h\omega}{2}\left[4\norm{\alpha}^2\sin^2(\omega t-\theta)+1\right] - 2m\h\omega\norm{\alpha}^2\sin^2(\omega t-\theta)} = \sqrt{\frac{m\h\omega}{2}}
+  \Delta P &= \sqrt{\frac{m\h\omega}{2}\left[4\norm{\alpha}^2\sin^2(\omega t-\varphi)+1\right] - 2m\h\omega\norm{\alpha}^2\sin^2(\omega t-\varphi)} = \sqrt{\frac{m\h\omega}{2}}
 \end{align}
 
 \begin{remark}
@@ -629,8 +624,8 @@ Avant de passer à la suite, quelques observations/commentaires sur les différe
 En vertue de l'expression de l'Hamiltonien d'un Oscillateur Harmonique, le calcul de la moyenne se réduit à calculer la moyenne de $P^2$ et de $X^2$, ce qui a été fais en \ref{Evolution temporelle de l'opérateur position} et en \ref{Evolution temporelle de l'opérateur impulsion}. En particulier, le problème de la moyenne de l'Hamiltonien se réduit donc à injecter \eqref{Mean X^2} et \eqref{Mean P^2} dans \eqref{Hamiltonien OH}.
 \begin{align}
   \expval{H}{\alpha(t)} &= \frac{1}{2m}\left(\expval{P^2}{\alpha(t)}\right) + \frac{m\omega^2}{2}\expval{X^2}{\alpha(t)}\\
-  &= \frac{1}{2m} \left[\frac{m\h\omega}{2}\left(4\norm{\alpha}^2\sin^2(\omega t-\theta)+1\right)\right] + \frac{m\omega^2}{2}\left[\frac{\h}{2m\omega}\left(4\norm{\alpha}^2\cos^2(\omega t-\theta)+1\right)\right]\\
-  \expval{H} &= \frac{\h\omega}{2}\left(2\norm{\alpha}^2+1\right)
+  &= \frac{1}{2m} \left[\frac{m\h\omega}{2}\left(4\norm{\alpha}^2\sin^2(\omega t-\varphi)+1\right)\right] + \frac{m\omega^2}{2}\left[\frac{\h}{2m\omega}\left(4\norm{\alpha}^2\cos^2(\omega t-\varphi)+1\right)\right]\\
+  \expval{H} &= \frac{\h\omega}{2}\left(2\norm{\alpha}^2+1\right)\label{mean H}
 \end{align}
 \begin{remark}
   Observons directement que, contrairement à la moyenne de la position et de l'impulsion, la moyenne de l'Hamiltonien semble être indépendant du temps. Cela fait sens: l'interprétation de l'Hamiltonien d'un système est celui de l'énergie totale présent dans celui-ci. Or, pour un système isolé - tel notre oscillateur harmonique - l'énergie totale doit être conservé, c'est à dire $\dot{H} = 0$.
@@ -650,6 +645,7 @@ La moyenne de $H^2$ est alors donné par:
 \end{align}
 Sans surprise cette fois, la moyenne de $H^2$ est indépendante du temps. Pour finir, nous pouvons déterminer la valeur de l'incertitude de l'Hamiltonien selon la méthode usuelle:
 \begin{align}
+  \label{delta H}
   \Delta H = \sqrt{\h^2\omega^2\left[\norm{\alpha}^4+2\norm{\alpha}^2+\frac{1}{4}\right]-\frac{\h^2\omega^2}{4}\left(4\norm{\alpha}^4+4\norm{\alpha}^2+1\right)} = \h\omega\norm{\alpha}
 \end{align}
 
@@ -664,11 +660,35 @@ De manière générale, un système possédant une énergie potentielle $V(x)$ p
 
 Le système tendra à tourner autour de la configuration minimisant $V(x)$ - or, par définition, il s'agit de l'endroit où $\frac{dV}{dx}$ disparaît. Dès lors, nous avons que $V(x) = \frac{\left(x-x_0\right)^2}{2} \left.\frac{d^2V}{dx^2}\right|_{x_0} + \mathcal O(x-x_0)^3 \approx \frac{1}{2}k\left(x-x_0\right)^2$. Il s'agit du potentiel d'un oscillateur harmonique pour des petites oscillations autour de $x_0$.
 
-Analysons le système décrit au premier paragraphe en exploitant la formulation Lagrangienne de la mécanique. Ce devoir ne traitant pas de mécanique classique, nous passerons les détails de calcul pour se focaliser sur l'interprétation physique. Placons-nous dans un champ gravitationel $\bm{g} = g\bm{\bm{y}}$. La Lagrangien du système est 
+Analysons le système décrit au premier paragraphe en exploitant la formulation Lagrangienne de la mécanique. Ce devoir ne traitant pas de mécanique classique, nous passerons les détails de calcul pour se focaliser sur l'interprétation physique. Placons-nous dans un champ gravitationel $\bm{g} = -g\bm{\bm{y}}$. La Lagrangien du système est 
 \begin{equation}
-  L = \frac{1}{2}mL^2\dot{\theta}^2 - mg\cos\theta 
+  L = \frac{1}{2}mL^2\dot{\theta}^2 + mg\cos\theta 
 \end{equation}
-L'équation d'Euler-Lagrange permet de pleinement résoudre cette équation, et nous donne le résultat $\ddot{\theta} = \frac{g}{L}\sin\theta$. En considérant de faibles oscillations autour de la position d'équilibre, nous pouvons admettre l'approximation de MacLaurin $\sin\theta=\theta$, de sorte que nous nous retrouvions avec l'équation différentielle $\ddot{\theta} = \omega^2\theta$, où $\omega = \sqrt{\frac{g}{L}}$.
+L'équation d'Euler-Lagrange permet de pleinement résoudre cette équation, et nous donne le résultat $\ddot{\theta} + \frac{g}{L}\sin\theta =  0$. En considérant de faibles oscillations autour de la position d'équilibre, nous pouvons admettre l'approximation de MacLaurin $\sin\theta=\theta$, de sorte que nous nous retrouvions avec l'équation différentielle $\ddot{\theta} + \frac{g}{L}\theta = 0$. La solution générale d'une telle équation est donnée par
+\begin{align}
+  \label{single pendulum}
+  \theta(t) = A\cos(\sqrt{\frac{g}{L}}t+\varphi)
+\end{align}
+où $A$ est l'amplitude et $\varphi$ est une phase quelconque ; ces deux constantes dépendant des conditions initiales.\\
+
+\emph{Un état cohérent imite donc intimement l'évolution d'un oscillateur harmonique classique.} En particulier, en mettant en parallèle les équations \eqref{mean position} et \eqref{single pendulum}, nous trouvons les relations suivantes.
+\begin{equation}
+  \omega = \sqrt{\frac{g}{L}}\qquad
+  l = \sqrt{\frac{\h}{m\omega}} = \sqrt{\frac{L\h}{mg}}\qquad
+  A = \sqrt{2}l\norm{\alpha} = \sqrt{\frac{2L\h}{mg}}\norm{\alpha}
+\end{equation}
+Or, nous connaissons la valeur de $A$ pour notre OH classique! Elle est donnée par $A = L\absolutevalue{\theta_{max}} = 1\si{cm}$. En isolant le terme $\norm{\alpha}$ dans l'expression de $A$, nous avons alors que
+\begin{equation}
+  \label{89}
+  \norm{\alpha}= A\sqrt{\frac{mg}{2L\h}}
+\end{equation}
+pour l'état cohérent reproduisant le plus fidèlement le mouvement du pendule.\\
+
+Finalement, en associant nos résultats \eqref{mean H}, \eqref{delta H} et \eqref{89}, nous trouvons
+\begin{equation}
+  \frac{\Delta H}{\expval{H}} = \frac{2\norm{\alpha}}{2\norm{\alpha}^2+1} = \frac{A\sqrt{2mgL\h}}{mgA^2+L\h}
+\end{equation}
+Application numérique: FLEMME
 
 \section{Partie III - Décohérence}
 \subsection{Spectre de l'Hamiltonien}

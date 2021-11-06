@@ -32,7 +32,7 @@
 \pgfplotsset{width=10cm,compat=1.16}
 
 % Counter stuff
-\counterwithin*{section}{part}
+\counterwithin{equation}{section}
 \setcounter{tocdepth}{3}
 
 % Random utilities...
@@ -141,7 +141,7 @@ Nous allons étudier la notion d'\emph{état cohérent} dans un cadre unidimensi
   \begin{align}
     \bm{a}\ket{\alpha} = \sum_n c_n a\ket{n} = \sum_n c_n\sqrt{n}\ket{n-1} &= \alpha\sum_n c_n \ket{n}
   \end{align}
-  De cette égalité, nous déduisons $c_n\sqrt{n}=\alpha c_{n-1}$. Par récurrence, nous pouvons alors montrer que $c_n = \frac{\alpha^n}{\sqrt{n!}}c_0$. En injectant cela dans notre somme, on se retrouve avec $\ket{\alpha} = c_0\sum_n \frac{\alpha^n}{\sqrt{n}}\ket{n}$. Puisque les états cohérents sont normaux, nous avons
+  De cette égalité, nous déduisons $c_n\sqrt{n}=\alpha c_{n-1}$. Par récurrence, nous pouvons alors montrer que $c_n = \frac{\alpha^n}{\sqrt{n!}}c_0$. En injectant cela dans notre somme, on se retrouve avec $\ket{\alpha} = c_0\sum_n \frac{\alpha^n}{\sqrt{n!}}\ket{n}$. Puisque les états cohérents sont normaux, nous avons
   \begin{align}
     1 = \braket{\alpha} &= \norm{c_0}^2 \sum_{n,m\geq 0} \frac{\bar{\alpha}^m\alpha^n}{\sqrt{n!m!}}\braket{m}{n} = \norm{c_0}^2\sum_{n\geq 0} \frac{\left(\norm{\alpha}^2\right)^n}{n!} = \norm{c_0}^2e^{\norm{\alpha}^2}
   \end{align}
@@ -159,15 +159,15 @@ Nous obtenons alors que $\psi(x) = \psi_0 \; e^{-\frac{\left(x-\expval{X}\right)
         \int_{-\infty}^{+\infty}dx \; \norm{\Psi(x,t)}^2= 1.
     \end{equation}
 \end{property}
-En réarrangeant les termes dans l'exponentielle, nous pouvons réécrire la fonction d'onde sous la forme
+Nous voulons appliquer cette condition sur la fonction d'onde décrite ci-dessus. Pour ce faire, commencons par réarranger les termes dans l'exponentielle:
 \begin{align}
   \psi(x) &= \psi_0 \; \exp(-\frac{1}{2}\left(\frac{x}{l}\right)^2-\frac{\expval{X}^2}{2l^2}+x\left(\frac{\expval{X}}{l^2}+\frac{i\expval{P}}{\h}\right))
 \end{align}
 La condition de normalisation nous indique alors que
 \begin{align}
-  \norm{\psi_0}^2 \exp(-\frac{\expval{X}^2}{l^2})\int_{-\infty}^{+\infty} dx \; \exp(-\left(\frac{x}{l}\right)^2+\frac{2\expval{X}}{l^2}) &= 1\\
+  \norm{\psi_0}^2 \exp(-\frac{\expval{X}^2}{l^2})\int_{-\infty}^{+\infty} dx \; \exp(-\left(\frac{x}{l}\right)^2+\frac{2\expval{X}}{l^2}x) &= 1\\
   \norm{\psi_0}^2 \sqrt{\pi l^2} &= 1 &\psi_0 = \frac{1}{\left(\pi l^2\right)^{1/4}}
-\end{align}
+\end{align} 
 Puisque le choix de phase globale n'a aucune importance physique, nous avons la liberté de prendre une phase de notre choix. En particulier, nous pouvons donc écrire\footnote{Je ne vois pas pourquoi on fait ce choix-là en particulier ...} 
 \begin{align}
   \psi(x) &= \frac{\exp(-\frac{i}{2\pi}\expval{X}\expval{P})}{\left(\pi l^2\right)^{1/4}}\exp(-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar})
@@ -260,16 +260,36 @@ De ce théorème, nous tirons notre interprétation des états $\ket{n}$. Il s'a
 
 Cette dernière base est bien à distinguer de la base des états cohérents : en effet, si $\ket{n}$ est un élément de l'espace de Fock, rien n'assure que $\ket{n}$ diagonalise l'opérateur annihilation $\bm{a}$. De même, si $\ket{\alpha}$ est un état cohérent, $\bm{a}^\dagger \bm{a}\ket{\alpha} = \alpha \bm{\alpha}^\dagger\ket{\alpha}$ ne donne aucune information sur les états propres de $\bm{N}$. A la différence des états propres de $\bm{N}$ - décrivant un nombre fixe d'excitations - les états $\ket{\alpha}$ en possèdent un nombre indéterminé: elles se dotent cependant d'une \emph{phase fixe}. Nous avons bien deux bases distinctent, donnant des informations différentes sur les opérateurs introduit par la solution de Dirac de l'Oscillateur Harmonique.\\
 
-Maintenant que la différence entre les deux bases est claire, attelons-nous à montrer ce qui les relie. Introduisons la relation $\ket{n} = \frac{\left(\bm{a}^\dagger\right)^n}{\sqrt{n!}}\ket{0}$. 
+Maintenant que la différence entre les deux bases est claire, attelons-nous à montrer ce qui les relie. Introduisons la relation $\ket{n} = \frac{\left(\bm{a}^\dagger\right)^n}{\sqrt{n!}}\ket{0}$. Notons que tout état cohérent $\ket{\alpha}$ peut se réécrire sous la forme $\sum_n \ket{n}\braket{n}{\alpha}$, où nous avons utilisé la relation de fermeture des états de Focks. En particulier, cela nous incline à déterminer la valeur du produit scalaire $\braket{n}{\alpha}$. Rappelons la relation $\bm{a}^\dagger\ket{\alpha} = \sqrt{n+1}\ket{n+1}$, dont l'adjointe est $\bra{\alpha}\bm{a} = \bra{n+1}\sqrt{n+1}$.
 \begin{align}
-  \braket{n}{\alpha} &= e^{-\frac{1}{2}\norm{\alpha}^2} \sum_m \frac{\alpha^m}{\sqrt{m!}}\braket{n}{m}
-  = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_m \frac{\left(\alpha\bm{a}^\dagger\right)^m}{m!}\braket{n}{0} = \frac{\alpha^ne^{-\frac{1}{2}\norm{\alpha}^2}}{\sqrt{n!}}
+  \bra{n}a\ket{\alpha} = \alpha\braket{n}{\alpha} &= \sqrt{n+1}\braket{n+1}{\alpha}
 \end{align}
-En particulier, nous avons alors que
+En remplacant $n$ par $n-1$, nous obtenons
+\begin{align}
+  \alpha\braket{n-1}{\alpha} &= \sqrt{n}\braket{n}{\alpha}\\
+  \frac{\alpha}{\sqrt{n}}\braket{n-1}{\alpha} &= \braket{n}{\alpha}
+\end{align}
+Par récurrence, nous avons alors la relation
+\begin{align}
+  \braket{n}{\alpha} &= \frac{\alpha^n}{\sqrt{n!}}\braket{0}{\alpha}
+\end{align}
+En particulier, nous pouvons réécrire l'état
+\begin{align}
+  \ket{\alpha} = \braket{0}{\alpha} \sum_n \frac{\alpha^n}{\sqrt{n!}}\ket{n}
+\end{align}
+On voit alors que le terme $\braket{0}{\alpha}$ doit absolument être une constante -- de valeur $e^{-\frac{1}{2}\norm{\alpha}^2}$ : la dérivation de ce résultat est tout à fais similaire à la dérivation de la constante $c_0$ dans la preuve de la proposition \ref{coherent in fock}.\\
+
+Tout état cohérent peut donc être généré à partir du vide selon
 \begin{align}
   \label{Création à partir du vide}
-  \ket{\alpha} &= e^{-\frac{1}{2}\norm{\alpha}^2+\alpha\bm{a}^\dagger}\ket{0}
+  \ket{\alpha} = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_n \frac{\alpha^n}{\sqrt{n!}}\ket{n} = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_n \frac{\left(\alpha\bm{a}^\dagger\right)^n}{n!}\ket{0} = e^{-\frac{1}{2}\norm{\alpha}^n+\alpha\bm{a}^\dagger}\ket{0}
 \end{align}
+
+De même, le produit scalaire doit être de la forme
+\begin{align}
+  \braket{n}{\alpha} &= e^{-\frac{1}{2}\norm{\alpha}^2}\frac{\alpha^n}{\sqrt{n!}}  
+\end{align}
+
 \subsubsection{Note sur la non-orthogonalité de la base des états cohérents}
 Nous pouvons voir directement, en exploitant le résultat \ref{coherent in fock}, que la base des états cohérents n'est \textbf{pas} orthonormale. En effet, pour tout $\alpha,\beta$ sur le plan complexe
 \begin{align}
@@ -421,6 +441,7 @@ Ce qui conclut notre preuve.
 \end{verbatim}
 \end{proof}
 \subsubsection{Commentaire sur l'indépendance linéaire}
+\emph{Nous pouvons prendre cette partie comme le commentaire demandé à l'exercice 2.e.}
 
 Tout vecteur $\ket{\psi}$ dans la base de Hilbert (dans laquelle se trouve la base des états cohérents) peut donc s'écrire de
 \begin{align}
@@ -521,9 +542,6 @@ Cette relation nous indique directement la relation correspondante dans la base 
     \Delta A = \sqrt{\expval{A^2}{\psi} - \expval{A}{\psi}^2}
   \end{align}
 \end{property}
-\begin{proof}
-  Ce devoir ne traitant pas de la théorie des probabilités, je me permet de ne pas démontrer cette propriété afin de ne pas charger le texte d'informations ayant peu d'intérêts dans notre contexte.
-\end{proof}
 
 \subsubsection{Evolution temporelle de l'opérateur position}
 \label{Evolution temporelle de l'opérateur position}
@@ -612,7 +630,7 @@ Avant de passer à la suite, quelques observations/commentaires sur les différe
 \begin{itemize}
   \item Les moyennes des opérateurs - et de leur carré - dépendent explicitement, périodiquement, du temps.
   \item L'incertitude sur ces mêmes opérateurs, par contre, est indépendante du temps: à tout instant donné, l'incertitude sur la mesure de X (resp. de P) dans l'état $\ket{\alpha(t)}$ est la même.
-  \item La moyenne de la position \eqref{mean position} et la moyenne de l'impulsion \eqref{mean P} oscillent \emph{de la même manière que dans la limite classique} ! On voit donc ici la véritable puissante de la notion d'état cohérent.
+  \item La moyenne de la position \eqref{mean position} et la moyenne de l'impulsion \eqref{mean P} de l'oscillateur harmonique quantique dans un état cohérent oscillent \emph{de la même manière} que dans un oscillateur harmonique classique ! On voit donc ici la véritable puissance de la notion d'état cohérent.
 \end{itemize} 
 
 \begin{remark}

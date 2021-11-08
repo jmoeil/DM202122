@@ -118,7 +118,7 @@
 \tableofcontents
 \newpage
 
-\section{Partie I - Etats cohérents}
+\section{Partie I - Etude des états cohérents }
 \subsection*{Introduction des concepts clés}
 Nous allons étudier la notion d'\emph{état cohérent} dans un cadre unidimensionnel, en se munissant des opérateurs position $X$ et impulsion $P$, satisfaisant la relation de commutation canonique $[X,P] = i\hbar$.
 
@@ -150,6 +150,34 @@ Nous allons étudier la notion d'\emph{état cohérent} dans un cadre unidimensi
 
 \subsection{Fonction d'onde la plus générale d'un état cohérent}
 Nous voulons déterminer la forme de la fonction d'onde la plus générale décrivant un état cohérent. Nous savons que ce dernier dépendra de trois paramètres réels, que nous prendrons dans cette discussion égales à $\expval{X},\expval{P}$ et $l = \sqrt{2}\Delta X$.
+
+De manière extrêmement générale, introduisons les observables $\bm{A}$ et $\bm{B}$. En particulier, nous introduisons le raccourcis $\ket{\psi_A} = \Delta \bm{A}\ket{\psi}$ et $\ket{\psi_B} = \bm{B}\ket{\psi}$, qui seront utiles dans le reste de cette discussion. Nous pouvons relier les deux vecteurs par la relation 
+\begin{equation}
+  \braket{\psi_A}\braket{\psi_B} \geq \norm{\braket{\psi_A}{\psi_B}}^2
+\end{equation}
+où nous avons exploité l'\href{https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality}{inégalité de Cauchy-Schwarz}. Notons que l'égalité est stricte si et seulement si $\ket{\psi_A} = \lambda\ket{\psi_B}$, pour tout nombre $\lambda$ \emph{à priori} sur le plan complexe. Développons le terme $\braket{\psi_A}{\psi_B}$.
+\begin{align}
+  \braket{\psi_A}{\psi_B} &= \bra{\psi}\Delta\bm{A}\Delta\bm{B}\ket{\psi} = \frac{1}{2}\bra{\psi}\Delta\bm{A}\Delta\bm{B}-\Delta\bm{B}\Delta\bm{A}\ket{\psi} + \frac{1}{2}\bra{\psi}\Delta\bm{B}\Delta\bm{A}+\Delta\bm{A}\Delta\bm{B}\ket{\psi}
+\end{align}
+Notons que le premier terme de cette égalité nous redonne bien le principe d'incertitude: $\Delta\bm{A}\Delta\bm{B}\geq \frac{1}{2}\norm{\bra{\psi}\left[\bm{A},\bm{B}\right]\ket{\psi}}^2$. Cependant, pour avoir l'égalité stricte recherchée (définissant un état cohérent), nous devons imposer que le second terme dans la somme soit nulle. En particulier, nous devons imposer que les deux conditions suivantes soient simultanément satisfaites:
+\begin{subequations}
+  \begin{equation}
+    \Delta\bm{A}\ket{\psi} = \lambda \Delta\bm{B}\ket{\psi}\label{a}
+  \end{equation}
+  \begin{equation}
+    \frac{1}{2}\bra{\psi}\Delta\bm{B}\Delta\bm{A}+\Delta\bm{A}\Delta\bm{B}\ket{\psi} = 0\label{b}
+  \end{equation}
+\end{subequations}
+En particulier, en injectant \eqref{a} dans \eqref{b}, nous trouvons
+\begin{align}
+  \lambda^*\expval{\left(\Delta\bm{B}\right)^2}{\psi}+\lambda\expval{\left(\Delta\bm{B}\right)^2}{\psi} &= 0\\
+  \left(\lambda+\lambda^*\right)\expval{\left(\Delta\bm{B}\right)^2}{\psi} &= 0
+\end{align}
+
+Cela nous indique que $\lambda$ doit-être purement imaginaire : soit $\lambda=i\mu$, pour tout $\mu\in\mathbb{R}$. La condition \eqref{a} se réécrit alors
+\begin{align}
+  \left(\Delta\bm{A}\right)^2 = \left(\mu\Delta\bm{B}\right)^2
+\end{align}
 
 Nous obtenons alors que $\psi(x) = \psi_0 \; e^{-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar}}$, ce qui conclut presque cette section: il nous reste plus qu'à déterminer la constante de normalisation $\psi_0\in\mathbb{R}$. Pour ce faire, exploitons la propriété suivante:
 
@@ -365,7 +393,7 @@ Introduisons, pour tout nombre complexe $\alpha$, l'opérateur déplacement, not
   \end{align}
   Or, nous avons que $\sum_k \bm{a}^k\ket{0} = \bm{a}^0\ket{0} = \ket{0}$.
   \begin{align}
-    \bm{D}(\alpha)\ket{0} &= e^{-\frac{1}{2}\norm{\alpha}^2}e^{\alpha\bm{a}^\dagger}\ket{0} =  e^{-\frac{1}{2}\norm{\alpha}^2} \sum_i \frac{\alpha^i}{i!}\left(\bm{a}^\dagger\right)^i\ket{0} = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_i \frac{\alpha^i}{i!}\ket{n} = \ket{\alpha}
+    \bm{D}(\alpha)\ket{0} &= e^{-\frac{1}{2}\norm{\alpha}^2}e^{\alpha\bm{a}^\dagger}\ket{0} =  e^{-\frac{1}{2}\norm{\alpha}^2} \sum_i \frac{\alpha^i}{i!}\left(\bm{a}^\dagger\right)^i\ket{0} = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_i \frac{\alpha^i}{i!}\ket{i} = \ket{\alpha}
   \end{align}
   Ce qui met en lumière la logique derrière le nom de cet opérateur déplacement $\bm{D}(\alpha)$.
 \end{proof}
@@ -443,7 +471,7 @@ Ce qui conclut notre preuve.
 \subsubsection{Commentaire sur l'indépendance linéaire}
 \emph{Nous pouvons prendre cette partie comme le commentaire demandé à l'exercice 2.e.}
 
-Tout vecteur $\ket{\psi}$ dans la base de Hilbert (dans laquelle se trouve la base des états cohérents) peut donc s'écrire de
+Tout vecteur $\ket{\psi}$ dans la base de Hilbert (dans laquelle se trouve la base des états cohérents) peut donc s'écrire
 \begin{align}
   \ket{\psi} = \frac{1}{\pi}\int d^2\alpha \ket{\alpha}\braket{\alpha}{\psi}
 \end{align} 

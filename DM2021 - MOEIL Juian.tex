@@ -118,10 +118,9 @@
 \tableofcontents
 \newpage
 
-\section{Partie I - Etude des états cohérents }
-\subsection*{Introduction des concepts clés}
+\section{Partie I - Etude des états cohérents}
 Nous allons étudier la notion d'\emph{état cohérent} dans un cadre unidimensionnel, en se munissant des opérateurs position $X$ et impulsion $P$, satisfaisant la relation de commutation canonique $[X,P] = i\hbar$.
-
+\subsection*{Introduction des concepts clés}
 \begin{definition}
     Un état cohérent est un état qui sature la relation d'incertitude de Heisenberg, c'est à dire tel que $\Delta X\Delta P = \frac{\hbar}{2}$. Mathématiquement, on définit un état cohérent $\ket{\alpha}$ comme l'unique état propre de l'opérateur destruction $\bm{a}$, soit
     \begin{equation}
@@ -148,38 +147,77 @@ Nous allons étudier la notion d'\emph{état cohérent} dans un cadre unidimensi
   où nous avons utilisé la représentation sous forme de série de la fonction exponentielle. En particulier, nous avons alors $c_0 = e^{\frac{1}{2}\norm{\alpha}^2}$, ce qui implique la relation recherchée.
 \end{proof}
 
-\subsection{Fonction d'onde la plus générale d'un état cohérent}
+\subsection{Fonction d'onde d'un état cohérent}
 Nous voulons déterminer la forme de la fonction d'onde la plus générale décrivant un état cohérent. Nous savons que ce dernier dépendra de trois paramètres réels, que nous prendrons dans cette discussion égales à $\expval{X},\expval{P}$ et $l = \sqrt{2}\Delta X$.
 
-De manière extrêmement générale, introduisons les observables $\bm{A}$ et $\bm{B}$. En particulier, nous introduisons le raccourcis $\ket{\psi_A} = \Delta \bm{A}\ket{\psi}$ et $\ket{\psi_B} = \bm{B}\ket{\psi}$, qui seront utiles dans le reste de cette discussion. Nous pouvons relier les deux vecteurs par la relation 
+Il existe de nombreuses méthodes pour dériver ce résultat. Ici, nous allons partir d'un développement extrêmement général, lequel nous permettra d'obtenir une équations différentielle dont la solution sera la fonction d'onde recherchée. A partir de là, nous pourrons introduire les opérateurs d'échelle en \ref{opérateur d'échelle}, ainsi que l'opérateur déplacement en \ref{opérateur déplacement}.
+
+\paragraph{Développement général}
+Introduisons, de manière extrêmement générale, les obserables $\bm{A}$ et $\bm{B}$. Soit $\ket{\psi}$ dans notre espace de Hilbert. Imposons la notation
+
+\begin{equation*}
+  \begin{cases}
+    \sigma_A = \left(\bm{A}-\expval{\bm{A}}\right)\ket{\psi} = \ket{f}\\
+    \sigma_B = \left(\bm{B}-\expval{\bm{B}}\right)\ket{\psi} = \ket{g}
+  \end{cases}
+\end{equation*}
+
+De même, prenons $f = \bm{A}-\expval{\bm{A}}$ et $g = \bm{B}-\expval{\bm{B}}$. L'\href{https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality}{\emph{inégalité de Cauchy-Schwarz}} nous indique que
 \begin{equation}
-  \braket{\psi_A}\braket{\psi_B} \geq \norm{\braket{\psi_A}{\psi_B}}^2
+  \label{CS}
+  \braket{f}\braket{g} \geq \norm{\braket{f}{g}}^2.
 \end{equation}
-où nous avons exploité l'\href{https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality}{inégalité de Cauchy-Schwarz}. Notons que l'égalité est stricte si et seulement si $\ket{\psi_A} = \lambda\ket{\psi_B}$, pour tout nombre $\lambda$ \emph{à priori} sur le plan complexe. Développons le terme $\braket{\psi_A}{\psi_B}$.
+L'égalité est stricte si et seulement si $\ket{f}$ et $\ket{g}$ sont colinéaires, c'est à dire si et seulement si $\ket{f} = \lambda\ket{g}$, où $\lambda$ est un nombre \emph{à priori} dans le plan complexe. Réalisons de suite que cette égalité implique que $\ket{\psi}$ est un état propre de l'opérateur $\bm{A}-\lambda \bm{B}$ ; de valeur propre $\expval{\bm{A}}-\lambda\expval{\bm{B}}$. En effet,
 \begin{align}
-  \braket{\psi_A}{\psi_B} &= \bra{\psi}\Delta\bm{A}\Delta\bm{B}\ket{\psi} = \frac{1}{2}\bra{\psi}\Delta\bm{A}\Delta\bm{B}-\Delta\bm{B}\Delta\bm{A}\ket{\psi} + \frac{1}{2}\bra{\psi}\Delta\bm{B}\Delta\bm{A}+\Delta\bm{A}\Delta\bm{B}\ket{\psi}
+  \left(\bm{A}-\expval{\bm{A}}\right)\ket{\psi} &= \lambda\left(\bm{B}-\expval{\bm{B}}\right)\ket{\psi}\notag\\
+  \left(\bm{A}-\lambda \bm{B}\right)\ket{\psi} &= \left(\expval{\bm{A}}-\lambda\expval{\bm{B}}\right)\ket{\psi}\label{EVP 1}
 \end{align}
-Notons que le premier terme de cette égalité nous redonne bien le principe d'incertitude: $\Delta\bm{A}\Delta\bm{B}\geq \frac{1}{2}\norm{\bra{\psi}\left[\bm{A},\bm{B}\right]\ket{\psi}}^2$. Cependant, pour avoir l'égalité stricte recherchée (définissant un état cohérent), nous devons imposer que le second terme dans la somme soit nulle. En particulier, nous devons imposer que les deux conditions suivantes soient simultanément satisfaites:
+Développons à présent le terme $\braket{f}{g}$ dans l'inégalité \eqref{CS}.
+\begin{equation}
+  \braket{f}{g} = \bra{\psi}fg\ket{\psi} = \frac{1}{2}\bra{\psi}fg-gf\ket{\psi}+\frac{1}{2}\bra{\psi}gf+fg\ket{\psi}  
+\end{equation}
+Le premier terme de la somme traduit l'inégalité de Heisenberg $\sigma_A\sigma_B \geq \frac{1}{2}\expval{[\bm{A},\bm{B}]}$. Pour obtenir une égalité stricte, nous devons donc imposer que le second terme de la somme soit nulle. En particulier, on se retrouve alors à devoir imposer les deux conditions suivantes:
 \begin{subequations}
-  \begin{equation}
-    \Delta\bm{A}\ket{\psi} = \lambda \Delta\bm{B}\ket{\psi}\label{a}
-  \end{equation}
-  \begin{equation}
-    \frac{1}{2}\bra{\psi}\Delta\bm{B}\Delta\bm{A}+\Delta\bm{A}\Delta\bm{B}\ket{\psi} = 0\label{b}
-  \end{equation}
+  \begin{align}
+    \bra{\psi}gf+gf\ket{\psi} &= 0\label{1}\\
+    \ket{f} &= \lambda\ket{g}\label{2}
+  \end{align}
 \end{subequations}
-En particulier, en injectant \eqref{a} dans \eqref{b}, nous trouvons
-\begin{align}
-  \lambda^*\expval{\left(\Delta\bm{B}\right)^2}{\psi}+\lambda\expval{\left(\Delta\bm{B}\right)^2}{\psi} &= 0\\
-  \left(\lambda+\lambda^*\right)\expval{\left(\Delta\bm{B}\right)^2}{\psi} &= 0
-\end{align}
+En particulier, en injectant \eqref{2} dans \eqref{1}, nous trouvons que
+\begin{equation}
+  \left(\lambda+\lambda^*\right)\expval{g} = 0
+\end{equation}
+ce qui implique que $\lambda$ est un nombre 'complexe pure', puisque $\expval{g}$ doit être réel. On peut alors le réécrire sous la forme $\lambda=i\mu$, pour tout $\mu$ sur la droite réelle. Nous pouvons directement réécrire l'équation aux valeurs propres \eqref{EVP 1} sous la forme
+\begin{equation}
+  \left(A-i\mu B\right)\ket{\psi} = \left(\expval{A}-i\mu\expval{B}\right)\ket{\psi}\label{EVP 2}
+\end{equation}
+De plus, nous avons aussi que $\sigma_A^2 = \mu^2\sigma_B^2 \Rightarrow \mu = \pm\frac{\sigma_A}{\sigma_B}$.
 
-Cela nous indique que $\lambda$ doit-être purement imaginaire : soit $\lambda=i\mu$, pour tout $\mu\in\mathbb{R}$. La condition \eqref{a} se réécrit alors
-\begin{align}
-  \left(\Delta\bm{A}\right)^2 = \left(\mu\Delta\bm{B}\right)^2
-\end{align}
+\paragraph{Cas des opérateurs position et impulsion}
+Appliquons à présent ces résultats aux opérateurs position et impulsion ; en posant $\bm{A} = \bm{X}$ et $\bm{B} = \bm{P}$.
 
-Nous obtenons alors que $\psi(x) = \psi_0 \; e^{-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar}}$, ce qui conclut presque cette section: il nous reste plus qu'à déterminer la constante de normalisation $\psi_0\in\mathbb{R}$. Pour ce faire, exploitons la propriété suivante:
+En imposant l'égalité \eqref{EVP 2} pour les opérateurs de ce pagaraphe, nous nous retrouvons alors
+\begin{equation}
+  \left(x-i\mu p\right)\psi(x) = \left(\expval{\bm{X}}-i\mu\expval{\bm{P}}\right)\psi(x)\label{EVP XP}
+\end{equation}
+En particulier, notons que dans la représentation $\bm{X}$, l'opérateur impulsion $\bm{P} = -i\h\frac{\partial}{\partial x}$. Nous obtenons dès lors une \emph{équation différentielle}, que nous pouvons résoudre par séparation des variables.
+\begin{align}
+  \left(x-\mu\h\frac{\partial}{\partial x}\right)\psi(x) &= \left(\expval{\bm{X}}-i\mu\expval{\bm{P}}\right)\psi(x)\notag\\
+  \frac{\partial \psi}{\partial x} &= \frac{1}{\mu\h}\left(x-\expval{\bm{X}}+i\mu\expval{\bm{P}}\right)\psi(x)\notag
+\end{align}
+La solution de cette équation différentielle est de la forme
+\begin{align}
+  \psi(x) &= \psi_0 \exp(\frac{x^2-2x\left(\expval{\bm{X}}-i\mu\bm{P}\right)}{2\mu\h})\notag
+\end{align}
+où $\psi_0$ est une constante de normalisation, que nous déterminerons au paragraphe suivant. En réarangeant les termes dans l'exponentielle, nous avons 
+\begin{align}
+  \psi(x) &= \psi_0\exp(-\frac{-x^2+2x\expval{\bm{X}}}{2\mu\h}+\frac{i\expval{\bm{P}}}{\h})\notag\\
+  &= \psi_0\exp(-\frac{\left(x-\expval{\bm{X}}^2\right)\color{red}+\expval{\bm{X}}^2\color{black}}{2\mu\h}+\frac{i\expval{\bm{P}}x}{\h})
+\end{align}
+ce qui est la forme recherchée. La fonction d'onde décrivant un état cohérent est donc donnée par une gaussienne.
+\paragraph{Constante de normalisation}
+Nous obtenons alors que $\psi(x) = \psi_0 \; e^{-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar}}$, ce qui conclut presque notre discussion. Il nous reste plus qu'à déterminer la constante de normalisation $\psi_0\in\mathbb{R}$. Pour ce faire, exploitons la propriété suivante:
+
 
 \begin{property}
     Pour toute fonction d'onde $\Psi(x,t)$, la condition de normalisation s'écrit 
@@ -200,7 +238,7 @@ Puisque le choix de phase globale n'a aucune importance physique, nous avons la 
 \begin{align}
   \psi(x) &= \frac{\exp(-\frac{i}{2\pi}\expval{X}\expval{P})}{\left(\pi l^2\right)^{1/4}}\exp(-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar})
 \end{align}
-\subsection{Opérateurs d'échelle}
+\subsection{Opérateurs d'échelle} \label{opérateur d'échelle}
 \subsubsection{Commutateur $[a,a^\dagger]$}
 Soit $a = \frac{1}{\sqrt{2}} \left(\frac{X}{l}+\frac{ilP}{\hbar}\right)$ - l'opérateur destruction. Nous comprendrons plus tard, en étudiant ses propriétés, la logique derrière son nom. De sa définition, nous trouvons directement l'expression de la commutation des bosons:
 \begin{equation}
@@ -357,7 +395,7 @@ Similairement, le nombre moyen de particules dans l'état $\ket{\alpha}$ s'expri
   \expval{\bm{N}} = \norm{\alpha}^2
 \end{align}
 
-\subsection{Opérateur déplacement}
+\subsection{Opérateur déplacement} \label{opérateur déplacement}
 Introduisons, pour tout nombre complexe $\alpha$, l'opérateur déplacement, noté $\bm{D}(\alpha)$, défini par la relation
 \begin{align}
   \bm{D}(\alpha) = e^{\alpha \bm{a}^\dagger-\alpha^*\bm{a}}.

@@ -144,10 +144,11 @@ Nous allons étudier la notion d'\emph{état cohérent} dans un cadre unidimensi
   \begin{align}
     1 = \braket{\alpha} &= \norm{c_0}^2 \sum_{n,m\geq 0} \frac{\bar{\alpha}^m\alpha^n}{\sqrt{n!m!}}\braket{m}{n} = \norm{c_0}^2\sum_{n\geq 0} \frac{\left(\norm{\alpha}^2\right)^n}{n!} = \norm{c_0}^2e^{\norm{\alpha}^2}
   \end{align}
-  où nous avons utilisé la représentation sous forme de série de la fonction exponentielle. En particulier, nous avons alors $c_0 = e^{\frac{1}{2}\norm{\alpha}^2}$, ce qui implique la relation recherchée.
+  où nous avons utilisé la représentation sous forme de série de la fonction exponentielle. En particulier, nous avons alors $c_0 = e^{-\frac{1}{2}\norm{\alpha}^2}$, ce qui implique la relation recherchée.
 \end{proof}
 
 \subsection{Fonction d'onde d'un état cohérent}
+\label{fonction d'onde d'un état cohérent}
 Nous voulons déterminer la forme de la fonction d'onde la plus générale décrivant un état cohérent. Nous savons que ce dernier dépendra de trois paramètres réels, que nous prendrons dans cette discussion égales à $\expval{X},\expval{P}$ et $l = \sqrt{2}\Delta X$.
 
 Il existe de nombreuses méthodes pour dériver ce résultat. Ici, nous allons partir d'un développement extrêmement général, lequel nous permettra d'obtenir une équations différentielle dont la solution sera la fonction d'onde recherchée. A partir de là, nous pourrons introduire les opérateurs d'échelle en \ref{opérateur d'échelle}, ainsi que l'opérateur déplacement en \ref{opérateur déplacement}.
@@ -157,12 +158,12 @@ Introduisons, de manière extrêmement générale, les obserables $\bm{A}$ et $\
 
 \begin{equation*}
   \begin{cases}
-    \sigma_A = \left(\bm{A}-\expval{\bm{A}}\right)\ket{\psi} = \ket{f}\\
-    \sigma_B = \left(\bm{B}-\expval{\bm{B}}\right)\ket{\psi} = \ket{g}
+    \sigma_A\ket{\psi} = \left(\bm{A}-\expval{\bm{A}}\right)\ket{\psi} = \ket{f}\\
+    \sigma_B\ket{\psi} = \left(\bm{B}-\expval{\bm{B}}\right)\ket{\psi} = \ket{g}
   \end{cases}
 \end{equation*}
 
-De même, prenons $f = \bm{A}-\expval{\bm{A}}$ et $g = \bm{B}-\expval{\bm{B}}$. L'\href{https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality}{\emph{inégalité de Cauchy-Schwarz}} nous indique que
+Nous avons donc $\sigma_A = \bm{A}-\expval{\bm{A}}$ et $\sigma_B = \bm{B}-\expval{\bm{B}}$. L'\href{https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality}{\emph{inégalité de Cauchy-Schwarz}} nous indique que
 \begin{equation}
   \label{CS}
   \braket{f}\braket{g} \geq \norm{\braket{f}{g}}^2.
@@ -174,12 +175,12 @@ L'égalité est stricte si et seulement si $\ket{f}$ et $\ket{g}$ sont colinéai
 \end{align}
 Développons à présent le terme $\braket{f}{g}$ dans l'inégalité \eqref{CS}.
 \begin{equation}
-  \braket{f}{g} = \bra{\psi}fg\ket{\psi} = \frac{1}{2}\bra{\psi}fg-gf\ket{\psi}+\frac{1}{2}\bra{\psi}gf+fg\ket{\psi}  
+  \braket{f}{g} = \bra{\psi}\sigma_A\sigma_B\ket{\psi} = \frac{1}{2}\bra{\psi}\sigma_A\sigma_B-\sigma_B\sigma_A\ket{\psi}+\frac{1}{2}\bra{\psi}\sigma_B\sigma_A+\sigma_A\sigma_B\ket{\psi}  
 \end{equation}
 Le premier terme de la somme traduit l'inégalité de Heisenberg $\sigma_A\sigma_B \geq \frac{1}{2}\expval{[\bm{A},\bm{B}]}$. Pour obtenir une égalité stricte, nous devons donc imposer que le second terme de la somme soit nulle. En particulier, on se retrouve alors à devoir imposer les deux conditions suivantes:
 \begin{subequations}
   \begin{align}
-    \bra{\psi}gf+gf\ket{\psi} &= 0\label{1}\\
+    \bra{\psi}\sigma_B\sigma_A+\sigma_A\sigma_B\ket{\psi} &= 0\label{1}\\
     \ket{f} &= \lambda\ket{g}\label{2}
   \end{align}
 \end{subequations}
@@ -216,8 +217,7 @@ où $\psi_0$ est une constante de normalisation, que nous déterminerons au para
 \end{align}
 ce qui est la forme recherchée. La fonction d'onde décrivant un état cohérent est donc donnée par une gaussienne.
 \paragraph{Constante de normalisation}
-Nous obtenons alors que $\psi(x) = \psi_0 \; e^{-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar}}$, ce qui conclut presque notre discussion. Il nous reste plus qu'à déterminer la constante de normalisation $\psi_0\in\mathbb{R}$. Pour ce faire, exploitons la propriété suivante:
-
+Il ne nous reste plus qu'à déterminer la valeur de $\psi_0\in\mathbb{R}$. Pour ce faire, nous exploitons la propriété suivantes
 
 \begin{property}
     Pour toute fonction d'onde $\Psi(x,t)$, la condition de normalisation s'écrit 
@@ -225,7 +225,7 @@ Nous obtenons alors que $\psi(x) = \psi_0 \; e^{-\frac{\left(x-\expval{X}\right)
         \int_{-\infty}^{+\infty}dx \; \norm{\Psi(x,t)}^2= 1.
     \end{equation}
 \end{property}
-Nous voulons appliquer cette condition sur la fonction d'onde décrite ci-dessus. Pour ce faire, commencons par réarranger les termes dans l'exponentielle:
+Commencons par réarranger les termes dans l'exponentielle
 \begin{align}
   \psi(x) &= \psi_0 \; \exp(-\frac{1}{2}\left(\frac{x}{l}\right)^2-\frac{\expval{X}^2}{2l^2}+x\left(\frac{\expval{X}}{l^2}+\frac{i\expval{P}}{\h}\right))
 \end{align}
@@ -255,30 +255,35 @@ Soit $a = \frac{1}{\sqrt{2}} \left(\frac{X}{l}+\frac{ilP}{\hbar}\right)$ - l'op�
 
 \subsubsection{Valeur propre de $a$ - résolution analytique}
 
-Attelons-nous à déterminer le vecteur propre de l'équation aux valeurs propre \eqref{etat coherent}, en admettant la valeur propre 
-\begin{equation}
-  \label{valeur propre}
-  \alpha = \expval{a} = \frac{1}{\sqrt{2}}\left(\frac{\expval{X}}{l}+\frac{il}{\h}\expval{P}\right)
-\end{equation}
-
-\begin{remark}
-  L'opérateur impulsion $P$ peut-être réexprimé en terme de l'opérateur position selon la relation 
-  \begin{equation}
-    P = -i\h\frac{\partial}{\partial X}.
-  \end{equation}
-\end{remark}
-En particulier, cela revient à résoudre l'équation différentielle
-\begin{equation}
-  \color{gray}\left(\frac{X}{l}+\frac{ilP}{\hbar}\right)\bm{\alpha} = \color{black}\left(\frac{X}{l}+l\partial_x\right)\bm{\alpha} = \left(\frac{\expval{X}}{l}+\frac{il}{\h}\expval{P}\right)\bm{\alpha}
-\end{equation}
-Elle se résoud exactement par séparation des variables:
+Placons nous dans un espace de Hilbert, et prenons un vecteur $\ket{\psi}$ lui appartenant. Nous recherchons les solutions de l'équation aux valeurs propres
 \begin{align}
-  \frac{\partial_X \bm{\alpha}}{\bm{\alpha}} &= \left(\frac{\expval{X}}{l}+\frac{il}{\h}\expval{P}-\frac{X}{l}\right) \\
-  \bm{\alpha} &= C\exp(\frac{\expval{X}}{l}X+\frac{il}{\h}\expval{P}X-\frac{X^2}{2l})
+  \bm{a}\ket{\psi} &= \alpha\ket{\psi} = \frac{1}{\sqrt{2}}\left(\frac{\bm{X}}{l}+\frac{il\bm{P}}{\h}\right)\ket{\psi}.
 \end{align}
-où $C$ est une constante d'intégration. Observons que cette solution diverge en $+\infty$ : \color{red} elle est donc fausse. \textbf{Why?} \color{black}
+Commencons par remarquer que l'expression précédente nous permet de directement déduire la relation $(3)$ de l'énoncé:
+\begin{align}
+  \bra{\psi}\bm{a}\ket{\psi} &= \alpha\braket{\psi} = \frac{1}{\sqrt{2}}\left(\frac{\expval{\bm{X}}}{l}+\frac{il\expval{\bm{P}}}{\h}\right).
+\end{align}
+
+Dès lors, le problème se réduit à résoudre
+\begin{align}
+  \frac{1}{\sqrt{2}}\left(\frac{\bm{X}}{l}+\frac{il\bm{P}}{\h}\right)\ket{\psi} &= \frac{1}{\sqrt{2}}\left(\frac{\expval{X}}{l}+\frac{il\expval{P}}{\h}\right)\\
+  \left(\bm{X}-\expval{\bm{X}}\right)\ket{\psi} &= -\frac{il^2}{\h}\left(\bm{P}-\expval{\bm{P}}\right)\ket{\psi}
+\end{align}
+qui est l'équation : nous l'avons déjà résolue! Nous voyons en particulier que, à $l$ fixé, la solution est unique. Nous pouvons donc écrire $\ket{\psi} = \ket{\alpha}$. La fonction d'onde $\braket{x}{\psi}=\braket{x}{\alpha}$ est déterminée par la gaussienne que nous avons trouvé en \ref{fonction d'onde d'un état cohérent}.
 
 \subsubsection{Intégrale gaussienne}
+
+Nous voulons déterminer la valeur du produit scalaire $\braket{0}{\alpha}$. Pour ce faire, insérons la relation de complétude $\int_{-\infty}^{+\infty} dx\; \ket{x}\bra{x} = \mathbb{I}$:
+\begin{align}
+  \braket{0}{\alpha} &= \int_{-\infty}^{+\infty}dx\; \braket{0}{x}\braket{x}{\alpha}
+\end{align}
+
+Notons que le terme $\braket{0}{\alpha}$ est l'état fondamental de l'oscillateur  harmonique, que nous avons calculé dans le cours théorique. Le terme $\braket{x}{\alpha}$ est la fonction d'onde d'un état cohérent, déterminé en \ref{fonction d'onde d'un état cohérent}. Dès lors, nous voulons résoudre l'\emph{intégrale gaussienne}
+\begin{align}
+  \braket{0}{\alpha} &= \frac{\exp(-\frac{i}{2\h}\expval{\bm{X}}\expval{\bm{P}}-\frac{\expval{\bm{X}}^2}{2l^2})}{\sqrt{\pi}l}\int_{-\infty}^{+\infty}dx \; e^{-\frac{x^2}{l^2}+\frac{\sqrt{2}\alpha}{l}x}\notag\\
+  &= \frac{\exp(-\frac{i}{2\h}\expval{\bm{X}}\expval{\bm{P}}-\frac{\expval{\bm{X}}^2}{2l^2})}{\sqrt{\pi}l} \sqrt{\pi}le^{\frac{\norm{\alpha}^2}{2}}\\
+  &=  \exp(-\frac{i}{2\h}\expval{\bm{X}}\expval{\bm{P}}-\frac{\expval{\bm{X}}^2}{2l^2}+\frac{\norm{\alpha}^2}{2})
+\end{align}
 
 \subsubsection{`Fock state' vs. `Coherent state'}
 
@@ -775,6 +780,7 @@ Finalement, en associant nos résultats \eqref{mean H}, \eqref{delta H} et \eqre
 Application numérique: FLEMME
 
 \section{Partie III - Décohérence}
+Dans cette partie, nous voulons étudier un modèle très simple de la décohérence quantique. Pour ce faire, nous allons exploiter l'interprétation en terme de particules des opérateurs de déplacement étudiés en \ref{opérateur déplacement}.
 \subsection{Spectre de l'Hamiltonien}
 \subsection{Une histoire de déplacement ...}
 \end{document}

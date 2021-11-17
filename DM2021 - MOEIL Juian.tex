@@ -282,7 +282,7 @@ Notons que le terme $\braket{0}{\alpha}$ est l'état fondamental de l'oscillateu
 \begin{align}
   \braket{0}{\alpha} &= \frac{\exp(-\frac{i}{2\h}\expval{\bm{X}}\expval{\bm{P}}-\frac{\expval{\bm{X}}^2}{2l^2})}{\sqrt{\pi}l}\int_{-\infty}^{+\infty}dx \; e^{-\frac{x^2}{l^2}+\frac{\sqrt{2}\alpha}{l}x}\notag\\
   &= \frac{\exp(-\frac{i}{2\h}\expval{\bm{X}}\expval{\bm{P}}-\frac{\expval{\bm{X}}^2}{2l^2})}{\sqrt{\pi}l} \sqrt{\pi}le^{\frac{\norm{\alpha}^2}{2}}\\
-  &=  \exp(-\frac{i}{2\h}\expval{\bm{X}}\expval{\bm{P}}-\frac{\expval{\bm{X}}^2}{2l^2}+\frac{\norm{\alpha}^2}{2})
+  &=  \exp(-\frac{i}{2\h}\expval{\bm{X}}\expval{\bm{P}}-\frac{\expval{\bm{X}}^2}{2l^2}+\frac{\norm{\alpha}^2}{2}) = \color{red} e^{-\frac{1}{2}\norm{\alpha}^2} \color{black}
 \end{align}
 
 \subsubsection{`Fock state' vs. `Coherent state'}
@@ -373,11 +373,17 @@ où nous avons à nouveau utilisé la représentation de la fonction exponentiel
   &= -\frac{1}{2}\left(\beta^*\beta+\alpha^*\alpha-\beta^*\alpha-\alpha^*\beta-\beta^*\alpha+\alpha^*\beta\right)\\
   &= -\frac{1}{2}\norm{\alpha-\beta}^2-\frac{1}{2}\left(\alpha^*\beta-\beta^*\alpha\right)
 \end{align}
-En particulier, notons que $\norm{\alpha-\beta}^2$ est un nombre réel, tandis que $\alpha^*\beta-\beta^*\alpha$ est bien complexe. Nous pouvons alors réécrire \eqref{15} sous la forme
+En particulier, notons que $\norm{\alpha-\beta}^2$ est un nombre réel, tandis que $\alpha^*\beta-\beta^*\alpha$ est bien complexe. 
+
+\begin{remark}
+  Nous exploiterons ce résultat dans le cadre de la relation de complétude des états cohérents dans la section \ref{section relation de fermeture}.
+\end{remark}
+
+Nous pouvons alors réécrire \eqref{15} sous la forme
 \begin{align}
   \braket{m}{n} &= e^{-\frac{1}{2}\norm{\alpha-\beta}^2}e^{-\frac{1}{2}\left(\alpha^*\beta-\beta^*\alpha\right)} = e^{-\frac{1}{2}\norm{\alpha-\beta}^2}e^{-iIm\left\{\alpha^*\beta\right\}}.
 \end{align}
-Nous observons finalement que
+Cela nous donne une condition de \emph{presqu'orthogonalité}.
 \begin{align}
   \braket{m}{n} &\approx 0
 \end{align}
@@ -476,6 +482,7 @@ En particulier, en appliquant l'état du vide $\ket{0}$ sur $\bm{D}(\alpha+\beta
   Le facteur de phase $e^{iIm(\alpha^*\beta)}$ est une phase globale : elle n'a donc aucune importance physique ! 
 \end{remark}
 \subsection{Relation de fermeture}
+\label{section relation de fermeture}
 \begin{property}
   La base des états cohérents $\left\{\ket{\alpha} : \alpha\in\mathbb{C}\right\}$ admet la relation de fermeture
   \begin{align}

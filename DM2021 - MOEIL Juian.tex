@@ -39,7 +39,7 @@
 \newcommand{\ti}{\ensuremath{\times}}
 \newcommand{\h}{\ensuremath{\hbar}}
 \newcommand{\med}{\ensuremath\cdot}
-
+\newcommand\au[2]{\left.#1\right|_{#2}}
 \renewcommand{\d}{\mathrm{d}}
 \renewcommand{\thepart}{\Roman{part}}
 
@@ -120,6 +120,7 @@
 
 \section{Partie I - Etude des états cohérents}
 Nous allons étudier la notion d'\emph{état cohérent} dans un cadre unidimensionnel, en se munissant des opérateurs position $X$ et impulsion $P$, satisfaisant la relation de commutation canonique $[X,P] = i\hbar$.
+
 \subsection*{Introduction des concepts clés}
 \begin{definition}
     Un état cohérent est un état qui sature la relation d'incertitude de Heisenberg, c'est à dire tel que $\Delta X\Delta P = \frac{\hbar}{2}$. Mathématiquement, on définit un état cohérent $\ket{\alpha}$ comme l'unique état propre de l'opérateur destruction $\bm{a}$, soit
@@ -154,68 +155,47 @@ Nous voulons déterminer la forme de la fonction d'onde la plus générale décr
 Il existe de nombreuses méthodes pour dériver ce résultat. Ici, nous allons partir d'un développement extrêmement général, lequel nous permettra d'obtenir une équations différentielle dont la solution sera la fonction d'onde recherchée. A partir de là, nous pourrons introduire les opérateurs d'échelle en \ref{opérateur d'échelle}, ainsi que l'opérateur déplacement en \ref{opérateur déplacement}.
 
 \paragraph{Développement général}
-Introduisons, de manière extrêmement générale, les obserables $\bm{A}$ et $\bm{B}$. Soit $\ket{\psi}$ dans notre espace de Hilbert. Imposons la notation
-
+Suivons le même raisonnement que celui exploité pour démontrer l'inégalité de Heisenberg dans le cours. On introduit $\mathcal{O}(\lambda) = f^\dagger(\lambda)f(\lambda)$, où $\begin{cases}
+  f(\lambda) = \tilde{A}+i\lambda\tilde{B}\\
+  \tilde{A} = A-\expval{A}\\
+  \tilde{B} = B-\expval{B}
+\end{cases}$. Observons que la valeur moyenne de $\mathcal{O}(\lambda)$ est positive. En effet,
 \begin{equation*}
-  \begin{cases}
-    \sigma_A\ket{\psi} = \left(\bm{A}-\expval{\bm{A}}\right)\ket{\psi} = \ket{f}\\
-    \sigma_B\ket{\psi} = \left(\bm{B}-\expval{\bm{B}}\right)\ket{\psi} = \ket{g}
-  \end{cases}
+  \forall\ket{\psi}\in H, \quad \expval{f^\dagger(\lambda)f(\lambda)}{\psi} = \norm{f(\lambda)\ket{\psi}}^2 \geq 0.
 \end{equation*}
 
-Nous avons donc $\sigma_A = \bm{A}-\expval{\bm{A}}$ et $\sigma_B = \bm{B}-\expval{\bm{B}}$. L'\href{https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality}{\emph{inégalité de Cauchy-Schwarz}} nous indique que
-\begin{equation}
-  \label{CS}
-  \braket{f}\braket{g} \geq \norm{\braket{f}{g}}^2.
-\end{equation}
-L'égalité est stricte si et seulement si $\ket{f}$ et $\ket{g}$ sont colinéaires, c'est à dire si et seulement si $\ket{f} = \lambda\ket{g}$, où $\lambda$ est un nombre \emph{à priori} dans le plan complexe. Réalisons de suite que cette égalité implique que $\ket{\psi}$ est un état propre de l'opérateur $\bm{A}-\lambda \bm{B}$ ; de valeur propre $\expval{\bm{A}}-\lambda\expval{\bm{B}}$. En effet,
+Or, $\expval{\mathcal{O}(\lambda)} = \lambda^2\expval{\tilde{B^2}}+\lambda\expval{i[\tilde{A},\tilde{B}]}+\expval{\tilde{A}^2}$. Notons qu'il s'agit d'une équation quadratique en $\lambda$ : ainsi, le minimum doit donc être donné par 
 \begin{align}
-  \left(\bm{A}-\expval{\bm{A}}\right)\ket{\psi} &= \lambda\left(\bm{B}-\expval{\bm{B}}\right)\ket{\psi}\notag\\
-  \left(\bm{A}-\lambda \bm{B}\right)\ket{\psi} &= \left(\expval{\bm{A}}-\lambda\expval{\bm{B}}\right)\ket{\psi}\label{EVP 1}
+  \au{\frac{d\expval{\mathcal{O}(\lambda)}}{d\lambda}}{\lambda=\lambda^*} = 0 &= 2\lambda^*\expval{\tilde{B}^2}+\expval{i[\tilde{A},\tilde{B}]}\notag\\
+  \lambda^* &= -\frac{\expval{i[\tilde{A},\tilde{B}]}}{2\expval{\tilde{B}^2}} = -\frac{\expval{i[\tilde{A},\tilde{B}]}}{2\left(\Delta \tilde{B}\right)^2}
 \end{align}
-Développons à présent le terme $\braket{f}{g}$ dans l'inégalité \eqref{CS}.
-\begin{equation}
-  \braket{f}{g} = \bra{\psi}\sigma_A\sigma_B\ket{\psi} = \frac{1}{2}\bra{\psi}\sigma_A\sigma_B-\sigma_B\sigma_A\ket{\psi}+\frac{1}{2}\bra{\psi}\sigma_B\sigma_A+\sigma_A\sigma_B\ket{\psi}  
-\end{equation}
-Le premier terme de la somme traduit l'inégalité de Heisenberg $\sigma_A\sigma_B \geq \frac{1}{2}\expval{[\bm{A},\bm{B}]}$. Pour obtenir une égalité stricte, nous devons donc imposer que le second terme de la somme soit nulle. En particulier, on se retrouve alors à devoir imposer les deux conditions suivantes:
-\begin{subequations}
-  \begin{align}
-    \bra{\psi}\sigma_B\sigma_A+\sigma_A\sigma_B\ket{\psi} &= 0\label{1}\\
-    \ket{f} &= \lambda\ket{g}\label{2}
-  \end{align}
-\end{subequations}
-En particulier, en injectant \eqref{2} dans \eqref{1}, nous trouvons que
-\begin{equation}
-  \left(\lambda+\lambda^*\right)\expval{g} = 0
-\end{equation}
-ce qui implique que $\lambda$ est un nombre 'complexe pure', puisque $\expval{g}$ doit être réel. On peut alors le réécrire sous la forme $\lambda=i\mu$, pour tout $\mu$ sur la droite réelle. Nous pouvons directement réécrire l'équation aux valeurs propres \eqref{EVP 1} sous la forme
-\begin{equation}
-  \left(A-i\mu B\right)\ket{\psi} = \left(\expval{A}-i\mu\expval{B}\right)\ket{\psi}\label{EVP 2}
-\end{equation}
-De plus, nous avons aussi que $\sigma_A^2 = \mu^2\sigma_B^2 \Rightarrow \mu = \pm\frac{\sigma_A}{\sigma_B}$.
 
-\paragraph{Cas des opérateurs position et impulsion}
-Appliquons à présent ces résultats aux opérateurs position et impulsion ; en posant $\bm{A} = \bm{X}$ et $\bm{B} = \bm{P}$.
+\paragraph{Application aux opérateurs position et impulsion}
+Posons $\bm{A} = \bm{X}$ et $\bm{B} = \bm{P}$. Le minimum, $\lambda^*$, s'exprime alors par $\frac{\h}{2\left(\Delta \bm{P}\right)^2}$. En particulier, nous trouvons alors que $\expval{\mathcal{O}(\lambda)} = 0$ si et seulement si 
+\begin{align}
+  \left(\tilde{\bm{X}}+i\lambda^*\tilde{\bm{P}}\right)\ket{\psi} = 0\notag
+\end{align}
+Ce que nous réécrivons comme
+\begin{align}
+  \left(\bm{X}-\expval{\bm{X}}\right)\ket{\psi} = -\frac{i\h}{2\left(\Delta \bm{P}\right)^2}\left(\bm{P}-\expval{\bm{P}}\right)\ket{\psi}\label{1.5}
+\end{align}
 
-En imposant l'égalité \eqref{EVP 2} pour les opérateurs de ce pagaraphe, nous nous retrouvons alors
-\begin{equation}
-  \left(x-i\mu p\right)\psi(x) = \left(\expval{\bm{X}}-i\mu\expval{\bm{P}}\right)\psi(x)\label{EVP XP}
-\end{equation}
-En particulier, notons que dans la représentation $\bm{X}$, l'opérateur impulsion $\bm{P} = -i\h\frac{\partial}{\partial x}$. Nous obtenons dès lors une \emph{équation différentielle}, que nous pouvons résoudre par séparation des variables.
+Posons $l = 2\Delta X$. Puisqu'un état cohérent sature l'inégalité de Heisenberg, nous pouvons écrire $2\left(\Delta\bm{P}\right)^2 = \frac{\h^2}{2\left(\Delta\bm{X}\right)^2} = \frac{\h^2}{l^2}$, de sorte que \eqref{1.5} se réécrive
 \begin{align}
-  \left(x-\mu\h\frac{\partial}{\partial x}\right)\psi(x) &= \left(\expval{\bm{X}}-i\mu\expval{\bm{P}}\right)\psi(x)\notag\\
-  \frac{\partial \psi}{\partial x} &= \frac{1}{\mu\h}\left(x-\expval{\bm{X}}+i\mu\expval{\bm{P}}\right)\psi(x)\notag
+  \left(\bm{X}-\expval{\bm{X}}\right)\ket{\psi} &= -i\frac{l^2}{\h}\left(\bm{P}-\expval{\bm{P}}\right)
 \end{align}
-La solution de cette équation différentielle est de la forme
+Finalement, en notant que dans la base position l'opérateur impulsion s'écrit $\bm{P}\ket{\psi} = \frac{\h}{i}\frac{\partial}{\partial x}\ket{\psi}$, nous pouvons mettre en évidence l'\emph{équation différentielle}
 \begin{align}
-  \psi(x) &= \psi_0 \exp(\frac{x^2-2x\left(\expval{\bm{X}}-i\mu\bm{P}\right)}{2\mu\h})\notag
+  -x\psi(x)+\expval{\bm{X}}\psi(x)&=\frac{il^2}{\h}\left(\frac{\h}{i}\psi'(x)-\expval{\bm{P}}\psi(x)\right)\notag\\
+  \psi'(x) &= \left[\frac{\expval{\bm{X}}-x}{l^2}+\frac{i}{\h}\expval{\bm{P}}\right]\psi(x).
 \end{align}
-où $\psi_0$ est une constante de normalisation, que nous déterminerons au paragraphe suivant. En réarangeant les termes dans l'exponentielle, nous avons 
+Que nous résolvons par séparation des variables. Cela donne:
 \begin{align}
-  \psi(x) &= \psi_0\exp(-\frac{-x^2+2x\expval{\bm{X}}}{2\mu\h}+\frac{i\expval{\bm{P}}}{\h})\notag\\
-  &= \psi_0\exp(-\frac{\left(x-\expval{\bm{X}}^2\right)\color{red}+\expval{\bm{X}}^2\color{black}}{2\mu\h}+\frac{i\expval{\bm{P}}x}{\h})
+  \ln(\frac{\psi}{\psi_0}) &= \left[\frac{\left(\bm{X}-\frac{1}{2}x\right)x}{l^2}+\frac{i}{\h}\expval{\bm{P}}x\right]   &\; \forall\psi_0\in\mathbb{C}\notag\\
+  \ln(\frac{\psi}{\psi_0}) &= \left[-\frac{\left(x-\expval{\bm{X}}\right)^2}{2l^2}+\frac{\expval{\bm{X}}}{2l}+\frac{i}{\h}\expval{\bm{P}}x\right]\notag\\
+  \psi(x) &= \psi_0\exp(-\frac{\left(x-\expval{\bm{X}}\right)^2}{2l^2}+\frac{i}{\h}\expval{\bm{P}}x)
 \end{align}
-ce qui est la forme recherchée. La fonction d'onde décrivant un état cohérent est donc donnée par une gaussienne.
+
 \paragraph{Constante de normalisation}
 Il ne nous reste plus qu'à déterminer la valeur de $\psi_0\in\mathbb{R}$. Pour ce faire, nous exploitons la propriété suivantes
 
@@ -227,12 +207,12 @@ Il ne nous reste plus qu'à déterminer la valeur de $\psi_0\in\mathbb{R}$. Pour
 \end{property}
 Commencons par réarranger les termes dans l'exponentielle
 \begin{align}
-  \psi(x) &= \psi_0 \; \exp(-\frac{1}{2}\left(\frac{x}{l}\right)^2-\frac{\expval{X}^2}{2l^2}+x\left(\frac{\expval{X}}{l^2}+\frac{i\expval{P}}{\h}\right))
+  \psi(x) &= \psi_0 \; \exp(-\frac{x^2}{2l^2}-\frac{\expval{X}^2}{2l^2}+x\left(\frac{\expval{X}}{l^2}+\frac{i\expval{P}}{\h}\right))\notag
 \end{align}
 La condition de normalisation nous indique alors que
 \begin{align}
-  \norm{\psi_0}^2 \exp(-\frac{\expval{X}^2}{l^2})\int_{-\infty}^{+\infty} dx \; \exp(-\left(\frac{x}{l}\right)^2+\frac{2\expval{X}}{l^2}x) &= 1\\
-  \norm{\psi_0}^2 \sqrt{\pi l^2} &= 1 &\psi_0 = \frac{1}{\left(\pi l^2\right)^{1/4}}
+  \norm{\psi_0}^2 \exp(-\frac{\expval{X}^2}{l^2})\int_{-\infty}^{+\infty} dx \; \exp(-\left(\frac{x}{l}\right)^2+\frac{2\expval{X}}{l^2}x) &= 1\notag\\
+  \norm{\psi_0}^2 \sqrt{\pi l^2} &= 1 &\psi_0 = \frac{1}{\left(\pi l^2\right)^{1/4}}\in\mathbb{R}\notag
 \end{align} 
 Puisque le choix de phase globale n'a aucune importance physique, nous avons la liberté de prendre une phase de notre choix. En particulier, nous pouvons donc écrire\footnote{Je ne vois pas pourquoi on fait ce choix-là en particulier ...} 
 \begin{align}

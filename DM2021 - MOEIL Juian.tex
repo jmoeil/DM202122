@@ -4,6 +4,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
 \usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
 \usepackage{bm}
 \usepackage{mathrsfs}
 \usepackage{calrsfs}
@@ -41,7 +43,7 @@
 \newcommand{\med}{\ensuremath\cdot}
 \newcommand\au[2]{\left.#1\right|_{#2}}
 \renewcommand{\d}{\mathrm{d}}
-\renewcommand{\thepart}{\Roman{part}}
+\renewcommand{\thesection}{\Roman{section}}
 
 % Special formatting for paragraphs
 \titleformat{\paragraph}
@@ -53,6 +55,14 @@
   {0pt}
   {3.25ex plus 1ex minus .2ex}
   {1.5ex plus .2ex}
+
+% Gestion des entête et des 
+\pagestyle{fancy}
+\renewcommand\headrulewidth{1pt}
+\renewcommand\footrulewidth{1pt}
+\fancyfoot[L]{MOEIL Juian}
+\fancyfoot[C]{\textbf{Page \thepage/\pageref{LastPage}}}
+\fancyfoot[R]{\today}
 
 % Defining new theorem environments
 \newtheorem{theorem}{Théorème}[section]
@@ -119,17 +129,172 @@
 \newpage
 
 \section{Partie I - Etude des états cohérents}
-Nous allons étudier la notion d'\emph{état cohérent} dans un cadre unidimensionnel, en se munissant des opérateurs position $X$ et impulsion $P$, satisfaisant la relation de commutation canonique $[X,P] = i\hbar$.
+On se restreint au cas unidimensionnel, en se munissant des opérateurs position $\bm{X}$ et impulsion $\bm{P}$, satisfaisant la relation de commutation canonique $[\bm{X},\bm{P}] = i\hbar = -\frac{\h}{i}$.
 
 \subsection*{Introduction des concepts clés}
-\begin{definition}
-    Un état cohérent est un état qui sature la relation d'incertitude de Heisenberg, c'est à dire tel que $\Delta X\Delta P = \frac{\hbar}{2}$. Mathématiquement, on définit un état cohérent $\ket{\alpha}$ comme l'unique état propre de l'opérateur destruction $\bm{a}$, soit
-    \begin{equation}
-      \label{etat coherent}
-        \bm{a}\ket{\alpha} = \alpha\ket{\alpha}.
-    \end{equation}
-    Notons que puisque $\bm{a}$ n'est pas hermitien, $\alpha$ est en général un nombre complexe. 
+\begin{definition}[Ecart quadratique moyen]
+  Soit $\bm{A}$ une observable. L'écart quadratique moyen de $\bm{A}$ dans l'état $\rho = \ketbra{\psi}$ pour tout $\psi\in$ H est 
+  \begin{equation}
+    \Delta\bm{A} = \sqrt{\expval{A^2}-\expval{A}^2} = \expval{\left(\bm{A}-\expval{\bm{A}}\right)^2}
+  \end{equation}
 \end{definition}
+
+\begin{definition}[Inégalité de Heisenberg]
+  Pour toute observable $\bm{A}$ et $\bm{B}$, nous avons que
+  \begin{equation}
+    \label{Heisenberg inequality}
+    \Delta\bm{A}\Delta\bm{B}\geq\frac{1}{2}\norm{\expval{[\bm{A},\bm{B}]}}
+  \end{equation}
+\end{definition}
+
+
+
+
+\begin{definition}
+  \label{def etat coherent saturation}
+    On définit un état cohérent comme un état $\rho = \ketbra{\psi}$ dans lequel l'inégalité de Heisenberg est saturée, c'est à dire tel que
+    \begin{equation}
+      \Delta\bm{X}\Delta\bm{P} = \frac{\h}{2}
+    \end{equation} 
+\end{definition}
+
+En partant de cette définition, nous allons voir qu'il est possible d'obtenir une définition algébrique (généralement plus simple à manipuler) d'un état cohérent. En particulier, l'étude des propriétés des états cohérents nous permettra d'obtenir deux formulations équivalentes; l'une en terme de l'opérateur destruction dans la section \ref{opérateur d'échelle}, et l'autre - dans la section \ref{opérateur déplacement} - en terme de l'opérateur d'échelle. On finira par constater l'existence d'une relation de fermeture en \ref{section relation de fermeture}. Pour faire tous cela, nous avons besoin de l'expression analytique d'un état cohérent : nous consacrons la section \ref{fonction d'onde d'un état cohérent} à la déterminer.
+
+\subsection{Fonction d'onde d'un état cohérent}
+\label{fonction d'onde d'un état cohérent}
+\begin{property}
+  La fonction d'onde d'un état cohérent est donné par
+  \begin{align}
+    \label{fonction d'onde}
+    \psi(x) &= \frac{\exp(-\frac{i}{2\pi}\expval{X}\expval{P})}{\left(\pi l^2\right)^{1/4}}\exp(-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar}).
+  \end{align}
+\end{property}
+
+\begin{remark}
+  L'expression recherchée dépendra de trois paramètres réels, que nous prendrons dans cette discussion égales à $\expval{\bm{X}},\expval{\bm{P}}$ et $l \doteq \sqrt{2}\Delta\bm{X}$.
+\end{remark}
+
+\begin{proof}
+\paragraph{Développement général}
+Suivons le même raisonnement que celui exploité pour démontrer l'inégalité de Heisenberg dans le cours. On introduit $\mathcal{O}(\lambda) = f^\dagger(\lambda)f(\lambda)$, où $\begin{cases}
+  f(\lambda) = \tilde{\bm{A}}+i\lambda\tilde{\bm{B}}\\
+  \tilde{\bm{A}} = \bm{A}-\expval{\bm{A}}\\
+  \tilde{\bm{B}} = \bm{B}-\expval{\bm{B}}
+\end{cases}$.\\
+
+Observons que la valeur moyenne de $\mathcal{O}(\lambda)$ est positive. En effet,
+\begin{equation*}
+  \forall\ket{\psi}\in H, \quad \expval{f^\dagger(\lambda)f(\lambda)}{\psi} = \norm{f(\lambda)\ket{\psi}}^2 \geq 0.
+\end{equation*}
+
+Or, $\expval{\mathcal{O}(\lambda)} = \lambda^2\expval{\tilde{\bm{B}^2}}+\lambda\expval{i[\tilde{\bm{A}},\tilde{\bm{B}}]}+\expval{\tilde{\bm{A}}^2}$. Notons qu'il s'agit d'une équation quadratique en $\lambda$ : ainsi, le minimum doit donc être donné par 
+\begin{align}
+  \au{\frac{d\expval{\mathcal{O}(\lambda)}}{d\lambda}}{\lambda=\lambda^*} = 0 &= 2\lambda^*\expval{\tilde{\bm{B}}^2}+\expval{i[\tilde{\bm{A}},\tilde{\bm{B}}]}\notag\\
+  \lambda^* &= -\frac{\expval{i[\tilde{\bm{A}},\tilde{\bm{B}}]}}{2\expval{\tilde{\bm{B}}^2}} = -\frac{\expval{i[\tilde{\bm{A}},\tilde{\bm{B}}]}}{2\left(\Delta \tilde{\bm{B}}\right)^2}
+\end{align}
+
+\paragraph{Application aux opérateurs position et impulsion}
+Posons $\bm{A} = \bm{X}$ et $\bm{B} = \bm{P}$. Le minimum, $\lambda^*$, s'exprime alors par $\frac{\h}{2\left(\Delta \bm{P}\right)^2}$. En particulier, nous trouvons alors que $\expval{\mathcal{O}(\lambda)} = 0$ si et seulement si 
+\begin{align}
+  \left(\tilde{\bm{X}}+i\lambda^*\tilde{\bm{P}}\right)\ket{\psi} = 0\notag
+\end{align}
+Ce que nous réécrivons comme
+\begin{align}
+  \left(\bm{X}-\expval{\bm{X}}\right)\ket{\psi} = -\frac{i\h}{2\left(\Delta \bm{P}\right)^2}\left(\bm{P}-\expval{\bm{P}}\right)\ket{\psi}\label{1.5}
+\end{align}
+
+Posons $l = 2\Delta X$. Puisqu'un état cohérent sature l'inégalité de Heisenberg, nous pouvons écrire $2\left(\Delta\bm{P}\right)^2 = \frac{\h^2}{2\left(\Delta\bm{X}\right)^2} = \frac{\h^2}{l^2}$, de sorte que \eqref{1.5} se réécrive
+\begin{align}
+  \left(\bm{X}-\expval{\bm{X}}\right)\ket{\psi} &= -i\frac{l^2}{\h}\left(\bm{P}-\expval{\bm{P}}\right)\label{1.6}
+\end{align}
+Finalement, en notant que dans la base position l'opérateur impulsion s'écrit $\bm{P}\ket{\psi} = \frac{\h}{i}\frac{\partial}{\partial x}\ket{\psi}$, nous pouvons alors mettre en évidence l'\emph{équation différentielle}
+\begin{align}
+  -x\psi(x)+\expval{\bm{X}}\psi(x)&=\frac{il^2}{\h}\left(\frac{\h}{i}\psi'(x)-\expval{\bm{P}}\psi(x)\right)\notag\\
+  \psi'(x) &= \left[\frac{\expval{\bm{X}}-x}{l^2}+\frac{i}{\h}\expval{\bm{P}}\right]\psi(x).\notag
+\end{align}
+Que nous résolvons par séparation des variables. Cela donne:
+\begin{align}
+  \ln(\frac{\psi}{\psi_0}) &= \left[\frac{\left(\bm{X}-\frac{1}{2}x\right)x}{l^2}+\frac{i}{\h}\expval{\bm{P}}x\right]   &\; \forall\psi_0\in\mathbb{C}\notag\\
+  \ln(\frac{\psi}{\psi_0}) &= \left[-\frac{\left(x-\expval{\bm{X}}\right)^2}{2l^2}+\frac{\expval{\bm{X}}}{2l}+\frac{i}{\h}\expval{\bm{P}}x\right]\notag\\
+  \psi(x) &= \psi_0\exp(-\frac{\left(x-\expval{\bm{X}}\right)^2}{2l^2}+\frac{i}{\h}\expval{\bm{P}}x)
+\end{align}
+La fonction d'onde d'un état cohérent est donc donnée par une \emph{gaussienne} !
+
+\paragraph{Constante de normalisation}
+Il ne nous reste plus qu'à déterminer la valeur de $\psi_0\in\mathbb{R}$. Pour ce faire, nous exploitons la propriété suivante
+
+\begin{property}
+    Pour toute fonction d'onde $\Psi(x,t)$, la condition de normalisation s'écrit 
+    \begin{equation}
+        \int_{-\infty}^{+\infty}dx \; \norm{\Psi(x,t)}^2= 1.
+    \end{equation}
+\end{property}
+\begin{proof}
+  Il s'agit d'une condition imposée par les postulats de la mécanique quantique. Nous la prenons donc pour acquise et ne devons pas la prouver.
+\end{proof}
+Commencons par réarranger les termes dans l'exponentielle
+\begin{align}
+  \psi(x) &= \psi_0 \; \exp(-\frac{x^2}{2l^2}-\frac{\expval{X}^2}{2l^2}+x\left(\frac{\expval{X}}{l^2}+\frac{i\expval{P}}{\h}\right))\notag
+\end{align}
+La condition de normalisation nous indique alors que
+\begin{align}
+  \norm{\psi_0}^2 \exp(-\frac{\expval{X}^2}{l^2})\int_{-\infty}^{+\infty} dx \; \exp(-\left(\frac{x}{l}\right)^2+\frac{2\expval{X}}{l^2}x) &= 1\notag\\
+  \norm{\psi_0}^2 \sqrt{\pi l^2} &= 1 &\psi_0 = \frac{1}{\left(\pi l^2\right)^{1/4}}\in\mathbb{R}\notag
+\end{align} 
+Puisque le choix de phase globale n'a aucune importance physique, nous avons la liberté de prendre une phase de notre choix. En particulier, nous pouvons donc écrire 
+\begin{align}
+  \psi(x) &= \frac{\exp(-\frac{i}{2\pi}\expval{X}\expval{P})}{\left(\pi l^2\right)^{1/4}}\exp(-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar})\notag
+\end{align}
+ce qui conclut notre discussion sur la fonction d'onde d'un état cohérent. \end{proof}
+\subsection{Opérateurs d'échelle} \label{opérateur d'échelle}
+\subsubsection{Commutateur $[a,a^\dagger]$}
+Soit $\bm{a} = \frac{1}{\sqrt{2}} \left(\frac{\bm{X}}{l}+\frac{il\bm{P}}{\hbar}\right)$ - l'opérateur destruction. Nous comprendrons plus tard, en étudiant ses propriétés, la logique derrière son nom. De sa définition, nous trouvons directement l'expression de la commutation des bosons:
+\begin{equation}
+    [\bm{a},\bm{a}^\dagger] = \frac{1}{2} [\frac{\bm{X}}{l}+\frac{il\bm{P}}{\hbar},\frac{\bm{X}}{l}-\frac{il\bm{P}}{\hbar}] = -\frac{i}{2\h} [\bm{X},\bm{P}]-\frac{i}{2\h}[\bm{X},\bm{P}] = -\frac{i}{\h}[\bm{X},\bm{P}] = \mathbb{I}. 
+\end{equation}
+
+\begin{remark}
+  Dans la suite, nous négligerons souvent d'indiquer l'identité $\mathbb{I}$; pour priviligier de ne 'rien mettre'. Cependant, de temps en temps, nous insisterons que quelque chose est multiplié par $\mathbb{I}$ en l'indiquant explicitement (surtout dans la partie \ref{partie 3}).
+\end{remark}
+
+\subsubsection{Valeur propre de $a$ - résolution analytique}
+\label{resolution analytique}
+
+Placons nous dans un espace de Hilbert, et prenons un vecteur $\ket{\psi}$ lui appartenant. Nous recherchons les solutions de l'équation aux valeurs propres
+\begin{align}
+  \bm{a}\ket{\alpha} &= \alpha\ket{\alpha} = \frac{1}{\sqrt{2}}\left(\frac{\bm{X}}{l}+\frac{il\bm{P}}{\h}\right)\ket{\psi}.
+\end{align}
+Commencons par remarquer que l'expression précédente nous permet de directement déduire la relation $(3)$ de l'énoncé:
+\begin{align}
+  \expval{\bm{a}}{\alpha} &= \alpha\braket{\alpha} = \frac{1}{\sqrt{2}}\left(\frac{\expval{\bm{X}}}{l}+\frac{il\expval{\bm{P}}}{\h}\right).
+\end{align}
+
+Le problème se réduit donc à résoudre
+\begin{align}
+  \frac{1}{\sqrt{2}}\left(\frac{\bm{X}}{l}+\frac{il\bm{P}}{\h}\right)\ket{\psi} &= \frac{1}{\sqrt{2}}\left(\frac{\expval{X}}{l}+\frac{il\expval{P}}{\h}\right)\\
+  \left(\bm{X}-\expval{\bm{X}}\right)\ket{\psi} &= -\frac{il^2}{\h}\left(\bm{P}-\expval{\bm{P}}\right)\ket{\psi}.
+\end{align}
+Or, il s'agit de l'équation \eqref{1.6}, que nous avons déjà entièrement résolu en $\ref{fonction d'onde d'un état cohérent}$. Nous voyons en particulier que, à $l$ fixé, la solution est unique. Nous pouvons donc écrire $\ket{\psi} = \ket{\alpha}$. La fonction d'onde $\braket{x}{\psi}=\braket{x}{\alpha}$ est déterminée par la gaussienne que nous avons trouvé en \ref{fonction d'onde d'un état cohérent}.\\
+
+Nous obtenons alors le résultat qui suit ; lequel nous sera utile dans les discussions qui suivent. 
+\begin{theorem}
+  $\ket{\psi}$ est un état cohérent (tel que défini en \ref{def etat coherent saturation}) si et seulement si $\ket{\psi}$ vérifie l'équation aux valeurs propres
+  \begin{align}
+    \label{etat coherent}
+    \bm{a}\ket{\psi} &= \alpha\ket{\psi} &\forall\; \alpha\in\mathbb{C}
+  \end{align}
+  c'est à dire si et seulement si $\ket{\psi}$ est un état propre de l'opérateur annihilation $\bm{a}$.
+\end{theorem}
+
+\begin{proof}
+  La preuve dans le sens direct est le développement débutant au début de \ref{resolution analytique}. Nous ne faisons pas la preuve dans le sens réciproque ($\bm{a}\ket{\psi}=\alpha\ket{\psi}$ pour tout $\alpha\in\mathbb{C}$ implique que $\braket{x}{\psi}=\psi(x)$ est de la forme \ref{fonction d'onde}).
+\end{proof}
+
+\begin{remark}
+  Observons que, comme annoncé, nous venons de mettre en évidence une formulation équivalente à \ref{def etat coherent saturation} d'un état cohérent, en exploitant l'opérateur annihilation.
+\end{remark}
+
+Nous avons à présent les connaissances pour démontrer la proposition suivante. Elle sera particulièrement utile dans la suite.
 
 \begin{property}
   \label{coherent in fock}
@@ -148,124 +313,20 @@ Nous allons étudier la notion d'\emph{état cohérent} dans un cadre unidimensi
   où nous avons utilisé la représentation sous forme de série de la fonction exponentielle. En particulier, nous avons alors $c_0 = e^{-\frac{1}{2}\norm{\alpha}^2}$, ce qui implique la relation recherchée.
 \end{proof}
 
-\subsection{Fonction d'onde d'un état cohérent}
-\label{fonction d'onde d'un état cohérent}
-Nous voulons déterminer la forme de la fonction d'onde la plus générale décrivant un état cohérent. Nous savons que ce dernier dépendra de trois paramètres réels, que nous prendrons dans cette discussion égales à $\expval{X},\expval{P}$ et $l = \sqrt{2}\Delta X$.
+\subsubsection{Produit scalaire avec le vide}
+\label{intégrale gaussienne}
 
-Il existe de nombreuses méthodes pour dériver ce résultat. Ici, nous allons partir d'un développement extrêmement général, lequel nous permettra d'obtenir une équations différentielle dont la solution sera la fonction d'onde recherchée. A partir de là, nous pourrons introduire les opérateurs d'échelle en \ref{opérateur d'échelle}, ainsi que l'opérateur déplacement en \ref{opérateur déplacement}.
-
-\paragraph{Développement général}
-Suivons le même raisonnement que celui exploité pour démontrer l'inégalité de Heisenberg dans le cours. On introduit $\mathcal{O}(\lambda) = f^\dagger(\lambda)f(\lambda)$, où $\begin{cases}
-  f(\lambda) = \tilde{A}+i\lambda\tilde{B}\\
-  \tilde{A} = A-\expval{A}\\
-  \tilde{B} = B-\expval{B}
-\end{cases}$. Observons que la valeur moyenne de $\mathcal{O}(\lambda)$ est positive. En effet,
-\begin{equation*}
-  \forall\ket{\psi}\in H, \quad \expval{f^\dagger(\lambda)f(\lambda)}{\psi} = \norm{f(\lambda)\ket{\psi}}^2 \geq 0.
-\end{equation*}
-
-Or, $\expval{\mathcal{O}(\lambda)} = \lambda^2\expval{\tilde{B^2}}+\lambda\expval{i[\tilde{A},\tilde{B}]}+\expval{\tilde{A}^2}$. Notons qu'il s'agit d'une équation quadratique en $\lambda$ : ainsi, le minimum doit donc être donné par 
+La preuve est une utilisation de la propriété \ref{coherent in fock} que nous venons de démontrer. En effet, nous remarquons que
 \begin{align}
-  \au{\frac{d\expval{\mathcal{O}(\lambda)}}{d\lambda}}{\lambda=\lambda^*} = 0 &= 2\lambda^*\expval{\tilde{B}^2}+\expval{i[\tilde{A},\tilde{B}]}\notag\\
-  \lambda^* &= -\frac{\expval{i[\tilde{A},\tilde{B}]}}{2\expval{\tilde{B}^2}} = -\frac{\expval{i[\tilde{A},\tilde{B}]}}{2\left(\Delta \tilde{B}\right)^2}
+  \braket{0}{\alpha} &= e^{-\frac{1}{2}\norm{\alpha}^2}\sum_{n\geq 0}\frac{\alpha^n}{\sqrt{n!}}\braket{0}{n} = e^{-\frac{1}{2}\norm{\alpha^2}}
 \end{align}
-
-\paragraph{Application aux opérateurs position et impulsion}
-Posons $\bm{A} = \bm{X}$ et $\bm{B} = \bm{P}$. Le minimum, $\lambda^*$, s'exprime alors par $\frac{\h}{2\left(\Delta \bm{P}\right)^2}$. En particulier, nous trouvons alors que $\expval{\mathcal{O}(\lambda)} = 0$ si et seulement si 
-\begin{align}
-  \left(\tilde{\bm{X}}+i\lambda^*\tilde{\bm{P}}\right)\ket{\psi} = 0\notag
-\end{align}
-Ce que nous réécrivons comme
-\begin{align}
-  \left(\bm{X}-\expval{\bm{X}}\right)\ket{\psi} = -\frac{i\h}{2\left(\Delta \bm{P}\right)^2}\left(\bm{P}-\expval{\bm{P}}\right)\ket{\psi}\label{1.5}
-\end{align}
-
-Posons $l = 2\Delta X$. Puisqu'un état cohérent sature l'inégalité de Heisenberg, nous pouvons écrire $2\left(\Delta\bm{P}\right)^2 = \frac{\h^2}{2\left(\Delta\bm{X}\right)^2} = \frac{\h^2}{l^2}$, de sorte que \eqref{1.5} se réécrive
-\begin{align}
-  \left(\bm{X}-\expval{\bm{X}}\right)\ket{\psi} &= -i\frac{l^2}{\h}\left(\bm{P}-\expval{\bm{P}}\right)
-\end{align}
-Finalement, en notant que dans la base position l'opérateur impulsion s'écrit $\bm{P}\ket{\psi} = \frac{\h}{i}\frac{\partial}{\partial x}\ket{\psi}$, nous pouvons mettre en évidence l'\emph{équation différentielle}
-\begin{align}
-  -x\psi(x)+\expval{\bm{X}}\psi(x)&=\frac{il^2}{\h}\left(\frac{\h}{i}\psi'(x)-\expval{\bm{P}}\psi(x)\right)\notag\\
-  \psi'(x) &= \left[\frac{\expval{\bm{X}}-x}{l^2}+\frac{i}{\h}\expval{\bm{P}}\right]\psi(x).
-\end{align}
-Que nous résolvons par séparation des variables. Cela donne:
-\begin{align}
-  \ln(\frac{\psi}{\psi_0}) &= \left[\frac{\left(\bm{X}-\frac{1}{2}x\right)x}{l^2}+\frac{i}{\h}\expval{\bm{P}}x\right]   &\; \forall\psi_0\in\mathbb{C}\notag\\
-  \ln(\frac{\psi}{\psi_0}) &= \left[-\frac{\left(x-\expval{\bm{X}}\right)^2}{2l^2}+\frac{\expval{\bm{X}}}{2l}+\frac{i}{\h}\expval{\bm{P}}x\right]\notag\\
-  \psi(x) &= \psi_0\exp(-\frac{\left(x-\expval{\bm{X}}\right)^2}{2l^2}+\frac{i}{\h}\expval{\bm{P}}x)
-\end{align}
-
-\paragraph{Constante de normalisation}
-Il ne nous reste plus qu'à déterminer la valeur de $\psi_0\in\mathbb{R}$. Pour ce faire, nous exploitons la propriété suivantes
-
-\begin{property}
-    Pour toute fonction d'onde $\Psi(x,t)$, la condition de normalisation s'écrit 
-    \begin{equation}
-        \int_{-\infty}^{+\infty}dx \; \norm{\Psi(x,t)}^2= 1.
-    \end{equation}
-\end{property}
-Commencons par réarranger les termes dans l'exponentielle
-\begin{align}
-  \psi(x) &= \psi_0 \; \exp(-\frac{x^2}{2l^2}-\frac{\expval{X}^2}{2l^2}+x\left(\frac{\expval{X}}{l^2}+\frac{i\expval{P}}{\h}\right))\notag
-\end{align}
-La condition de normalisation nous indique alors que
-\begin{align}
-  \norm{\psi_0}^2 \exp(-\frac{\expval{X}^2}{l^2})\int_{-\infty}^{+\infty} dx \; \exp(-\left(\frac{x}{l}\right)^2+\frac{2\expval{X}}{l^2}x) &= 1\notag\\
-  \norm{\psi_0}^2 \sqrt{\pi l^2} &= 1 &\psi_0 = \frac{1}{\left(\pi l^2\right)^{1/4}}\in\mathbb{R}\notag
-\end{align} 
-Puisque le choix de phase globale n'a aucune importance physique, nous avons la liberté de prendre une phase de notre choix. En particulier, nous pouvons donc écrire\footnote{Je ne vois pas pourquoi on fait ce choix-là en particulier ...} 
-\begin{align}
-  \psi(x) &= \frac{\exp(-\frac{i}{2\pi}\expval{X}\expval{P})}{\left(\pi l^2\right)^{1/4}}\exp(-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar})
-\end{align}
-\subsection{Opérateurs d'échelle} \label{opérateur d'échelle}
-\subsubsection{Commutateur $[a,a^\dagger]$}
-Soit $a = \frac{1}{\sqrt{2}} \left(\frac{X}{l}+\frac{ilP}{\hbar}\right)$ - l'opérateur destruction. Nous comprendrons plus tard, en étudiant ses propriétés, la logique derrière son nom. De sa définition, nous trouvons directement l'expression de la commutation des bosons:
-\begin{equation}
-    [a,a^\dagger] = \frac{1}{2} [\frac{X}{l}+\frac{ilP}{\hbar},\frac{X}{l}-\frac{ilP}{\hbar}] = -\frac{i}{2\h} [X,P]-\frac{i}{2\h}[X,P] = -\frac{i}{\h}[X,P] = 1. 
-\end{equation}
-
-\begin{remark}
-  Insistons que le résultat $[a,a^\dagger] = 1$ nous indique que la commutation des bosons est égale à l'opérateur identité, $\mathbb{I}$.
-\end{remark}
-
-\begin{remark}
-  Dans les calculs ultérieurs, lorsque nous voudrons insister qu'un opérateur identité est un opérateur et non le scalaire $1$.
-\end{remark}
-
-\subsubsection{Valeur propre de $a$ - résolution analytique}
-
-Placons nous dans un espace de Hilbert, et prenons un vecteur $\ket{\psi}$ lui appartenant. Nous recherchons les solutions de l'équation aux valeurs propres
-\begin{align}
-  \bm{a}\ket{\psi} &= \alpha\ket{\psi} = \frac{1}{\sqrt{2}}\left(\frac{\bm{X}}{l}+\frac{il\bm{P}}{\h}\right)\ket{\psi}.
-\end{align}
-Commencons par remarquer que l'expression précédente nous permet de directement déduire la relation $(3)$ de l'énoncé:
-\begin{align}
-  \bra{\psi}\bm{a}\ket{\psi} &= \alpha\braket{\psi} = \frac{1}{\sqrt{2}}\left(\frac{\expval{\bm{X}}}{l}+\frac{il\expval{\bm{P}}}{\h}\right).
-\end{align}
-
-Dès lors, le problème se réduit à résoudre
-\begin{align}
-  \frac{1}{\sqrt{2}}\left(\frac{\bm{X}}{l}+\frac{il\bm{P}}{\h}\right)\ket{\psi} &= \frac{1}{\sqrt{2}}\left(\frac{\expval{X}}{l}+\frac{il\expval{P}}{\h}\right)\\
-  \left(\bm{X}-\expval{\bm{X}}\right)\ket{\psi} &= -\frac{il^2}{\h}\left(\bm{P}-\expval{\bm{P}}\right)\ket{\psi}
-\end{align}
-qui est l'équation : nous l'avons déjà résolue! Nous voyons en particulier que, à $l$ fixé, la solution est unique. Nous pouvons donc écrire $\ket{\psi} = \ket{\alpha}$. La fonction d'onde $\braket{x}{\psi}=\braket{x}{\alpha}$ est déterminée par la gaussienne que nous avons trouvé en \ref{fonction d'onde d'un état cohérent}.
-
-\subsubsection{Intégrale gaussienne}
-
-Nous voulons déterminer la valeur du produit scalaire $\braket{0}{\alpha}$. Pour ce faire, insérons la relation de complétude $\int_{-\infty}^{+\infty} dx\; \ket{x}\bra{x} = \mathbb{I}$:
-\begin{align}
-  \braket{0}{\alpha} &= \int_{-\infty}^{+\infty}dx\; \braket{0}{x}\braket{x}{\alpha}
-\end{align}
-
-Notons que le terme $\braket{0}{\alpha}$ est l'état fondamental de l'oscillateur  harmonique, que nous avons calculé dans le cours théorique. Le terme $\braket{x}{\alpha}$ est la fonction d'onde d'un état cohérent, déterminé en \ref{fonction d'onde d'un état cohérent}. Dès lors, nous voulons résoudre l'\emph{intégrale gaussienne}
-\begin{align}
-  \braket{0}{\alpha} &= \frac{\exp(-\frac{i}{2\h}\expval{\bm{X}}\expval{\bm{P}}-\frac{\expval{\bm{X}}^2}{2l^2})}{\sqrt{\pi}l}\int_{-\infty}^{+\infty}dx \; e^{-\frac{x^2}{l^2}+\frac{\sqrt{2}\alpha}{l}x}\notag\\
-  &= \frac{\exp(-\frac{i}{2\h}\expval{\bm{X}}\expval{\bm{P}}-\frac{\expval{\bm{X}}^2}{2l^2})}{\sqrt{\pi}l} \sqrt{\pi}le^{\frac{\norm{\alpha}^2}{2}}\\
-  &=  \exp(-\frac{i}{2\h}\expval{\bm{X}}\expval{\bm{P}}-\frac{\expval{\bm{X}}^2}{2l^2}+\frac{\norm{\alpha}^2}{2}) = \color{red} e^{-\frac{1}{2}\norm{\alpha}^2} \color{black}
-\end{align}
+où nous avons exploité le fait que $\braket{0}{n}$ est nul pour tout $n\neq 0$.
 
 \subsubsection{`Fock state' vs. `Coherent state'}
+
+
+
+
 
 Dans le cours théorique, nous avons introduit la base de Fock comme étant l'ensemble des vecteurs $\ket{n}$ diagonalisant l'opérateur nombre $N=\bm{a}^\dagger \bm{a}$. Nous avons en particulier démontré une série de propriétés remarquables sur ces vecteurs propres $\ket{n}$, en voici quelques unes.
 
@@ -307,20 +368,21 @@ Finalement, ces propriétés nous permettent de voir le résultat suivant.
   Soit l'opérateur nombre $\bm{N} = \bm{a}^\dagger\bm{a}$. Le spectre de $\bm{N}$ est un sous-ensemble des naturels : $Spectre \bm{N}\subseteq\mathbb{N}$.
 \end{theorem}
 
-De ce théorème, nous tirons notre interprétation des états $\ket{n}$. Il s'agit de l'ensemble des vecteurs - linéairement indépendant les uns des autres - diagonalisant l'opérateur $\bm{N}$. Ces états forment une base - la base de Fock, orthonormée. 
+
+De ce théorème, nous tirons notre interprétation des états $\ket{n}$. Il s'agit de l'ensemble des vecteurs - linéairement indépendant les uns des autres - diagonalisant l'opérateur $\bm{N}$. Ces états forment une base - la \emph{base de Fock}, orthonormée. 
 
 Cette dernière base est bien à distinguer de la base des états cohérents : en effet, si $\ket{n}$ est un élément de l'espace de Fock, rien n'assure que $\ket{n}$ diagonalise l'opérateur annihilation $\bm{a}$. De même, si $\ket{\alpha}$ est un état cohérent, $\bm{a}^\dagger \bm{a}\ket{\alpha} = \alpha \bm{\alpha}^\dagger\ket{\alpha}$ ne donne aucune information sur les états propres de $\bm{N}$. A la différence des états propres de $\bm{N}$ - décrivant un nombre fixe d'excitations - les états $\ket{\alpha}$ en possèdent un nombre indéterminé: elles se dotent cependant d'une \emph{phase fixe}. Nous avons bien deux bases distinctent, donnant des informations différentes sur les opérateurs introduit par la solution de Dirac de l'Oscillateur Harmonique.\\
 
-Maintenant que la différence entre les deux bases est claire, attelons-nous à montrer ce qui les relie. Introduisons la relation $\ket{n} = \frac{\left(\bm{a}^\dagger\right)^n}{\sqrt{n!}}\ket{0}$. Notons que tout état cohérent $\ket{\alpha}$ peut se réécrire sous la forme $\sum_n \ket{n}\braket{n}{\alpha}$, où nous avons utilisé la relation de fermeture des états de Focks. En particulier, cela nous incline à déterminer la valeur du produit scalaire $\braket{n}{\alpha}$. Rappelons la relation $\bm{a}^\dagger\ket{\alpha} = \sqrt{n+1}\ket{n+1}$, dont l'adjointe est $\bra{\alpha}\bm{a} = \bra{n+1}\sqrt{n+1}$.
+Maintenant que la différence entre les deux bases est claire, attelons-nous à montrer ce qui les relie. Introduisons la relation $\ket{n} = \frac{\left(\bm{a}^\dagger\right)^n}{\sqrt{n!}}\ket{0}$. Notons que tout état cohérent $\ket{\alpha}$ peut se réécrire sous la forme $\sum_n \ket{n}\braket{n}{\alpha}$, où nous avons utilisé la relation de fermeture des états de Focks. En particulier, cela nous incline à déterminer la valeur du produit scalaire $\braket{n}{\alpha}$. Rappelons la relation $\bm{a}^\dagger\ket{n} = \sqrt{n+1}\ket{n+1}$, dont l'adjointe est $\bra{n}\bm{a} = \bra{n+1}\sqrt{n+1}$.
 \begin{align}
-  \bra{n}a\ket{\alpha} = \alpha\braket{n}{\alpha} &= \sqrt{n+1}\braket{n+1}{\alpha}
+  \bra{n}a\ket{\alpha} = \alpha\braket{n}{\alpha} &= \sqrt{n+1}\braket{n+1}{\alpha}\notag
 \end{align}
 En remplacant $n$ par $n-1$, nous obtenons
 \begin{align}
-  \alpha\braket{n-1}{\alpha} &= \sqrt{n}\braket{n}{\alpha}\\
-  \frac{\alpha}{\sqrt{n}}\braket{n-1}{\alpha} &= \braket{n}{\alpha}
+  \alpha\braket{n-1}{\alpha} &= \sqrt{n}\braket{n}{\alpha}\notag\\
+  \frac{\alpha}{\sqrt{n}}\braket{n-1}{\alpha} &= \braket{n}{\alpha}\notag
 \end{align}
-Par récurrence, nous avons alors la relation
+Soit, par récurrence, 
 \begin{align}
   \braket{n}{\alpha} &= \frac{\alpha^n}{\sqrt{n!}}\braket{0}{\alpha}
 \end{align}
@@ -328,9 +390,7 @@ En particulier, nous pouvons réécrire l'état
 \begin{align}
   \ket{\alpha} = \braket{0}{\alpha} \sum_n \frac{\alpha^n}{\sqrt{n!}}\ket{n}
 \end{align}
-On voit alors que le terme $\braket{0}{\alpha}$ doit absolument être une constante -- de valeur $e^{-\frac{1}{2}\norm{\alpha}^2}$ : la dérivation de ce résultat est tout à fais similaire à la dérivation de la constante $c_0$ dans la preuve de la proposition \ref{coherent in fock}.\\
-
-Tout état cohérent peut donc être généré à partir du vide selon
+Le terme $\braket{0}{\alpha}$ a été calculé en \ref{intégrale gaussienne}. Dès lors, tout état cohérent peut donc être généré à partir du vide selon
 \begin{align}
   \label{Création à partir du vide}
   \ket{\alpha} = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_n \frac{\alpha^n}{\sqrt{n!}}\ket{n} = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_n \frac{\left(\alpha\bm{a}^\dagger\right)^n}{n!}\ket{0} = e^{-\frac{1}{2}\norm{\alpha}^n+\alpha\bm{a}^\dagger}\ket{0}
@@ -369,7 +429,7 @@ Cela nous donne une condition de \emph{presqu'orthogonalité}.
 \end{align}
 lorsque $\norm{\alpha-\beta}^2$ >> $1$.
 
-\subsubsection{Valeur propre de $a$ - solution algébrique}
+\subsubsection{Valeur propre de $a$ - résolution algébrique}
 
 \subsubsection{Interprétation en terme de particules}
 
@@ -766,7 +826,9 @@ Finalement, en associant nos résultats \eqref{mean H}, \eqref{delta H} et \eqre
 \end{equation}
 Application numérique: FLEMME
 
+\newpage
 \section{Partie III - Décohérence}
+\label{partie 3}
 Dans cette partie, nous voulons étudier un modèle très simple de la décohérence quantique. Pour ce faire, nous allons exploiter l'interprétation en terme de particules des opérateurs de déplacement étudiés en \ref{opérateur déplacement}.
 \subsection{Spectre de l'Hamiltonien}
 \subsection{Une histoire de déplacement ...}

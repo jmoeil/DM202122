@@ -43,7 +43,6 @@
 \newcommand{\med}{\ensuremath\cdot}
 \newcommand\au[2]{\left.#1\right|_{#2}}
 \renewcommand{\d}{\mathrm{d}}
-\renewcommand{\thesection}{\Roman{section}}
 
 % Special formatting for paragraphs
 \titleformat{\paragraph}
@@ -247,22 +246,24 @@ Puisque le choix de phase globale n'a aucune importance physique, nous avons la 
 \end{align}
 ce qui conclut notre discussion sur la fonction d'onde d'un état cohérent. \end{proof}
 \subsection{Opérateurs d'échelle} \label{opérateur d'échelle}
-\subsubsection{Commutateur $[a,a^\dagger]$}
-Soit $\bm{a} = \frac{1}{\sqrt{2}} \left(\frac{\bm{X}}{l}+\frac{il\bm{P}}{\hbar}\right)$ - l'opérateur destruction. Nous comprendrons plus tard, en étudiant ses propriétés, la logique derrière son nom. De sa définition, nous trouvons directement l'expression de la commutation des bosons:
+Introduisons l'opérateur
 \begin{equation}
-    [\bm{a},\bm{a}^\dagger] = \frac{1}{2} [\frac{\bm{X}}{l}+\frac{il\bm{P}}{\hbar},\frac{\bm{X}}{l}-\frac{il\bm{P}}{\hbar}] = -\frac{i}{2\h} [\bm{X},\bm{P}]-\frac{i}{2\h}[\bm{X},\bm{P}] = -\frac{i}{\h}[\bm{X},\bm{P}] = \mathbb{I}. 
+  \bm{a} = \frac{1}{\sqrt{2}}\left(\frac{\bm{X}}{l}+\frac{il\bm{P}}{\h}\right).
 \end{equation}
-
-\begin{remark}
-  Dans la suite, nous négligerons souvent d'indiquer l'identité $\mathbb{I}$; pour priviligier de ne 'rien mettre'. Cependant, de temps en temps, nous insisterons que quelque chose est multiplié par $\mathbb{I}$ en l'indiquant explicitement (surtout dans la partie \ref{partie 3}).
-\end{remark}
+$\bm{a}$ porte le nom d'\emph{opérateur destruction}. Nous dressons un rappel-issu du cours théorique- de ses propriétés dans la base de Fock en \ref{sec:fock vs. coherent}: cela suffira à comprendre la logique derrière son nom.
+\subsubsection{Commutateur $[a,a^\dagger]$}
+L'expression de commutation des bosons est donnée par
+\begin{equation}
+    [\bm{a},\bm{a}^\dagger] = \frac{1}{2} [\frac{\bm{X}}{l}+\frac{il\bm{P}}{\hbar},\frac{\bm{X}}{l}-\frac{il\bm{P}}{\hbar}] = -\frac{i}{2\h} [\bm{X},\bm{P}]-\frac{i}{2\h}[\bm{X},\bm{P}] = -\frac{i}{\h}[\bm{X},\bm{P}] = \mathbb{I},
+\end{equation}
+en exploitant directement la définition de $\bm{a}$.
 
 \subsubsection{Valeur propre de $a$ - résolution analytique}
 \label{resolution analytique}
 
 Placons nous dans un espace de Hilbert, et prenons un vecteur $\ket{\psi}$ lui appartenant. Nous recherchons les solutions de l'équation aux valeurs propres
 \begin{align}
-  \bm{a}\ket{\alpha} &= \alpha\ket{\alpha} = \frac{1}{\sqrt{2}}\left(\frac{\bm{X}}{l}+\frac{il\bm{P}}{\h}\right)\ket{\psi}.
+  \bm{a}\ket{\alpha} &= \alpha\ket{\alpha} = \frac{1}{\sqrt{2}}\left(\frac{\bm{X}}{l}+\frac{il\bm{P}}{\h}\right)\ket{\alpha}.
 \end{align}
 Commencons par remarquer que l'expression précédente nous permet de directement déduire la relation $(3)$ de l'énoncé:
 \begin{align}
@@ -271,8 +272,8 @@ Commencons par remarquer que l'expression précédente nous permet de directemen
 
 Le problème se réduit donc à résoudre
 \begin{align}
-  \frac{1}{\sqrt{2}}\left(\frac{\bm{X}}{l}+\frac{il\bm{P}}{\h}\right)\ket{\psi} &= \frac{1}{\sqrt{2}}\left(\frac{\expval{X}}{l}+\frac{il\expval{P}}{\h}\right)\\
-  \left(\bm{X}-\expval{\bm{X}}\right)\ket{\psi} &= -\frac{il^2}{\h}\left(\bm{P}-\expval{\bm{P}}\right)\ket{\psi}.
+  \frac{1}{\sqrt{2}}\left(\frac{\bm{X}}{l}+\frac{il\bm{P}}{\h}\right)\ket{\alpha} &= \frac{1}{\sqrt{2}}\left(\frac{\expval{X}}{l}+\frac{il\expval{P}}{\h}\right)\ket{\alpha}\\
+  \left(\bm{X}-\expval{\bm{X}}\right)\ket{\alpha} &= -\frac{il^2}{\h}\left(\bm{P}-\expval{\bm{P}}\right)\ket{\alpha}.
 \end{align}
 Or, il s'agit de l'équation \eqref{1.6}, que nous avons déjà entièrement résolu en $\ref{fonction d'onde d'un état cohérent}$. Nous voyons en particulier que, à $l$ fixé, la solution est unique. Nous pouvons donc écrire $\ket{\psi} = \ket{\alpha}$. La fonction d'onde $\braket{x}{\psi}=\braket{x}{\alpha}$ est déterminée par la gaussienne que nous avons trouvé en \ref{fonction d'onde d'un état cohérent}.\\
 
@@ -287,7 +288,7 @@ Nous obtenons alors le résultat qui suit ; lequel nous sera utile dans les disc
 \end{theorem}
 
 \begin{proof}
-  La preuve dans le sens direct est le développement débutant au début de \ref{resolution analytique}. Nous ne faisons pas la preuve dans le sens réciproque ($\bm{a}\ket{\psi}=\alpha\ket{\psi}$ pour tout $\alpha\in\mathbb{C}$ implique que $\braket{x}{\psi}=\psi(x)$ est de la forme \ref{fonction d'onde}).
+  La preuve dans le sens direct est le développement débutant au début de \ref{resolution analytique}. Nous ne faisons pas la preuve dans le sens réciproque ($\bm{a}\ket{\psi}=\alpha\ket{\psi}$ pour tout $\alpha\in\mathbb{C}$ implique que $\braket{x}{\psi}=\psi(x)$ est de la forme \ref{fonction d'onde}), car cela ne fait pas l'objet de ce devoir.
 \end{proof}
 
 \begin{remark}
@@ -298,7 +299,7 @@ Nous avons à présent les connaissances pour démontrer la proposition suivante
 
 \begin{property}
   \label{coherent in fock}
-  Soit $\left\{\ket{n} : n\in\mathbb{N}\right\}$ la base de Fock (orthonormale !) d'un oscillateur Harmonique, et soit $\left\{\ket{\alpha} : \alpha\in\mathbb{C}\right\}$ une base normale des états cohérents. Alors, pour tout $\alpha\in\mathbb{C}$, $\ket{\alpha} = e^{-\norm{\alpha}^2/2}\sum_n \frac{\alpha^n}{\sqrt{n!}}\ket{n}$.
+  Soit $\left\{\ket{n} : n\in\mathbb{N}\right\}$ une base de Fock, et soit $\left\{\ket{\alpha} : \alpha\in\mathbb{C}\right\}$ un ensemble d'états cohérents. Alors, pour tout $\alpha\in\mathbb{C}$, $\ket{\alpha} = e^{-\norm{\alpha}^2/2}\sum_n \frac{\alpha^n}{\sqrt{n!}}\ket{n}$.
 \end{property}
 
 \begin{proof}
@@ -306,7 +307,7 @@ Nous avons à présent les connaissances pour démontrer la proposition suivante
   \begin{align}
     \bm{a}\ket{\alpha} = \sum_n c_n a\ket{n} = \sum_n c_n\sqrt{n}\ket{n-1} &= \alpha\sum_n c_n \ket{n}
   \end{align}
-  De cette égalité, nous déduisons $c_n\sqrt{n}=\alpha c_{n-1}$. Par récurrence, nous pouvons alors montrer que $c_n = \frac{\alpha^n}{\sqrt{n!}}c_0$. En injectant cela dans notre somme, on se retrouve avec $\ket{\alpha} = c_0\sum_n \frac{\alpha^n}{\sqrt{n!}}\ket{n}$. Puisque les états cohérents sont normaux, nous avons
+  De cette égalité, nous déduisons $c_n\sqrt{n}=\alpha c_{n-1}$. Par récurrence, nous pouvons alors montrer que $c_n = \frac{\alpha^n}{\sqrt{n!}}c_0$. En injectant cela dans notre somme, on se retrouve avec $\ket{\alpha} = c_0\sum_n \frac{\alpha^n}{\sqrt{n!}}\ket{n}$. Par normalisation,
   \begin{align}
     1 = \braket{\alpha} &= \norm{c_0}^2 \sum_{n,m\geq 0} \frac{\bar{\alpha}^m\alpha^n}{\sqrt{n!m!}}\braket{m}{n} = \norm{c_0}^2\sum_{n\geq 0} \frac{\left(\norm{\alpha}^2\right)^n}{n!} = \norm{c_0}^2e^{\norm{\alpha}^2}
   \end{align}
@@ -316,18 +317,13 @@ Nous avons à présent les connaissances pour démontrer la proposition suivante
 \subsubsection{Produit scalaire avec le vide}
 \label{intégrale gaussienne}
 
-La preuve est une utilisation de la propriété \ref{coherent in fock} que nous venons de démontrer. En effet, nous remarquons que
+La solution est triviale en exploitant la propriété \ref{coherent in fock}, que nous venons de démontrer. En effet,
 \begin{align}
   \braket{0}{\alpha} &= e^{-\frac{1}{2}\norm{\alpha}^2}\sum_{n\geq 0}\frac{\alpha^n}{\sqrt{n!}}\braket{0}{n} = e^{-\frac{1}{2}\norm{\alpha^2}}
 \end{align}
 où nous avons exploité le fait que $\braket{0}{n}$ est nul pour tout $n\neq 0$.
 
-\subsubsection{`Fock state' vs. `Coherent state'}
-
-
-
-
-
+\subsubsection{`Fock state' vs. `Coherent state'}\label{sec:fock vs. coherent}
 Dans le cours théorique, nous avons introduit la base de Fock comme étant l'ensemble des vecteurs $\ket{n}$ diagonalisant l'opérateur nombre $N=\bm{a}^\dagger \bm{a}$. Nous avons en particulier démontré une série de propriétés remarquables sur ces vecteurs propres $\ket{n}$, en voici quelques unes.
 
 \begin{lemma}
@@ -384,23 +380,9 @@ En remplacant $n$ par $n-1$, nous obtenons
 \end{align}
 Soit, par récurrence, 
 \begin{align}
-  \braket{n}{\alpha} &= \frac{\alpha^n}{\sqrt{n!}}\braket{0}{\alpha}
+  \braket{n}{\alpha} &= \frac{\alpha^n}{\sqrt{n!}}\braket{0}{\alpha} = e^{-\frac{1}{2}\norm{\alpha}^2}\frac{\alpha^n}{\sqrt{n!}}\label{eq:scalar fock vs coherent}
 \end{align}
-En particulier, nous pouvons réécrire l'état
-\begin{align}
-  \ket{\alpha} = \braket{0}{\alpha} \sum_n \frac{\alpha^n}{\sqrt{n!}}\ket{n}
-\end{align}
-Le terme $\braket{0}{\alpha}$ a été calculé en \ref{intégrale gaussienne}. Dès lors, tout état cohérent peut donc être généré à partir du vide selon
-\begin{align}
-  \label{Création à partir du vide}
-  \ket{\alpha} = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_n \frac{\alpha^n}{\sqrt{n!}}\ket{n} = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_n \frac{\left(\alpha\bm{a}^\dagger\right)^n}{n!}\ket{0} = e^{-\frac{1}{2}\norm{\alpha}^n+\alpha\bm{a}^\dagger}\ket{0}
-\end{align}
-
-De même, le produit scalaire doit être de la forme
-\begin{align}
-  \braket{n}{\alpha} &= e^{-\frac{1}{2}\norm{\alpha}^2}\frac{\alpha^n}{\sqrt{n!}}  
-\end{align}
-
+Nous continuerons ce raisonnement dans la section \ref{sec:vp algebrique}.
 \subsubsection{Note sur la non-orthogonalité de la base des états cohérents}
 Nous pouvons voir directement, en exploitant le résultat \ref{coherent in fock}, que la base des états cohérents n'est \textbf{pas} orthonormale. En effet, pour tout $\alpha,\beta$ sur le plan complexe
 \begin{align}
@@ -429,8 +411,12 @@ Cela nous donne une condition de \emph{presqu'orthogonalité}.
 \end{align}
 lorsque $\norm{\alpha-\beta}^2$ >> $1$.
 
-\subsubsection{Valeur propre de $a$ - résolution algébrique}
-
+\subsubsection{Valeur propre de $a$ - résolution algébrique}\label{sec:vp algebrique}
+Reprenons le raisonnement développé dans le cadre de la section \ref{sec:fock vs. coherent}. En particulier, rappelons que tout état cohérent peut se réécrire avec la relation de fermeture $\sum_n \ket{n}\braket{n}{\alpha}$. Le produit scalaire entre un état cohérent et un élément de la base de Fock est donné par \eqref{eq:scalar fock vs coherent}, et nous permet donc d'écrire
+\begin{align}
+  \ket{\alpha} = e^{-\frac{1}{2}\norm{\alpha}^2}\sum_{n\geq 0}\frac{\alpha^n}{\sqrt{n!}}\ket{n} = e^{-\frac{1}{2}\norm{\alpha}^2}\sum_{n\geq 0}\frac{\left(\alpha\bm{a}^\dagger\right)^n}{n!}\ket{0} = e^{-\frac{1}{2}\norm{\alpha}^2+\alpha\bm{a}^\dagger}\ket{0}
+\end{align}
+On voit donc qu'un état cohérent peut-être \textit{généré} à partir du vide. 
 \subsubsection{Interprétation en terme de particules}
 
 Pour terminer cette section sur les opérateurs d'échelle, posons nous quelques questions statistiques sur l'état $\ket{\alpha}$, en interprétant cette fois les opérateurs $\bm{a}^\dagger$ et $\bm{a}$ en terme de particules. En effet, nous pouvons voir $\ket{n}$ comme un système contenant n particules d'énergie $\h\omega$ n'intéragissant pas entre-eux. Dans cette vision, l'opérateur annihilation $\bm{a}^\dagger$ peut-être vu comme traduisant le retrait d'une particule dans le système. L'opérateur création $\bm{a}$ caractérise alors l'ajout d'une particule dans le système. Par exemple, l'opérateur $\bm{a}^\dagger\bm{a}\bm{a}^\dagger\bm{a}$ traduit la création de deux particules à la suite de la destruction (l'annihilation) de deux autres.\\

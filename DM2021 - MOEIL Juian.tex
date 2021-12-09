@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
 \usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage{cancel}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{bm}
@@ -815,7 +816,53 @@ Application numérique: FLEMME
 \newpage
 \section{Partie III - Décohérence}
 \label{partie 3}
-Dans cette partie, nous voulons étudier un modèle très simple de la décohérence quantique. Pour ce faire, nous allons exploiter l'interprétation en terme de particules des opérateurs de déplacement étudiés en \ref{opérateur déplacement}.
+Dans cette partie, nous voulons étudier un modèle très simple de la décohérence quantique. Considérons un oscilliateur harmonique "macroscopique"\footnote{un oscillateur dont l'état initial est un état cohérent (ou une superposition d'états cohérents), caractérisé  par un nombre de particules $\expval{\bm{N}}$ très grand.}. On modélise l'environnement de notre oscillateur harmonique par un autre oscillateur harmonique - de même fréquence. L'Hamiltonien d'un tel système est donné par
+\begin{equation}
+  \label{eq:Hamiltonien partie III}
+  H = \h\omega\left(\bm{a}^\dagger\bm{a}+1/2\right)+\h\omega\left(\bm{b}^\dagger\bm{b}+1/2\right)+\h\lambda\left(\bm{a}\bm{b}^\dagger+\bm{a}^\dagger\bm{b}\right)
+\end{equation}
+Dans cette expression, le premier terme correspond à l'oscillateur harmonique étudié, le second terme modélise l'oscillateur harmonique de l'environnement et le troisième terme décrit le couplage entre l'environnement et l'oscillateur. On pose $\lambda\in\mathbb{R}^+$.
+
+On se place dans l'espace de Hilbert $\mathcal{H} = \mathcal{H}_a\otimes\mathcal{H}_b$. On suppose qu'une base de $\mathcal{H}_a$ est donné par $\ket{n,a} = \frac{\left(\bm{a}^\dagger\right)^n}{\sqrt{n!}}\ket{0,a}$ et qu'une base de $\mathcal{H}_b = \frac{\left(\bm{b}\right)^m}{\sqrt{m!}}\ket{0,b}$. En particulier, nous avons alors qu'une base de $\mathcal{H} = \frac{\left(\bm{a}^\dagger\right)^n}{\sqrt{n!}}\frac{\left(\bm{b}^\dagger\right)^m}{\sqrt{m!}}\ket{0,a}\otimes\ket{0,b} \doteq \frac{\left(\bm{a}^\dagger\right)^n}{\sqrt{n!}}\frac{\left(\bm{b}^\dagger\right)^m}{\sqrt{m!}}\ket{0,a;0,b}$.
+
+Introduisons les opérateurs nombre $\bm{N}_a = \bm{a}^\dagger\bm{a}$ et $\bm{N}_b = \bm{b}^\dagger\bm{b}$. Ils seront utile dans la suite. En particulier, remarquons que 
+\begin{equation}
+  \label{eq:commutateur NaNb}
+  \forall i=a,b \quad [\bm{N}_i,\bm{N}^\dagger_i] = \mathbb{I} 
+\end{equation}
+et que toute autre combinaison commute. 
+
 \subsection{Spectre de l'Hamiltonien}
+On introduit les opérateurs 
+\begin{equation*}
+  \bm{A} = \frac{1}{\sqrt{2}}\left(\bm{a}+\bm{b}\right) \quad \bm{B} = \frac{1}{\sqrt{2}}\left(\bm{a}-\bm{b}\right)
+\end{equation*}
+Nous voulons à présent déterminer la valeur de tous les commutateurs liant $\bm{A},\bm{B}$ et leur adjointe. Il s'agit d'une application de la relation \eqref{eq:commutateur NaNb}.
+\begin{align*}
+  [\bm{A},\bm{A}^\dagger] &= \frac{1}{2}\left[\left(\bm{a}+\bm{b}\right)\left(\bm{a}^\dagger+\bm{b}^\dagger\right)-\left(\bm{a}^\dagger+\bm{b}^\dagger\right)\left(\bm{a}+\bm{b}\right)\right]\\
+  &= \frac{1}{2}\left[\underbrace{\left(\bm{a}\bm{a}^\dagger-\bm{a}^\dagger\bm{a}\right)}_{[\bm{a},\bm{a}^\dagger] = \mathbb{I}}+\cancelto{0}{\left(\bm{a}\bm{b}^\dagger-\bm{b}^\dagger\bm{a}\right)}+\cancelto{0}{\left(\bm{b}\bm{a}^\dagger-\bm{a}^\dagger\bm{b}\right)}+\overbrace{\left(\bm{b}\bm{b}^\dagger-\bm{b}^\dagger\bm{b}\right)}^{[\bm{b},\bm{b}^\dagger] = \mathbb{I}}\right] = 1.
+\end{align*}
+Le commutateur $[\bm{B},\bm{B}^\dagger]$ vaut également 1, et la preuve est identique (\emph{exercice}).
+\begin{align*}
+  [\bm{A},\bm{B}] &= \frac{1}{2}\left[\left(\bm{a}+\bm{b}\right)\left(\bm{a}-\bm{b}\right)-\left(\bm{a}-\bm{b}\right)\left(\bm{a}+\bm{b}\right)\right] = -\left(\bm{a}\bm{b}-\bm{b}\bm{a}\right) = -\left[\bm{a},\bm{b}\right] = 0.
+\end{align*}
+Les commutateurs $[\bm{A},\bm{B}^\dagger]$, $[\bm{A}^\dagger,\bm{B}]$, $[\bm{A}^\dagger,\bm{B}^\dagger]$ valent également 0, avec un développement identique (\emph{exercice}).
+
+Ecrivons l'Hamiltonien en terme des opérateurs $\bm{A}$ et $\bm{B}$. Pour ce faire, notons que:
+\begin{itemize}
+  \item $\bm{a}^\dagger\bm{a} = \frac{1}{2}\left(\bm{A}+\bm{B}\right)^\dagger\left(\bm{A}+\bm{B}\right) = \frac{1}{2}\left[\bm{A}^\dagger\bm{A}+\bm{A}^\dagger\bm{B}+\bm{B}^\dagger\bm{A}+\bm{B}^\dagger\bm{B}\right]$ ;\\
+  \item $\bm{b}^\dagger\bm{b} = \frac{1}{2}\left[\bm{A}^\dagger\bm{A}-\bm{A}^\dagger\bm{B}-\bm{B}^\dagger\bm{A}+\bm{B}^\dagger\bm{B}\right]$ ;
+  \item $\bm{a}^\dagger\bm{b} = \frac{1}{2}\left(\bm{A}+\bm{B}\right)^\dagger\left(\bm{A}-\bm{B}\right) = \frac{1}{2}\left[\bm{A}^\dagger\bm{A}-\bm{A}^\dagger\bm{B}+\bm{B}^\dagger\bm{A}-\bm{B}^\dagger\bm{B}\right]$ ;\\
+  \item $\bm{b}^\dagger\bm{a} = \frac{1}{2}\left(\bm{A}-\bm{B}\right)^\dagger\left(\bm{A}+\bm{B}\right) = \frac{1}{2}\left[\bm{A}^\dagger\bm{A}+\bm{A}^\dagger\bm{B}-\bm{B}^\dagger\bm{A}-\bm{B}^\dagger\bm{B}\right]$.
+\end{itemize}
+Introduisons la notation $\bm{a}^\dagger\bm{a} = \bm{N}_a$, et idem en $\bm{b}$. Il s'agit d'opérateurs nombre. Alors, l'Hamiltonien se réécrit
+\begin{equation}
+  H = \h\left(\omega+\lambda\right)\bm{N}_A+\h\left(\omega-\lambda\right)\bm{N}_B+\h\omega
+\end{equation}
+Notons que puisque $[\bm{N}_A,\bm{N}_B] = 0$, il doit exister une base orthonormée diagonalisant simultanément $\bm{N}_A$ et $\bm{N}_B$. Notons $\left\{\ket{n,A;m,B}\right\}$ une telle base. Finalement, en remarquant que l'Hamiltonien commute à la fois avec $\bm{N}_A$ et $\bm{N}_B$, nous avons que la base que nous venons de définir diagonalise l'Hamiltonien.
+\begin{align*}
+  \ket{n,A;m,B} &= \frac{\left(\bm{A}^\dagger\right)^n}{\sqrt{n!}}\frac{\left(\bm{B}^\dagger\right)^m}{\sqrt{m!}}\ket{0,A;0,B} &H\ket{n,A;m,B} = E_{nm}\ket{n,A;m,B}
+\end{align*}
+où $E_{nm} = \h\left(\omega+\lambda\right)n+\h\left(\omega-\lambda\right)m+\h\omega$.
 \subsection{Une histoire de déplacement ...}
 \end{document}

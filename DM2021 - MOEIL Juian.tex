@@ -131,16 +131,16 @@
 \newpage
 
 \begin{remark}
-  Les opérateurs sont indiqués $\bm{gras}$, et $\doteq$ est signifie "égal par définition à".
+  Les termes en $\bm{gras}$ indiquent soit des opérateurs, soit des vecteurs. A comprendre en fonction du contexte. On pose $\doteq$ comme un symbole pour "égal par définition à".
 \end{remark}
 \section{Partie I - Etude des états cohérents}
 On se restreint au cas unidimensionnel, en se munissant des opérateurs position $\bm{X}$ et impulsion $\bm{P}$, satisfaisant la relation de commutation canonique $[\bm{X},\bm{P}] = i\h$.
 
 \subsection*{Introduction des concepts clés}
 \begin{definition}[Ecart quadratique moyen]
-  Soit $\bm{A}$ une observable. L'écart quadratique moyen de $\bm{A}$ dans l'état $\rho = \ketbra{\psi}$ pour tout $\psi\in$ H est 
+  Soit $\bm{A}$ une observable. L'écart quadratique moyen de $\bm{A}$ dans l'état $\rho = \ketbra{\psi}$ pour tout $\ket{\psi}\in\mathcal{H}$ est 
   \begin{equation}
-    \Delta\bm{A} = \sqrt{\expval{A^2}-\expval{A}^2} = \expval{\left(\bm{A}-\expval{\bm{A}}\right)^2}
+    \Delta\bm{A} = \sqrt{\expval{A^2}-\expval{A}^2} = \expval{\left(\bm{A}-\expval{\bm{A}}\right)^2}.
   \end{equation}
 \end{definition}
 
@@ -148,18 +148,15 @@ On se restreint au cas unidimensionnel, en se munissant des opérateurs position
   Pour toute observable $\bm{A}$ et $\bm{B}$, nous avons que
   \begin{equation}
     \label{Heisenberg inequality}
-    \Delta\bm{A}\Delta\bm{B}\geq\frac{1}{2}\norm{\expval{[\bm{A},\bm{B}]}}
+    \Delta\bm{A}\Delta\bm{B}\geq\frac{1}{2}\norm{\expval{[\bm{A},\bm{B}]}}.
   \end{equation}
 \end{definition}
-
-
-
 
 \begin{definition}
   \label{def etat coherent saturation}
     On définit un état cohérent comme un état $\rho = \ketbra{\psi}$ dans lequel l'inégalité de Heisenberg est saturée, c'est à dire tel que
     \begin{equation}
-      \Delta\bm{X}\Delta\bm{P} = \frac{\h}{2}
+      \Delta\bm{X}\Delta\bm{P} = \frac{\h}{2}.
     \end{equation} 
 \end{definition}
 
@@ -514,7 +511,7 @@ En particulier, en appliquant l'état du vide $\ket{0}$ sur $\bm{D}(\alpha+\beta
   \bm{D}(\alpha)\ket{\beta} &= e^{-Im(\alpha^*\beta)}\ket{\alpha+\beta}\label{eq:deplacement sur etat coherent}
 \end{align}
 \begin{remark}
-  Le facteur de phase $e^{iIm(\alpha^*\beta)}$ est une phase globale : elle n'a donc aucune importance physique ! 
+  Le facteur $e^{\pm iIm(\alpha^*\beta)}$ est une phase globale : elle n'a donc aucune importance physique ! 
 \end{remark}
 \subsection{Relation de fermeture}
 \label{section relation de fermeture}
@@ -567,7 +564,7 @@ En particulier, si $\ket{\psi} = \ket{\beta}$ est dans la base des états cohér
 où nous avons utilisé la relation de non-orthogonalité des états cohérents. Cette équation montre que \emph{les états cohérents ne sont pas linéairement indépendants} : tout état cohérent $\ket{\alpha}$ peut s'écrire en terme d'un autre.
 
 \begin{remark}
-  Le terme "base des états cohérents" est donc un abus de language! Nous continuerons à l'utiliser\footnote{Surtout parceque la suite est déjà rédigée ...}, mais il faut garder que les états cohérents ne forment PAS une base.
+  Le terme "base des états cohérents" est donc un abus de language! Nous continuerons à l'utiliser\footnote{Surtout parceque la suite est déjà rédigée ...}, mais il faut garder en tête que les états cohérents ne forment \textbf{pas} une base.
 \end{remark}
 
 \section{Partie II - Oscillateur hamonique}
@@ -894,8 +891,8 @@ Avec un argument analogue à la discussion du point 1, nous retrouvons la formul
 \begin{align}
   \bm{D}_b(\alpha) = \bm{D}_A(\frac{\alpha}{\sqrt{2}})\bm{D}_B(-\frac{\alpha}{\sqrt{2}}).
 \end{align}
-  \item \emph{Lien entre $\bm{D}_A$ et $\bm{D}_a$,$\bm{D}_b$}.
-  \item \emph{Lien entre $\bm{D}_B$ et $\bm{D}_a$,$\bm{D}_b$}.
+  \item \emph{Lien entre $\bm{D}_A$ et $\bm{D}_a$,$\bm{D}_b$}. \color{red} Rédiger la preuve.\color{black}
+  \item \emph{Lien entre $\bm{D}_B$ et $\bm{D}_a$,$\bm{D}_b$}.  \color{red} Rédiger la preuve.\color{black}
 
 En continuant sur cette lancée, nous pouvons montrer les deux relations suivantes.
 \begin{align}

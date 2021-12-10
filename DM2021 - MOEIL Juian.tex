@@ -17,7 +17,7 @@
 \usepackage{physics}
 \usepackage{siunitx}
 \usepackage{tikz}
-\usepackage[allcolors=true]{hyperref}
+\usepackage{hyperref}
 \usepackage{cleveref}
 \usepackage{pgfplotstable}
 \usepackage{wrapfig}
@@ -56,12 +56,12 @@
   {3.25ex plus 1ex minus .2ex}
   {1.5ex plus .2ex}
 
-% Gestion des entête et des 
+% Gestion of headers and footers
 \pagestyle{fancy}
 \renewcommand\headrulewidth{1pt}
 \renewcommand\footrulewidth{1pt}
 \fancyfoot[L]{MOEIL Juian}
-\fancyfoot[C]{\textbf{Page \thepage/\pageref{LastPage}}}
+\fancyfoot[C]{Page \thepage/\pageref{LastPage}}
 \fancyfoot[R]{\today}
 
 % Defining new theorem environments
@@ -77,10 +77,14 @@
 \renewcommand{\proofname}{Preuve}
 \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 
+% Setup of hyperref features
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=purple,
+  pdftitle="DM202122 - MOEIL Juian"
+}
 
-
-
-%%% Début ajouts Sami
 % Definition boite grise avec couleur grise définie
 \definecolor{BGgris}{RGB}{222,230,230}
 \newcommand\bg[2]{%
@@ -107,9 +111,7 @@
   \end{center}%
 }
 
-\setlength{\fboxsep}{2em} % espace entre le bord d'une boite et le texte dedans
-
-%%% Fin ajouts Sami
+\setlength{\fboxsep}{2em}
 
 \title{%
   \textbf{PHYS-F302 - Mécanique Quantique} \\
@@ -128,8 +130,11 @@
 \tableofcontents
 \newpage
 
+\begin{remark}
+  Les opérateurs sont indiqués $\bm{gras}$, et $\doteq$ est signifie "égal par définition à".
+\end{remark}
 \section{Partie I - Etude des états cohérents}
-On se restreint au cas unidimensionnel, en se munissant des opérateurs position $\bm{X}$ et impulsion $\bm{P}$, satisfaisant la relation de commutation canonique $[\bm{X},\bm{P}] = i\hbar = -\frac{\h}{i}$.
+On se restreint au cas unidimensionnel, en se munissant des opérateurs position $\bm{X}$ et impulsion $\bm{P}$, satisfaisant la relation de commutation canonique $[\bm{X},\bm{P}] = i\h$.
 
 \subsection*{Introduction des concepts clés}
 \begin{definition}[Ecart quadratique moyen]
@@ -436,6 +441,7 @@ Similairement, le nombre moyen de particules dans l'état $\ket{\alpha}$ s'expri
 \subsection{Opérateur déplacement} \label{opérateur déplacement}
 Introduisons, pour tout nombre complexe $\alpha$, l'opérateur déplacement, noté $\bm{D}(\alpha)$, défini par la relation
 \begin{align}
+  \label{eq:operateur deplacement}
   \bm{D}(\alpha) = e^{\alpha \bm{a}^\dagger-\alpha^*\bm{a}}.
 \end{align}
 
@@ -499,11 +505,13 @@ Ce qui revient à faire la somme de deux opérateurs ; soit $\bm{A} = \alpha\bm{
 
 En utilisant le même argument que dans la preuve du lemme \ref{lemme displacement}, nous avons donc que ($\bm{A},\bm{B}$) commutent avec leur commutateur. Alors, \eqref{Glaubert} nous autorise à écrire
 \begin{align}
-  \bm{D}(\alpha+\beta) &= e^{\alpha\bm{a}^\dagger-\alpha^*\bm{a}}e^{\beta\bm{a}^\dagger-\beta^*\bm{a}}e^{iIm(\alpha^*\beta)} = e^{iIm(\alpha^*\beta)}\bm{D}(\alpha)\bm{D}(\beta).
+  \bm{D}(\alpha+\beta) &= e^{\alpha\bm{a}^\dagger-\alpha^*\bm{a}}e^{\beta\bm{a}^\dagger-\beta^*\bm{a}}e^{iIm(\alpha^*\beta)} = \bm{D}(\alpha)\bm{D}(\beta)e^{iIm(\alpha^*\beta)}.
 \end{align}
 En particulier, en appliquant l'état du vide $\ket{0}$ sur $\bm{D}(\alpha+\beta)$, il est clair que
 \begin{align}
-  \bm{D}(\alpha+\beta)\ket{0} &= e^{iIm(\alpha^*\beta)}\bm{D}(\alpha)\bm{D}(\beta)\ket{0} = e^{iIm(\alpha^*\beta)}\bm{D}(\alpha)\ket{\beta} = e^{iIm(\alpha^*\beta)}\ket{\alpha+\beta}.
+  \bm{D}(\alpha+\beta)\ket{0} &= \ket{\alpha+\beta}\notag\\
+  e^{iIm(\alpha^*\beta)}\bm{D}(\alpha)\bm{D}(\beta)\ket{0} &= \ket{\alpha+\beta}\notag\\
+  \bm{D}(\alpha)\ket{\beta} &= e^{-Im(\alpha^*\beta)}\ket{\alpha+\beta}\label{eq:deplacement sur etat coherent}
 \end{align}
 \begin{remark}
   Le facteur de phase $e^{iIm(\alpha^*\beta)}$ est une phase globale : elle n'a donc aucune importance physique ! 
@@ -807,7 +815,7 @@ Or, nous connaissons la valeur de $A$ pour notre OH classique! Elle est donnée 
 \end{equation}
 pour l'état cohérent reproduisant le plus fidèlement le mouvement du pendule.\\
 
-Finalement, en associant nos résultats \eqref{mean H}, \eqref{delta H} et \eqref{89}, nous trouvons
+Finalement, en associant les résultats \eqref{mean H}, \eqref{delta H} et \eqref{89}, nous trouvons
 \begin{equation}
   \frac{\Delta H}{\expval{H}} = \frac{2\norm{\alpha}}{2\norm{\alpha}^2+1} = \frac{A\sqrt{2mgL\h}}{mgA^2+L\h}
 \end{equation}
@@ -816,7 +824,7 @@ Application numérique: FLEMME
 \newpage
 \section{Partie III - Décohérence}
 \label{partie 3}
-Dans cette partie, nous voulons étudier un modèle très simple de la décohérence quantique. Considérons un oscilliateur harmonique "macroscopique"\footnote{un oscillateur dont l'état initial est un état cohérent (ou une superposition d'états cohérents), caractérisé  par un nombre de particules $\expval{\bm{N}}$ très grand.}. On modélise l'environnement de notre oscillateur harmonique par un autre oscillateur harmonique - de même fréquence. L'Hamiltonien d'un tel système est donné par
+Dans cette partie, nous voulons étudier un modèle très simple de la décohérence quantique. Considérons un oscilliateur harmonique "macroscopique"\footnote{Un oscillateur dont l'état initial est un état cohérent (ou une superposition d'états cohérents), caractérisé  par un nombre de particules $\expval{\bm{N}}$ très grand.}. On modélise l'environnement de notre oscillateur harmonique par un autre oscillateur harmonique - de même fréquence. L'Hamiltonien d'un tel système est donné par
 \begin{equation}
   \label{eq:Hamiltonien partie III}
   H = \h\omega\left(\bm{a}^\dagger\bm{a}+1/2\right)+\h\omega\left(\bm{b}^\dagger\bm{b}+1/2\right)+\h\lambda\left(\bm{a}\bm{b}^\dagger+\bm{a}^\dagger\bm{b}\right)
@@ -863,6 +871,76 @@ Notons que puisque $[\bm{N}_A,\bm{N}_B] = 0$, il doit exister une base orthonorm
 \begin{align*}
   \ket{n,A;m,B} &= \frac{\left(\bm{A}^\dagger\right)^n}{\sqrt{n!}}\frac{\left(\bm{B}^\dagger\right)^m}{\sqrt{m!}}\ket{0,A;0,B} &H\ket{n,A;m,B} = E_{nm}\ket{n,A;m,B}
 \end{align*}
-où $E_{nm} = \h\left(\omega+\lambda\right)n+\h\left(\omega-\lambda\right)m+\h\omega$.
-\subsection{Une histoire de déplacement ...}
+où $E_{nm} = \h\left(\omega+\lambda\right)n+\h\left(\omega-\lambda\right)m+\h\omega$. Appelons cette base $\left\{\ket{n,A;m,B}\right\}$ la \emph{base de Fock} de notre système.
+\subsection{Opérateurs déplacement}
+On introduit les opérateurs déplacement - tel que défini par \eqref{eq:operateur deplacement} - lié aux opérateurs $\bm{a},\bm{b},\bm{A}$ et $\bm{B}$.
+Nous voulons montrer quelques relations les liants.
+\subsubsection{Quelques relations liant les opérateurs déplacement}\label{sec:quelques relations liant les operateurs deplacement}
+\begin{enumerate}
+  \item \emph{Lien entre $\bm{D}_a$ et $\bm{D}_A$,$\bm{D}_B$}.\label{point 1}
+\begin{align*}
+  \bm{D}_a(\alpha) = \exp(\alpha\bm{a}^\dagger-\alpha^*\bm{a}) &= \exp(\alpha\frac{1}{\sqrt{2}}\left(\bm{A}+\bm{B}\right)^\dagger-\alpha^*\frac{1}{\sqrt{2}}\left(\bm{A}+\bm{B}\right)) = \exp(\frac{\alpha}{\sqrt{2}}\bm{A}^\dagger-\frac{\alpha^*}{\sqrt{2}}\bm{A}+\frac{\alpha}{\sqrt{2}}\bm{B}^\dagger-\frac{\alpha^*}{\sqrt{2}}\bm{B})
+\end{align*}
+Notons que nous avons l'exponentielle de la somme entre $\bm{\xi}=\frac{\alpha}{\sqrt{2}}\bm{A}^\dagger-\frac{\alpha^*}{\sqrt{2}}\bm{A}$ et $\bm{\eta} = \frac{\alpha}{\sqrt{2}}\bm{B}^\dagger-\frac{\alpha^*}{\sqrt{2}}\bm{B}$. En particulier, du fait que les conditions de \ref{prop Glaubert} sont respectées\footnote{En effet, $\bm{\eta}$ et $\bm{\xi}$ commutent avec $[\bm{\eta},\bm{\xi}]$.}, nous déduisons que 
+\begin{align}
+  \exp(\bm{\xi}+\bm{\eta}) &= \exp(\bm{\xi})\exp(\bm{\eta})\exp(-\frac{1}{2}[\bm{\xi},\bm{\eta}]) = \bm{D}_A(\frac{\alpha}{\sqrt{2}})\bm{D}_B(\frac{\alpha}{\sqrt{2}})
+\end{align}
+ce qui prouve notre première relation.
+  \item \emph{Lien entre $\bm{D}_b$ et $\bm{D}_A$,$\bm{D}_B$}.
+\begin{align*}
+  \bm{D}_b(\alpha) = \exp(\alpha\bm{b}^\dagger-\alpha^*\bm{b}) = \exp(\frac{\alpha}{\sqrt{2}}\left(\bm{A}-\bm{B}\right)^\dagger-\frac{\alpha^*}{\sqrt{2}}\left(\bm{A}-\bm{B}\right)) = \exp(\frac{\alpha}{\sqrt{2}}\bm{A}^\dagger-\frac{\alpha^*}{\sqrt{2}}\bm{A}-\frac{\alpha}{\sqrt{2}}\bm{B}^\dagger+\frac{\alpha^*}{\sqrt{2}}\bm{B})
+\end{align*}
+Avec un argument analogue à la discussion du point 1, nous retrouvons la formule recherchée. Dès lors, nous avons que
+\begin{align}
+  \bm{D}_b(\alpha) = \bm{D}_A(\frac{\alpha}{\sqrt{2}})\bm{D}_B(-\frac{\alpha}{\sqrt{2}}).
+\end{align}
+  \item \emph{Lien entre $\bm{D}_A$ et $\bm{D}_a$,$\bm{D}_b$}.
+  \item \emph{Lien entre $\bm{D}_B$ et $\bm{D}_a$,$\bm{D}_b$}.
+
+En continuant sur cette lancée, nous pouvons montrer les deux relations suivantes.
+\begin{align}
+  \bm{D}_A(\alpha) &= \bm{D}_a(\frac{\alpha}{\sqrt{2}}) &\bm{D}_B(\alpha) = \bm{D}_a(\frac{\alpha}{\sqrt{2}})\bm{D}_b(-\frac{\alpha}{\sqrt{2}})
+\end{align}
+\end{enumerate}
+
+\subsubsection{Evolution de l'oscillateur macroscopique dans un état cohérent}
+On suppose ici que l'état initial du système est de la forme
+\begin{equation}
+  \ket{\psi_0} = \ket{\alpha,a}\ket{0,b} = \ket{\alpha,a;0,b},
+\end{equation}
+à savoir l'état dans lequel l'oscillateur macroscopique est dans un état cohérent. Faisons évoluer cet état.
+\begin{align*}
+  \ket{\psi}(t) &= \bm{U}(t)\ket{\psi_0} &\bm{U}(t) = \exp(-\frac{iHt}{\h})
+\end{align*}
+Or, $\ket{\alpha,a;0,b} = \bm{D}_a(\alpha\ket{0,a;0,b}) = \bm{D}_A(\frac{\alpha}{\sqrt{2}})\bm{D}_B(\frac{\alpha}{\sqrt{2}})\ket{0,a;0,b} = \ket{\frac{\alpha}{\sqrt{2}},A;\frac{\alpha}{\sqrt{2}},B}$. En effet, l'état fondamental est le même: $\ket{0,a;0,b} = \ket{0,A;0,B}$. En exploitant les résultats de la partie \ref{part 2}, nous avons directement que l'évolution de l'état initial est donnée par
+\begin{equation}
+  \label{eq:evolution}
+  \ket{\psi}(t) = e^{-i\omega t}\ket{\frac{\alpha}{\sqrt{2}}e^{-i\left(\omega+\lambda\right)t},A;\frac{\alpha}{\sqrt{2}}e^{-i\left(\omega-\lambda\right)t},B}.
+\end{equation}
+
+\begin{definition}\label{def:systemes independants}
+  Soit deux systèmes, $S_1$ et $S_2$. On dit que $S_1$ et $S_2$ sont \emph{indépendants} lorsque l'état du système $S_1\cup S_2$ peut s'écrire sous la forme $\ket{\psi_1}\otimes\ket{\psi_2}$, où $\begin{cases}
+    \ket{\psi_1}\text{est l'état du système } S_1\\
+    \ket{\psi_2}\text{est l'état du système } S_2
+  \end{cases}$.
+\end{definition}
+
+\begin{remark}
+  Si l'état de $S_1\cup S_2$ ne peut s'écrire comme le produit tensoriel des états des sous-systèmes $S_1$ et $S_2$, on dit que l'état $\ket{\psi}$ de $S_1\cup S_2$ est intriqué.
+\end{remark}
+
+Vérifions si \eqref{eq:evolution} est intriqué. Pour ce faire, réexprimons le dans la base $\ket{\alpha,a;\beta,b}$ en exploitant les relations démontrées en \ref{sec:quelques relations liant les operateurs deplacement}.
+
+\begin{align*}
+  \ket{\alpha}(t) &= e^{-i\omega t}\bm{D}_A(\frac{\alpha}{\sqrt{2}}e^{-i\left(\omega+\lambda\right)t})\bm{D}_B(\frac{\alpha}{\sqrt{2}}e^{-i\left(\omega-\lambda\right)t})\ket{0,A;0,B}\\
+  &= e^{-i\omega t}\bm{D}_a(\frac{\alpha}{2}e^{-i\left(\omega+\lambda\right)t})\bm{D}_b(\frac{\alpha}{2}e^{-i\left(\omega+\lambda\right)t})\bm{D}_a(\frac{\alpha}{2}e^{-i\left(\omega-\lambda\right)t})\bm{D}_b(-\frac{\alpha}{2}e^{-i\left(\omega-\lambda\right)t})\ket{0,a;0,b}\\
+  &= e^{-i\omega t}\bm{D}_a(\frac{\alpha}{2}e^{-i\left(\omega+\lambda\right)t})\bm{D}_b(\frac{\alpha}{2}e^{-i\left(\omega+\lambda\right)t})\ket{\frac{\alpha}{2}e^{-i\left(\omega-\lambda\right)t},a;-\frac{\alpha}{2}e^{-i\left(\omega-\lambda\right)t},b}
+\end{align*}
+On invoque à présent la relation \eqref{eq:deplacement sur etat coherent}.
+\begin{align*}
+  \ket{\alpha}(t) &= e^{-i\omega t}\overbrace{e^{-Im\left[\frac{\norm{\alpha}^2}{4}e^{2i\lambda t}\right]}e^{-Im\left[-\frac{\norm{\alpha}^2}{4}e^{2i\lambda t}\right]}}^1\ket{\frac{\alpha}{2}\left(e^{-i\left(\omega-\lambda\right)t}+e^{-i\left(\omega+\lambda\right)t}\right),a}\otimes\ket{\frac{\alpha}{2}\left(e^{-i\left(\omega+\lambda\right)t}-e^{-i\left(\omega-\lambda\right)t}\right),b}\\
+  &= e^{-i\omega t}\ket{\frac{\alpha}{2}e^{-i\omega t}\left(e^{i\lambda t}+e^{-\lambda t}\right),a}\otimes\ket{\frac{\alpha}{2}e^{-i\omega t}\left(e^{-i\lambda t}-e^{i\lambda t}\right),b} = e^{-i\omega t}\ket{\alpha e^{-i\omega t}\cos(\lambda t),a}\otimes\ket{\color{red}-\color{black}i\alpha e^{-i\omega t}\sin(\lambda t),b}
+\end{align*}
+On voit donc que l'état $\ket{\alpha}(t)$ n'est \textbf{pas} intriqué. Cela semble correspondre à notre expérience quotidienne: une particule en Haute-Savoie n'influe pas sur un.e physicien.ne en Normandie: les deux sont, d'après notre vécu, indépendant (en le sens de la définition \ref{def:systemes independants}).
+\subsection{Mise en évidence de la décohérence quantique}
 \end{document}

@@ -388,7 +388,7 @@ Soit, par récurrence,
 \end{align}
 Nous continuerons ce raisonnement dans la section \ref{sec:vp algebrique}.
 \subsubsection{Note sur la non-orthogonalité de la base des états cohérents}
-Nous pouvons voir directement, en exploitant le résultat \ref{coherent in fock}, que la base des états cohérents n'est \textbf{pas} orthonormale. En effet, pour tout $\alpha,\beta$ sur le plan complexe
+Nous pouvons voir directement, en exploitant la proposition \ref{coherent in fock}, que la base des états cohérents n'est \textbf{pas} orthonormale. En effet, pour tout $\alpha,\beta$ sur le plan complexe
 \begin{align}
   \braket{\beta}{\alpha} &= e^{-\frac{1}{2}\norm{\beta}^2}e^{-\frac{1}{2}\norm{\alpha}^2}\sum_{n,m\geq 0}\frac{\left(\beta^*\right)^m}{\sqrt{m!}}\frac{\left(\alpha\right)^n}{\sqrt{n!}}\braket{m}{n}
   = e^{-\frac{1}{2}\norm{\beta}^2}e^{-\frac{1}{2}\norm{\alpha}^2} \sum_n \frac{\left(\beta^*\alpha\right)^n}{n!} = e^{-\frac{1}{2}\norm{\beta}^2}e^{-\frac{1}{2}\norm{\alpha}^2}e^{\beta^*\alpha}\label{15}
@@ -512,7 +512,7 @@ En particulier, en appliquant l'état du vide $\ket{0}$ sur $\bm{D}(\alpha+\beta
   \bm{D}(\alpha)\ket{\beta} &= e^{-Im(\alpha^*\beta)}\ket{\alpha+\beta}\label{eq:deplacement sur etat coherent}
 \end{align}
 \begin{remark}
-  Le facteur $e^{\pm iIm(\alpha^*\beta)}$ est une phase globale : elle n'a donc aucune importance physique ! 
+  Le facteur $e^{\pm iIm(\alpha^*\beta)}$ est une phase globale : il n'a donc aucune importance physique ! 
 \end{remark}
 \subsection{Relation de fermeture}
 \label{section relation de fermeture}
@@ -701,7 +701,7 @@ En vertue de \eqref{ecart quadratique moyen}, nous avons alors que l'incertitude
 \subsubsection{Evolution temporelle de l'opérateur impulsion}
 \label{Evolution temporelle de l'opérateur impulsion}
 
-Cette partie est une adaptation des calculs effectués en \ref{Evolution temporelle de l'opérateur position}, pour l'opérateur impulsion.
+Nous adaptons ici les calculs effectués en \ref{Evolution temporelle de l'opérateur position}, pour l'opérateur impulsion.
 
 \paragraph{Moyenne de l'impulsion}
 
@@ -804,7 +804,7 @@ où $A$ est l'amplitude et $\varphi$ est une phase quelconque ; ces deux constan
 \begin{equation}
   \omega = \sqrt{\frac{g}{L}}\qquad
   l = \sqrt{\frac{\h}{m\omega}} = \sqrt{\frac{L\h}{mg}}\qquad
-  A = \sqrt{2}l\norm{\alpha} = \sqrt{\frac{2L\h}{mg}}\norm{\alpha}
+  A = \sqrt{2}l\norm{\alpha} = \sqrt{\frac{2L\h}{mg}}\norm{\alpha} \label{eq:46}
 \end{equation}
 Or, nous connaissons la valeur de $A$ pour notre OH classique! Elle est donnée par $A = L\absolutevalue{\theta_{max}} = 1\si{cm}$. En isolant le terme $\norm{\alpha}$ dans l'expression de $A$, nous avons alors que
 \begin{equation}
@@ -935,27 +935,27 @@ Vérifions si \eqref{eq:evolution} est intriqué. Pour ce faire, réexprimons le
   &= e^{-i\omega t}\bm{D}_a(\frac{\alpha}{2}e^{-i\left(\omega+\lambda\right)t})\bm{D}_b(\frac{\alpha}{2}e^{-i\left(\omega+\lambda\right)t})\ket{\frac{\alpha}{2}e^{-i\left(\omega-\lambda\right)t},a;-\frac{\alpha}{2}e^{-i\left(\omega-\lambda\right)t},b}
 \end{align*}
 On invoque à présent la relation \eqref{eq:deplacement sur etat coherent}.
-\begin{align*}
-  \ket{\alpha}(t) &= e^{-i\omega t}\overbrace{e^{-Im\left[\frac{\norm{\alpha}^2}{4}e^{2i\lambda t}\right]}e^{-Im\left[-\frac{\norm{\alpha}^2}{4}e^{2i\lambda t}\right]}}^1\ket{\frac{\alpha}{2}\left(e^{-i\left(\omega-\lambda\right)t}+e^{-i\left(\omega+\lambda\right)t}\right),a}\otimes\ket{\frac{\alpha}{2}\left(e^{-i\left(\omega+\lambda\right)t}-e^{-i\left(\omega-\lambda\right)t}\right),b}\\
-  &= e^{-i\omega t}\ket{\frac{\alpha}{2}e^{-i\omega t}\left(e^{i\lambda t}+e^{-\lambda t}\right),a}\otimes\ket{\frac{\alpha}{2}e^{-i\omega t}\left(e^{-i\lambda t}-e^{i\lambda t}\right),b} = e^{-i\omega t}\ket{\alpha e^{-i\omega t}\cos(\lambda t),a}\otimes\ket{\color{red}-\color{black}i\alpha e^{-i\omega t}\sin(\lambda t),b}
-\end{align*}
-On voit donc que l'état $\ket{\alpha}(t)$ n'est \textbf{pas} intriqué. Cela semble correspondre à notre expérience quotidienne: une particule en Haute-Savoie n'influe pas sur un.e physicien.ne en Normandie: les deux sont, d'après notre vécu, indépendant (en le sens de la définition \ref{def:systemes independants}).
+\begin{align}
+  \ket{\alpha}(t) &= e^{-i\omega t}\overbrace{e^{-Im\left[\frac{\norm{\alpha}^2}{4}e^{2i\lambda t}\right]}e^{-Im\left[-\frac{\norm{\alpha}^2}{4}e^{2i\lambda t}\right]}}^1\ket{\frac{\alpha}{2}\left(e^{-i\left(\omega-\lambda\right)t}+e^{-i\left(\omega+\lambda\right)t}\right),a}\otimes\ket{\frac{\alpha}{2}\left(e^{-i\left(\omega+\lambda\right)t}-e^{-i\left(\omega-\lambda\right)t}\right),b}\notag\\
+  &= e^{-i\omega t}\ket{\frac{\alpha}{2}e^{-i\omega t}\left(e^{i\lambda t}+e^{-\lambda t}\right),a}\otimes\ket{\frac{\alpha}{2}e^{-i\omega t}\left(e^{-i\lambda t}-e^{i\lambda t}\right),b} = e^{-i\omega t}\ket{\alpha e^{-i\omega t}\cos(\lambda t),a}\otimes\ket{\color{red}-\color{black}i\alpha e^{-i\omega t}\sin(\lambda t),b}\label{eq:etat naif evolue}
+\end{align}
+On voit donc que l'état $\ket{\alpha}(t)$ n'est \textbf{pas} intriqué. Cela semble correspondre à notre expérience quotidienne: une particule en Haute-Savoie n'influe pas sur un.e physicien.ne en Normandie - les deux sont, d'après notre vécu, indépendant (en le sens de la définition \ref{def:systemes independants}).
 
 \subsection{Mise en évidence de la décohérence quantique}
 Nous supposons à présent que l'état initial est de la forme
 \begin{equation}
-  \ket{\psi_0} = \mathcal{N}\left(\ket{\alpha,a}+\ket{\beta,a}\right)\ket{0,b}
+  \ket{\psi_0} = \mathcal{N}\left(\ket{\alpha,a}+\ket{\beta,a}\right)\otimes\ket{0,b}\label{eq:quantum decoherence initial state}
 \end{equation}
 En particulier, nous avons alors que l'état initial est une superposition d'oscillateurs harmonique macroscopiques distincts. De manière générale, deux oscillateurs sont macroscopiquement distinguables \emph{si et seulement si} $\alpha\neq\beta$.
 \subsubsection{Superposition d'états classiques}
-Considérons en particulier deux oscillateurs classique en \emph{opposition de phase}. Utilisons les résultats \eqref{mean position} et \eqref{mean P}, lesquels permettent d'imiter les oscillateurs harmonique classique en restant dans le formalisme quantique que nous traitons ici. En particulier,
+Considérons en particulier deux pendules pesants classique en \emph{opposition de phase}. Utilisons les résultats \eqref{mean position} et \eqref{mean P}, lesquels permettent d'imiter les oscillateurs harmonique classique tout en restant dans le formalisme quantique des états cohérents que nous traitons ici. En particulier,
 \begin{align*}
   \expval{\bm{X}}_\alpha (t) &= \sqrt{\frac{2\h}{m\omega}}\norm{\alpha}\cos(\omega t) &\expval{\bm{X}}_\beta (t) = \sqrt{\frac{2\h}{m\omega}}\norm{\beta}\cos(\omega t+\pi)\\
   \expval{\bm{P}}_\alpha (t) &= -\sqrt{2m\h\omega}\norm{\alpha}\sin(\omega t) &\expval{\bm{P}}_\beta (t) = -\sqrt{2m\h\omega}\norm{\beta}\sin(\omega t+\pi)
 \end{align*}
-Cela nous indique que $\norm{\alpha} = -\norm{\beta}$. La condition générale que nous avons définie étant respecté, deux oscillateurs macroscopiques en opposition de phase sont bien macroscopiquement distinguable. En particulier, l'état initial que nous avions défini se réécrit
+Cela nous indique que $\norm{\alpha} = -\norm{\beta}$. La condition générale que nous avons défini étant respectée, deux oscillateurs macroscopiques en opposition de phase sont bien macroscopiquement distinguables. En particulier, l'état initial que nous avions défini se réécrit
 \begin{align*}
-  \ket{\psi_0} = \mathcal{N}\left(\ket{\alpha,a}+\ket{-\alpha,a}\right)\ket{0,b}
+  \ket{\psi_0} = \mathcal{N}\left(\ket{\alpha,a}+\ket{-\alpha,a}\right)\otimes\ket{0,b}
 \end{align*}
 Il ne nous reste plus qu'à déterminer $\mathcal{N}$. Pour ce faire, notons que \ref{prop:condition de normalisation anal} se réécrit algébriquement comme suit.
 \begin{property}
@@ -967,13 +967,43 @@ Il ne nous reste plus qu'à l'appliquer. Rappelons également la résultat $\eqr
   \braket{\psi_0} &= \mathcal{N}^2\left(\bra{\alpha,a}+\bra{-\alpha,a}\right)\left(\ket{\alpha,a}+\ket{-\alpha,a}\right) = \mathcal{N}^2\left(2+2e^{-2\norm{\alpha}^2}\right)
 \end{align*}
 
-Un oscillateur est caractérisé par un nombre moyen de particules très grand (de l'ordre de $10^{30}$). En vertue de \eqref{eq:mean N}, $\norm{\alpha}^2 \approx 10^{30}$. Ainsi, 
+Un oscillateur est caractérisé par un nombre moyen de particules très grand (de l'ordre de $10^{30}$)\footnote{cf. énoncé.}. En vertue de la relation \eqref{eq:mean N}, $\norm{\alpha}^2 \approx 10^{30}$. Ainsi, 
 \begin{align}
   \mathcal{N}^2 &= \frac{1}{2} &\mathcal{N} = \frac{1}{\sqrt{2}}
 \end{align} 
 à une phase (globale) près.
 
 \subsubsection{Evolution et temps de décohérence}
-\subsubsection{Commentaire sur le modèle étudié}
-\subsubsection{Interprétation}
+
+Nous voulons déterminer $\ket{\psi}(t)$. Pour ce faire, nous appliquons l'opérateur d'évolution à \eqref{eq:quantum decoherence initial state}, comme suit:
+\begin{align*}
+  \ket{\psi}(t) &= \bm{U}(t)\mathcal{N}\left(\ket{\alpha,a}+\ket{\beta,a}\right)\otimes\ket{0,b} = \mathcal{N}\left(\bm{U}(t)\ket{\alpha,a}+\bm{U}(t)\ket{\beta,a}\right)\otimes\ket{0,b}
+\end{align*}
+En distribuant le produit tensoriel, on observe qu'il s'agit exactement de \eqref{eq:etat naif evolue}. L'état évolué est donc donné par la relation
+\begin{align}
+  \ket{\psi}(t) &= e^{-i\omega t}\mathcal{N}\left(\ket{\alpha e^{-i\omega t}\cos(\lambda t),a;i\alpha e^{-i\omega t}\sin(\lambda t),b}+\ket{\beta e^{-i\omega t}\cos(\lambda t),a;i\beta e^{-i\omega t}\sin(\lambda t),b}\right)
+\end{align}
+
+Cela nous ammène à déterminer le \emph{temps de décohérence}.
+\begin{definition}
+  Le temps de décohérence $t_D$ d'un système quantique est le temps nécessaire pour que les états de l'environnement deviennent proche de zéro.\label{def:temps decoherence} 
+\end{definition}
+
+Dans le cadre de notre modèle, l'environnement correspond au second oscillateur harmonique, de même fréquence que l'oscillateur macroscopique. Ainsi, cela revient à résoudre
+\begin{align}
+  \braket{i\alpha e^{i\omega t_D}\sin(\lambda t_D),b}{i\beta e^{i\omega t_D}\sin(\lambda t_D)} &= e^{-1}\notag\\
+  \exp(-\frac{1}{2}\left(\norm{\alpha\sin(\lambda t_D)}^2+\norm{\beta\sin(\lambda t_D)}^2+2\alpha\alpha^*\sin(\lambda t_D)^2\right)) &= e^{-1}\notag\\
+  \left(\norm{\alpha}^2+\norm{\beta}^2-2\alpha\beta^*\right)\sin(\lambda t_D)^2 &= 2\notag\\
+  t_D = \frac{1}{\lambda}\arcsin(\sqrt{\frac{2}{\norm{\alpha}^2+\norm{\beta}^2-2\alpha\beta^*}})&\label{eq:decoherence time general}
+\end{align}
+
+Revenons sur notre modèle jouet avec deux pendules simples en opposition de phase. Dans ce modèle, nous avons vu que $\norm{\alpha}^2\approx 10^{30}\approx\norm{\beta}^2$. En particulier, il s'ensuit que l'argument de la fonction $\arcsin(x)$ est $x<<1$, tout en restant strictement positif. En particulier, à cette échelle là, nous pouvons admettre $\arcsin(x)\approx x$. Nous avons alors, avec $\norm{\alpha}=-\norm{\beta}$, $t_D \approx \frac{1}{\lambda}\sqrt{\frac{1}{4\norm{\alpha}^2}}<<1s$.
+
+Le temps de relaxation d'un pendule simple est sa période: $t_R=T=2\pi\omega=2\pi\sqrt{\frac{g}{L}}\approx \frac{2\pi}{9}>1s$, en invoquant la première relation dans \eqref{eq:46}.
+
+Nous avons donc bien que le temps de décohérence - c'est à dire, selon la définition \ref{def:temps decoherence} - le temps nécessaire pour que les états superposés tendent vers 0 - est petit devant la période d'un pendule simple. Il n'est dès lors pas étonant que nous n'observions pas de superposition d'états dans notre quotidien. Par exemple, il est impossible d'observer un chat à la fois mort et vivant. =) 
+
+\paragraph{Défaut du modèle}
+
+Les fonctions trigonométriques sont périodiques: la relation \eqref{eq:decoherence time general} donne alors une périodicité au temps de décohérence $t_D$. Cela signifirait que nous pourrions observer des états superposés par interval régulier: cela n'étant empiriquement pas le cas, nous avons une \emph{incohérence} (haha) dans notre modèle. Une solution à ce problème, mis en évidence dans l'énoncé, serait de modéliser l'environnement non pas par un oscillateur harmonique à une fréquence fixe, mais par un ensemble infini d'oscillateurs ayant une distribution des fréquences. 
 \end{document}

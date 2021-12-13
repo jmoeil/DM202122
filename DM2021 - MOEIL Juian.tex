@@ -168,7 +168,7 @@ En partant de cette définition, nous allons voir qu'il est possible d'obtenir u
   La fonction d'onde d'un état cohérent est donné par
   \begin{align}
     \label{fonction d'onde}
-    \psi(x) &= \frac{\exp(-\frac{i}{2\pi}\expval{X}\expval{P})}{\left(\pi l^2\right)^{1/4}}\exp(-\frac{\left(x-\expval{X}\right)^2}{2l^2}+\frac{i\expval{P}x}{\hbar}).
+    \psi(x) &= \frac{\exp(-\frac{i}{2\pi}\expval{\bm{X}}\expval{\bm{P}})}{\left(\pi l^2\right)^{1/4}}\exp(-\frac{\left(x-\expval{\bm{X}}\right)^2}{2l^2}+\frac{i\expval{\bm{P}}x}{\hbar}).
   \end{align}
 \end{property}
 
@@ -478,6 +478,14 @@ Introduisons, pour tout nombre complexe $\alpha$, l'opérateur déplacement, not
   Ce qui met en lumière la logique derrière le nom de cet opérateur déplacement $\bm{D}(\alpha)$.
 \end{proof}
 
+\begin{theorem}
+  $\ket{\alpha}$ est un état cohérent si et seulement si $\ket{\psi}$ vérifie la relation
+  \begin{equation*}
+    \ket{\alpha}=\bm{D}(\alpha)\ket{0}
+  \end{equation*}
+  c'est à dire si et seulement si l'état cohérent est généré par le vide à travers l'opérateur déplacement.
+\end{theorem}
+
 \subsubsection{Unitarité de l'opérateur déplacement}
 
 \begin{definition}
@@ -567,6 +575,16 @@ où nous avons utilisé la relation de non-orthogonalité des états cohérents.
 \begin{remark}
   Le terme "base des états cohérents" est donc un abus de language! Nous continuerons à l'utiliser\footnote{Surtout parceque la suite est déjà rédigée ...}, mais il faut garder en tête que les états cohérents ne forment \textbf{pas} une base.
 \end{remark}
+
+\bg{\textbf{Résumé}}{
+  Nous avons défini trois formulations équivalentes des états cohérents. Celles-ci sont données par les relations suivantes: 
+  \begin{align*}
+    \psi(x) &= \frac{\exp(-\frac{i}{2\pi}\expval{\bm{X}}\expval{\bm{P}})}{\left(\pi l^2\right)^{1/4}}\exp(-\frac{\left(x-\expval{\bm{X}}\right)^2}{2l^2}+\frac{i\expval{\bm{P}}x}{\hbar}) \quad  \text{(Fonction d'onde d'un état cohérent)}\\
+    \bm{a}\ket{\alpha}&=\alpha\ket{\alpha}\quad\text{(Valeur propre de l'opérateur destruction)}\\
+    \ket{\alpha}&=\bm{D}(\alpha)\ket{0}\quad\text{(Généré par l'opérateur déplacement)}
+  \end{align*}
+  Nous exploiterons principalement les deux dernières relations dans la suite de ce devoir.
+  }
 
 \section{Partie II - Oscillateur hamonique}
 \label{part 2}
@@ -1005,5 +1023,11 @@ Nous avons donc bien que le temps de décohérence - c'est à dire, selon la dé
 
 \paragraph{Défaut du modèle}
 
-Les fonctions trigonométriques sont périodiques: la relation \eqref{eq:decoherence time general} donne alors une périodicité au temps de décohérence $t_D$. Cela signifirait que nous pourrions observer des états superposés par interval régulier: cela n'étant empiriquement pas le cas, nous avons une \emph{incohérence} (haha) dans notre modèle. Une solution à ce problème, mis en évidence dans l'énoncé, serait de modéliser l'environnement non pas par un oscillateur harmonique à une fréquence fixe, mais par un ensemble infini d'oscillateurs ayant une distribution des fréquences. 
+Les fonctions trigonométriques sont périodiques: la relation \eqref{eq:decoherence time general} donne alors une périodicité au temps de décohérence $t_D$. Cela signifirait que nous pourrions observer des états superposés par interval régulier: cela n'étant empiriquement pas le cas, nous avons une \emph{incohérence} (haha) dans notre modèle. Une solution à ce problème, mis en évidence dans l'énoncé, serait de modéliser l'environnement non pas par un oscillateur harmonique à une fréquence fixe, mais par un ensemble infini d'oscillateurs ayant une distribution des fréquences.
+
+\subsubsection{Décohérence - ou comment se passer du postulat de réduction du paquet d'onde}
+
+Historiquement, l'idée de la décohérence quantique fût proposée comme alternative au principe de \emph{réduction du paquet d'onde}. Ce dernier postule qu'immédiatement après une mesure, l'état du système est projeté sur le sous-espace propre associé au résultat mesuré. On voit le processus de mesure comme une intéraction complexe entre le \emph{dispositif expérimental}, l'\emph{environnement} et le \emph{système}.\\
+
+
 \end{document}

@@ -8,7 +8,7 @@
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{bm}
-\usepackage{fontspec}
+%\usepackage{fontspec}
 \usepackage{mathrsfs}
 \usepackage{calrsfs}
 \usepackage{wasysym}
@@ -66,7 +66,7 @@
 \fancyfoot[R]{\today}
 
 % Allow usage of smileys
-\newfontfamily\DejaSans{DejaVu Sans}
+%\newfontfamily\DejaSans{DejaVu Sans}
 
 % Defining new theorem environments
 \newtheorem{theorem}{Théorème}[section]
@@ -135,7 +135,7 @@
 \newpage
 
 \begin{remark}
-  Les termes en $\bm{gras}$ indiquent soit des opérateurs, soit des vecteurs. A comprendre en fonction du contexte. On pose $\doteq$ comme un symbole pour "égal par définition à".
+  Les termes en $\bm{gras}$ indiquent soit des opérateurs. A comprendre en fonction du contexte. On pose $\doteq$ comme un symbole pour "égal par définition à".
 \end{remark}
 \section{Partie I - Etude des états cohérents}
 On se restreint au cas unidimensionnel, en se munissant des opérateurs position $\bm{X}$ et impulsion $\bm{P}$, satisfaisant la relation de commutation canonique $[\bm{X},\bm{P}] = i\h$.
@@ -615,9 +615,9 @@ En particulier, sous cette forme, il est évident que l'énergie est quantifiée
 \subsubsection{Evolution temporelle de l'état cohérent d'un oscillateur harmonique}
 Selon le postulat d'évolution, à tout état $\ket{\psi}$ peut-être associé un opérateur hermitien $H$, appelé Hamiltonien, régissant l'évolution temporelle du vecteur d'état au travers de l'équation de Schrödinger.
 \begin{equation}
-  i\h\frac{d}{dt}\ket{\psi(t,\bm{r})} = H\ket{\psi (t,\bm{r})}
+  i\h\frac{d}{dt}\ket{\psi(t,\vec{r})} = H\ket{\psi (t,\vec{r})}
 \end{equation}
-En particulier, nous avons donc que $\ket{\psi(t,\bm{r})} = \bm{U}(t,t_0)\ket{\psi(t_0,\bm{r})}$, où $\bm{U}(t,t_0)$ est un opérateur unitaire, appelé opérateur d'évolution. Il peut toujours être écrit sous la forme $\bm{U}(t,t_0) = e^{-\frac{iH}{\h}(t-t_0)}$.\\
+En particulier, nous avons donc que $\ket{\psi(t,\vec{r})} = \bm{U}(t,t_0)\ket{\psi(t_0,\vec{r})}$, où $\bm{U}(t,t_0)$ est un opérateur unitaire, appelé opérateur d'évolution. Il peut toujours être écrit sous la forme $\bm{U}(t,t_0) = e^{-\frac{iH}{\h}(t-t_0)}$.\\
 
 Supposons que l'oscillateur harmonique est initialement dans l'état cohérent $\ket{\psi (t_0 = 0)} = \ket{\psi_0} = \ket{\alpha}$. \emph{Dans quel état sera-t-il en un temps ultérieur}, $t>t_0 = 0$ ?
 \begin{align}
@@ -995,7 +995,7 @@ Un oscillateur est caractérisé par un nombre moyen de particules très grand (
 \end{align} 
 à une phase (globale) près.
 
-\subsubsection{Evolution et temps de décohérence}
+\subsubsection{Evolution et temps de décohérence}\label{sec:evolution et temps de decoherence}
 
 Nous voulons déterminer $\ket{\psi}(t)$. Pour ce faire, nous appliquons l'opérateur d'évolution à \eqref{eq:quantum decoherence initial state}, comme suit:
 \begin{align*}
@@ -1019,19 +1019,48 @@ Dans le cadre de notre modèle, l'environnement correspond au second oscillateur
   t_D = \frac{1}{\lambda}\arcsin(\sqrt{\frac{2}{\norm{\alpha}^2+\norm{\beta}^2-2\alpha\beta^*}})&\label{eq:decoherence time general}
 \end{align}
 
-Revenons sur notre modèle jouet avec deux pendules simples en opposition de phase. Dans ce modèle, nous avons vu que $\norm{\alpha}^2\approx 10^{30}\approx\norm{\beta}^2$. En particulier, il s'ensuit que l'argument de la fonction $\arcsin(x)$ est $x<<1$, tout en restant strictement positif. En particulier, à cette échelle là, nous pouvons admettre $\arcsin(x)\approx x$. Nous avons alors, avec $\norm{\alpha}=-\norm{\beta}$, $t_D \approx \frac{1}{\lambda}\sqrt{\frac{1}{4\norm{\alpha}^2}}<<1s$.
+Revenons sur notre modèle jouet avec deux pendules simples en opposition de phase. Dans ce modèle, nous avons vu que $\norm{\alpha}^2\approx 10^{30}\approx\norm{\beta}^2$. En particulier, il s'ensuit que l'argument de la fonction $\arcsin(x)$ est $x<<1$, tout en restant strictement positif. En particulier, à cette échelle là, nous pouvons admettre $\arcsin(x)\approx x$. Nous avons alors, avec $\norm{\alpha}=-\norm{\beta}$, $t_D \approx \frac{1}{\lambda}\sqrt{\frac{1}{4\norm{\alpha}^2}}$ << $1s$.
 
-Le temps de relaxation d'un pendule simple est sa période: $t_R=T=2\pi\omega=2\pi\sqrt{\frac{g}{L}}\approx \frac{2\pi}{9}>1s$, en invoquant la première relation dans \eqref{eq:46}.
+Le temps de relaxation d'un pendule simple est sa période: $t_R=T=2\pi\omega=2\pi\sqrt{\frac{g}{L}}\approx \frac{2\pi}{9}$ >>$1s$, en invoquant la première relation dans \eqref{eq:46}.
 
-Nous avons donc bien que le temps de décohérence - c'est à dire, selon la définition \ref{def:temps decoherence} - le temps nécessaire pour que les états superposés tendent vers 0 - est petit devant la période d'un pendule simple. Il n'est dès lors pas étonant que nous n'observions pas de superposition d'états dans notre quotidien. Par exemple, il est impossible d'observer un chat à la fois mort et vivant. Miaou{\DejaSans 😺}, ou pas miaou {\DejaSans 😿} - mais pas les deux à la fois! 
+Nous avons donc bien que le temps de décohérence - c'est à dire, selon la définition \ref{def:temps decoherence} - le temps nécessaire pour que les états superposés tendent vers 0 - est petit devant la période d'un pendule simple. Il n'est dès lors pas étonant que nous n'observions pas de superposition d'états dans notre quotidien. Par exemple, il est impossible d'observer un chat à la fois mort et vivant. Miaou, ou pas miaou - mais pas les deux à la fois! 
+%{\DejaSans 😺} {\DejaSans 😿}
 
-\paragraph{Défaut du modèle}
+
+\subsubsection{Défaut du modèle}
 
 Les fonctions trigonométriques sont périodiques: la relation \eqref{eq:decoherence time general} donne alors une périodicité au temps de décohérence $t_D$. Cela signifirait que nous pourrions observer des états superposés par interval régulier: cela n'étant empiriquement pas le cas, nous avons une \emph{incohérence} (haha) dans notre modèle. Une solution à ce problème, mis en évidence dans l'énoncé, serait de modéliser l'environnement non pas par un oscillateur harmonique à une fréquence fixe, mais par un ensemble infini d'oscillateurs ayant une distribution des fréquences.
 
 \subsubsection{Décohérence - ou comment se passer du postulat de réduction du paquet d'onde}
 
-Historiquement, l'idée de la décohérence quantique fût proposée comme alternative au principe de \emph{réduction du paquet d'onde}. Ce dernier postule qu'immédiatement après une mesure, l'état du système est projeté sur le sous-espace propre associé au résultat mesuré. On voit le processus de mesure comme une intéraction complexe entre le \emph{dispositif expérimental}, l'\emph{environnement} et le \emph{système}.\\
+En Mécanique Quantique, nous décrivons un système par une fonction d'onde de la forme $\ket{\psi} = \sum_n c_n\ket{n}$ pour tout $c_n\in\mathbb{C}$ où $\left\{\ket{n} : n\in\mathbb{N}\right\}$ est une base orthonormée spécifique permettant de décrire facilement une observable. Notons que par normalisation, $\sum_n \norm{c_n}^2 = 1$. Notre état initial est sous la forme d'une \emph{superposition d'états}. La superposition est une propriété purement quantique: elle n'est pas observée dans notre quotidien, comme le dernier paragraphe de \ref{sec:evolution et temps de decoherence} nous l'explique. Dès lors, il doit exister un méchanisme expliquant pourquoi nous n'observons pas cette "superposition". Ce méchanisme porte le nom \emph{théorie de la décohérence}. Historiquement, cette théorie fût proposée comme alternative au principe de \emph{réduction du paquet d'onde}. Ce dernier postule qu'immédiatement après une mesure, l'état du système est projeté sur le sous-espace propre associé au résultat mesuré. On voit le processus de mesure comme une intéraction complexe entre le \emph{dispositif expérimental}, l'\emph{environnement} et le \emph{système}. Développons ces idées sur \eqref{eq:quantum decoherence initial state}.\\
+
+Nous pouvons modifier notre état initial pour prendre la forme
+\begin{align}
+  \ket{\psi_0} &= \mathcal{N}\left(\ket{\alpha,a}+e^{i\varphi}\ket{\beta,a}\right)\otimes\ket{0,b} = \mathcal{N}\left(\ket{\alpha,a;0,b}+e^{i\varphi}\ket{\beta,a;0,b}\right)\label{eq:prep initial state for density matrix}
+\end{align}
+Nous n'avons rien changé: l'ajout du terme complexe $e^{i\varphi}$ ne modifie pas la physique du problème.
+\begin{definition}
+  Pour un état pur $\ket{\psi}$, la \textbf{matrice densité} est définie par $\rho=\ketbra{\psi}$.
+\end{definition}
+En particulier, pour notre problème, nous avons alors que la matrice densité prend la forme
+\begin{align*}
+  \rho = \mathcal{N}\mathcal{N}^*\begin{pmatrix}
+    1 & e^{-i\varphi}\\
+    e^{i\varphi} & 1
+  \end{pmatrix}
+\end{align*}
+Les éléments $\rho_{mn}$ pour tout $m\neq n$ de la matrice densité correspondent à des superpositions d'états. L'idée de la décohérence, c'est qu'à chaque fois le \emph{système} intéragit avec le \emph{dispositif expérimental} ou l'\emph{environnement}, la phase $\varphi$ change - ce que nous mesurerons est la moyenne de tous ces changements. Cette moyenne est donnée par
+\begin{align*}
+  \rho_{moyenne} = \mathcal{N}\mathcal{N}^*\begin{pmatrix}
+    1 & 0\\
+    0 & 1
+  \end{pmatrix}
+\end{align*}
+Nous avons donc une diagonalisation de l'opérateur densité. Observons que la matrice que nous obtenons après la décohérence \textbf{ne peut pas} correspondre à l'état inital \eqref{eq:prep initial state for density matrix}. Ainsi, nous voyons que tout état peut être écrit sous la forme d'une matrice densité, mais qu'une matrice densité ne correspond pas forcément à un état quantique.\\
+
+\color{red} Il est temps de dormir\footnote{Il est 1h20 ...}. Coucou Amandine, bonnne lecture ! (Même si à priori tu as fini de lire, là).
+
 
 
 \end{document}

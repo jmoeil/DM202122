@@ -63,7 +63,7 @@
 \renewcommand\footrulewidth{1pt}
 \fancyfoot[L]{MOEIL Juian}
 \fancyfoot[C]{Page \thepage/\pageref{LastPage}}
-\fancyfoot[R]{\today}
+\fancyfoot[R]{Prof. Frank Ferrari}
 
 % Allow usage of smileys
 %\newfontfamily\DejaSans{DejaVu Sans}
@@ -126,11 +126,13 @@
 }
 \date{%
   \textbf{Université Libre de Bruxelles} \\
+  \text{Compilé le }\today \\
   \emph{Année académique 2021-2022}
 }
 
 \begin{document}
 \maketitle
+\thispagestyle{empty}
 \tableofcontents
 \newpage
 
@@ -144,6 +146,7 @@ On se restreint au cas unidimensionnel, en se munissant des opérateurs position
 \begin{definition}[Ecart quadratique moyen]
   Soit $\bm{A}$ une observable. L'écart quadratique moyen de $\bm{A}$ dans l'état $\rho = \ketbra{\psi}$ pour tout $\ket{\psi}\in\mathcal{H}$ est 
   \begin{equation}
+    \label{ecart quadratique moyen}
     \Delta\bm{A} = \sqrt{\expval{A^2}-\expval{A}^2} = \expval{\left(\bm{A}-\expval{\bm{A}}\right)^2}.
   \end{equation}
 \end{definition}
@@ -420,9 +423,9 @@ lorsque $\norm{\alpha-\beta}^2$ >> $1$.
 
 \subsubsection{Valeur propre de $a$ - résolution algébrique}\label{sec:vp algebrique}
 Reprenons le raisonnement développé dans le cadre de la section \ref{sec:fock vs. coherent}. En particulier, rappelons que tout état cohérent peut se réécrire avec la relation de fermeture $\sum_n \ket{n}\braket{n}{\alpha}$. Le produit scalaire entre un état cohérent et un élément de la base de Fock est donné par \eqref{eq:scalar fock vs coherent}, et nous permet donc d'écrire
-\begin{align*}
-  \ket{\alpha} = e^{-\frac{1}{2}\norm{\alpha}^2}\sum_{n\geq 0}\frac{\alpha^n}{\sqrt{n!}}\ket{n} = e^{-\frac{1}{2}\norm{\alpha}^2}\sum_{n\geq 0}\frac{\left(\alpha\bm{a}^\dagger\right)^n}{n!}\ket{0} = e^{-\frac{1}{2}\norm{\alpha}^2+\alpha\bm{a}^\dagger}\ket{0}
-\end{align*}
+\begin{align}
+  \ket{\alpha} = e^{-\frac{1}{2}\norm{\alpha}^2}\sum_{n\geq 0}\frac{\alpha^n}{\sqrt{n!}}\ket{n} = e^{-\frac{1}{2}\norm{\alpha}^2}\sum_{n\geq 0}\frac{\left(\alpha\bm{a}^\dagger\right)^n}{n!}\ket{0} = e^{-\frac{1}{2}\norm{\alpha}^2+\alpha\bm{a}^\dagger}\ket{0}\label{eq:vp algebrique}
+\end{align}
 On voit donc qu'un état cohérent peut-être \textit{généré} à partir du vide. 
 \subsubsection{Interprétation en terme de particules}
 
@@ -448,26 +451,28 @@ Introduisons, pour tout nombre complexe $\alpha$, l'opérateur déplacement, not
 
 Rappelons la relation suivante: elle sera particulièrement utile dans les discussions qui vont suivre.
 
-\begin{property}[Relation de Glaubert]
-  \label{prop Glaubert}
+\begin{property}[Relation de Glauber]
+  \label{prop Glauber}
   Soit $\bm{A}$ et $\bm{B}$ deux opérateurs. L'égalité
-  \begin{align*}
-    \label[]{Glaubert}
+  \begin{align}
+    \label{Glauber}
     e^{\bm{A}}e^{\bm{B}} &= e^{\bm{A}+\bm{B}}e^{-\frac{1}{2}\left[\bm{A},\bm{B}\right]}
-  \end{align*}
+  \end{align}
   tient si et seulement si les opérateurs commutent avec $\left[\bm{A},\bm{B}\right]$.
 \end{property}
 
 \begin{lemma}
   \label{lemme displacement}
   L'opérateur déplacement peut - de manière tout à fais équivalente - être défini par la relation
-  \begin{align*}
-    \bm{D}(\alpha) = e^{-\frac{1}{2}\norm{\alpha}^2\mathbb{I}}e^{\alpha\bm{a}^\dagger}e^{-\alpha^*\bm{a}}
-  \end{align*}
+  \begin{align}
+    \bm{D}(\alpha) = e^{-\frac{1}{2}\norm{\alpha}^2\mathbb{I}}e^{\alpha\bm{a}^\dagger}e^{-\alpha^*\bm{a}}\label{eq:formulation equivalente operateur deplacement}
+  \end{align}
 \end{lemma}
 \begin{proof}
-  Il suffit de remarquer que le commutateur $\left[\alpha\bm{a}^\dagger,-\alpha^*\bm{a}\right] = \norm{\alpha}^2\mathbb{I} \neq 0$ : en particulier, nous avons alors que tout opérateur $\bm{A}$ commute avec $\left[\alpha\bm{a}^\dagger,\alpha^\alpha\bm{a}\right]$, car tout opérateur commute avec l'opérateur identité. Les hypothèses de \ref{prop Glaubert} sont alors respectées : il suffit d'isoler l'exponentielle de la somme d'opérateurs dans \eqref{Glaubert} pour obtenir la relation recherchée.
+  Il suffit de remarquer que le commutateur $\left[\alpha\bm{a}^\dagger,-\alpha^*\bm{a}\right] = \norm{\alpha}^2\mathbb{I} \neq 0$ : en particulier, nous avons alors que tout opérateur $\bm{A}$ commute avec $\left[\alpha\bm{a}^\dagger,\alpha^\alpha\bm{a}\right]$, car tout opérateur commute avec l'opérateur identité. Les hypothèses de \ref{prop Glauber} sont alors respectées : il suffit d'isoler l'exponentielle de la somme d'opérateurs dans \eqref{Glauber} pour obtenir la relation recherchée.
 \end{proof}
+
+On introduit à présent la proposition suivante - elle nous permettra d'énoncer un résultat général sur les états cohérents.
 
 \begin{property}
   Nous pouvons similairement définir un état cohérent comme un état généré par l'opérateur déplacement $\bm{D}(\alpha)$ appliqué à l'état du vide $\ket{0}$.
@@ -478,13 +483,13 @@ Rappelons la relation suivante: elle sera particulièrement utile dans les discu
   \end{align*}
   Or, nous avons que $\sum_k \bm{a}^k\ket{0} = \bm{a}^0\ket{0} = \ket{0}$.
   \begin{align*}
-    \bm{D}(\alpha)\ket{0} &= e^{-\frac{1}{2}\norm{\alpha}^2}e^{\alpha\bm{a}^\dagger}\ket{0} =  e^{-\frac{1}{2}\norm{\alpha}^2} \sum_i \frac{\alpha^i}{i!}\left(\bm{a}^\dagger\right)^i\ket{0} = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_i \frac{\alpha^i}{i!}\ket{i} = \ket{\alpha}
+    \bm{D}(\alpha)\ket{0} &= e^{-\frac{1}{2}\norm{\alpha}^2}e^{\alpha\bm{a}^\dagger}\ket{0} =  e^{-\frac{1}{2}\norm{\alpha}^2} \sum_n \frac{\alpha^n}{n!}\left(\bm{a}^\dagger\right)^n\ket{0} = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_n \frac{\alpha^n}{n!}\ket{n} = \ket{\alpha}
   \end{align*}
   Ce qui met en lumière la logique derrière le nom de cet opérateur déplacement $\bm{D}(\alpha)$.
 \end{proof}
 
 \begin{theorem}
-  $\ket{\alpha}$ est un état cohérent si et seulement si $\ket{\psi}$ vérifie la relation
+  $\ket{\alpha}$ est un état cohérent si et seulement si $\ket{\alpha}$ vérifie la relation
   \begin{equation*}
     \ket{\alpha}=\bm{D}(\alpha)\ket{0}
   \end{equation*}
@@ -513,8 +518,7 @@ Ce qui revient à faire la somme de deux opérateurs ; soit $\bm{A} = \alpha\bm{
 \begin{align*}
   \left[\bm{A},\bm{B}\right] &= \left[\alpha\bm{a}^\dagger-\alpha^*\bm{a},\beta\bm{a}^\dagger-\beta^*\bm{a}\right] = \alpha^*\beta-\alpha\beta^* = 2i Im(\alpha^*\beta)\mathbb{I}
 \end{align*}
-
-En utilisant le même argument que dans la preuve du lemme \ref{lemme displacement}, nous avons donc que ($\bm{A},\bm{B}$) commutent avec leur commutateur. Alors, \eqref{Glaubert} nous autorise à écrire
+En utilisant le même argument que dans la preuve du lemme \ref{lemme displacement}, nous avons donc que ($\bm{A},\bm{B}$) commutent avec leur commutateur. Alors, \eqref{Glauber} nous autorise à écrire
 \begin{align*}
   \bm{D}(\alpha+\beta) &= e^{\alpha\bm{a}^\dagger-\alpha^*\bm{a}}e^{\beta\bm{a}^\dagger-\beta^*\bm{a}}e^{iIm(\alpha^*\beta)} = \bm{D}(\alpha)\bm{D}(\beta)e^{iIm(\alpha^*\beta)}.
 \end{align*}
@@ -522,7 +526,7 @@ En particulier, en appliquant l'état du vide $\ket{0}$ sur $\bm{D}(\alpha+\beta
 \begin{align}
   \bm{D}(\alpha+\beta)\ket{0} &= \ket{\alpha+\beta}\notag\\
   e^{iIm(\alpha^*\beta)}\bm{D}(\alpha)\bm{D}(\beta)\ket{0} &= \ket{\alpha+\beta}\notag\\
-  \bm{D}(\alpha)\ket{\beta} &= e^{-Im(\alpha^*\beta)}\ket{\alpha+\beta}\label{eq:deplacement sur etat coherent}
+  \bm{D}(\alpha)\ket{\beta} &= e^{-iIm(\alpha^*\beta)}\ket{\alpha+\beta}\label{eq:deplacement sur etat coherent}
 \end{align}
 \begin{remark}
   Le facteur $e^{\pm iIm(\alpha^*\beta)}$ est une phase globale : il n'a donc aucune importance physique ! 
@@ -575,7 +579,7 @@ En particulier, si $\ket{\psi} = \ket{\beta}$ est dans la base des états cohér
 où nous avons utilisé la relation de non-orthogonalité des états cohérents. Cette équation montre que \emph{les états cohérents ne sont pas linéairement indépendants} : tout état cohérent $\ket{\alpha}$ peut s'écrire en terme d'un autre.
 
 \begin{remark}
-  Le terme "base des états cohérents" est donc un abus de language! Nous continuerons à l'utiliser\footnote{Surtout parceque la suite est déjà rédigée ...}, mais il faut garder en tête que les états cohérents ne forment \textbf{pas} une base.
+  Le terme "base des états cohérents" est donc un abus de language! Nous continuerons à l'utiliser, mais il faut garder en tête que les états cohérents ne forment \textbf{pas} une base.
 \end{remark}
 
 \bg{\textbf{Résumé}}{
@@ -612,6 +616,14 @@ Nous pouvons alors réécrire l'Hamiltonien sous la \emph{forme normale}, soit
   H = \h\omega\left(N+\frac{1}{2}\mathbb{I}\right).
 \end{align}
 En particulier, sous cette forme, il est évident que l'énergie est quantifiée et de valeur $E_n = \h\omega\left(n+\frac{1}{2}\right)$.
+
+\begin{definition}
+  La moyenne $\expval{A}$ d'une observable $A$ par rapport à un état $\ket{\psi}$ est donnée par
+  \begin{align*}
+    \expval{A} &= \sum_n a_nP(a_n) = \sum_n a_n \expval{P_n}{\psi} = \expval{\sum_n a_nP_n}{\psi} &\expval{A} = \expval{A}{\psi} 
+  \end{align*}
+\end{definition}
+
 \subsection{Evolution temporelle}
 \subsubsection{Evolution temporelle de l'état cohérent d'un oscillateur harmonique}
 Selon le postulat d'évolution, à tout état $\ket{\psi}$ peut-être associé un opérateur hermitien $H$, appelé Hamiltonien, régissant l'évolution temporelle du vecteur d'état au travers de l'équation de Schrödinger.
@@ -620,17 +632,17 @@ Selon le postulat d'évolution, à tout état $\ket{\psi}$ peut-être associé u
 \end{equation*}
 En particulier, nous avons donc que $\ket{\psi(t,\vec{r})} = \bm{U}(t,t_0)\ket{\psi(t_0,\vec{r})}$, où $\bm{U}(t,t_0)$ est un opérateur unitaire, appelé opérateur d'évolution. Il peut toujours être écrit sous la forme $\bm{U}(t,t_0) = e^{-\frac{iH}{\h}(t-t_0)}$.\\
 
-Supposons que l'oscillateur harmonique est initialement dans l'état cohérent $\ket{\psi (t_0 = 0)} = \ket{\psi_0} = \ket{\alpha}$. \emph{Dans quel état sera-t-il en un temps ultérieur}, $t>t_0 = 0$ ? Déterminons $\ket{\psi} (t)$ dans la base de Fock $\left\{\ket{n} : n\in\mathbb{N}\right\}$. Nous aurons ainsi accès à la base diagonalisant l'Hamiltonien, de sorte que ce dernier se simplifie en
+Supposons que l'oscillateur harmonique est initialement dans l'état cohérent $\ket{\psi (t_0 = 0)} = \ket{\psi_0} = \ket{\alpha}$. \emph{Dans quel état sera-t-il en un temps ultérieur} $t>0$ ? Déterminons $\ket{\psi} (t)$ dans la base de Fock $\left\{\ket{n} : n\in\mathbb{N}\right\}$. Nous aurons ainsi accès à la base diagonalisant l'Hamiltonien, de sorte que ce dernier se simplifie en
 \begin{align}
   \ket{\psi(t)} = e^{-\frac{iHt}{\h}}\ket{\alpha} &= e^{-i\frac{\omega t}{2}}e^{-\frac{1}{2}\norm{\alpha}^2}\sum_{n\geq 0}e^{-i\omega tn}\frac{\alpha^n}{\sqrt{n!}}\ket{n}
   = e^{-i\frac{\omega t}{2}}e^{-\frac{1}{2}\norm{\alpha}^2}\sum_{n\geq 0}\frac{\left(\alpha e^{-i\omega t}\right)^n}{\sqrt{n!}}\ket{n}
   = e^{-i\frac{\omega t}{2}}\ket{\alpha e^{-i\omega t}}\label{psi t}
 \end{align}
-où nous avons utilisé la proposition \eqref{coherent in fock}. Nous pouvons réécrire \eqref{psi t} sous la forme, plus propre:
+où nous avons utilisé la proposition \eqref{coherent in fock}. Nous pouvons réécrire \eqref{psi t} sous la forme, plus propre
 \begin{align*}
-  \ket{\psi(t)} &= \ket{\alpha(t)} &\text{Où }\ket{\alpha(t)} = e^{-\frac{\norm{\alpha}^2}{2}}\left(\sum_{n\geq 0}\frac{\alpha^n}{\sqrt{n!}}e^{-i\left(\frac{1}{2}+n\right)\omega t}\ket{n}\right) 
+  \ket{\psi(t)} &= \ket{\alpha(t)} &\text{Où }\ket{\alpha(t)} = e^{-\frac{\norm{\alpha}^2}{2}}\left(\sum_{n\geq 0}\frac{\alpha^n}{\sqrt{n!}}e^{-i\left(\frac{1}{2}+n\right)\omega t}\ket{n}\right).
 \end{align*}
-Observons que $\ket{\alpha(t)}$ est normalisé. En effet,
+Observons que, comme attendu, $\ket{\alpha(t)}$ est normalisé. En effet,
 \begin{align*}
   \braket{\alpha(t)} = e^{-\norm{\alpha}^2}\left(\sum_{n,m\geq 0}\frac{\bar{\alpha}^m\alpha^n}{\sqrt{n!m!}}e^{-i\omega t\left(n-m\right)}\braket{m}{n}\right)
   &= e^{-\norm{\alpha}^2}\left(\sum_{n\geq 0}\frac{\left(\norm{\alpha}^n\right)^2}{n!}\right)\\
@@ -643,33 +655,18 @@ Déterminons déjà la valeur de $a\ket{\alpha(t)}$, afin de faciliter les calcu
 \begin{align*}
   a\ket{\alpha(t)} = e^{-\frac{\norm{\alpha}^2}{2}}\left(\sum_{n\geq 0}\frac{\alpha^n}{\sqrt{n!}}e^{-i\left(\frac{1}{2}+n\right)\omega t}a\ket{n}\right)
   &= e^{-\frac{\norm{\alpha}^2}{2}}\left(\sum_{n\geq 0}\frac{\alpha^n}{\sqrt{n!}}e^{-i\left(\frac{1}{2}+n    \right)\omega t}\sqrt{n}\ket{n-1}\right)\\
-  &= \alpha e^{-i\omega t}e^{-\frac{\norm{\alpha}^2}{2}}\left(\sum_{n\geq 0}\frac{\alpha^{n-1}}{\sqrt{(n-1)!}}e^{-i\left(\frac{1}{2}+n-1    \right)\omega t}\ket{n-1}\right)
+  &= \alpha e^{-i\omega t}e^{-\frac{\norm{\alpha}^2}{2}}\left(\sum_{n\geq 0}\frac{\alpha^{n-1}}{\sqrt{(n-1)!}}e^{-i\left(\frac{1}{2}+n-1\right)\omega t}\ket{n-1}\right)
 \end{align*}
 
 Le terme en $n = 0$ n'a pas de sens: on pose alors $m=n-1$, afin de pouvoir réécrire la somme en démarrant en $m = 0$.
 
-\begin{align*}
-  a\ket{\alpha(t)} &= \alpha e^{-i\omega t}e^{-\frac{\norm{\alpha}^2}{2}}\left(\sum_{m\geq 0}\frac{\alpha^{m}}{\sqrt{(m)!}}e^{-i\left(\frac{1}{2}+m\right)\omega t}\ket{m}\right) = \alpha e^{-i\omega t}\ket{\alpha(t)}
-\end{align*}
+\begin{align}
+  a\ket{\alpha(t)} &= \alpha e^{-i\omega t}e^{-\frac{\norm{\alpha}^2}{2}}\left(\sum_{m\geq 0}\frac{\alpha^{m}}{\sqrt{m!}}e^{-i\left(\frac{1}{2}+m\right)\omega t}\ket{m}\right) = \alpha e^{-i\omega t}\ket{\alpha(t)}\label{eq:a alpha}
+\end{align}
 On en déduit directement un résultat similaire en terme de bra\footnote{C'est à dire dans la base duale}
-\begin{align*}
-  \bra{\alpha(t)}a^\dagger &= \bra{\alpha(t)}\alpha^*e^{i\omega t}
-\end{align*}
-
-\begin{definition}
-  La moyenne $\expval{A}$ d'une observable $A$ par rapport à un état $\ket{\psi}$ est donnée par
-  \begin{align*}
-    \expval{A} &= \sum_n a_nP(a_n) = \sum_n a_n \expval{P_n}{\psi} = \expval{\sum_n a_nP_n}{\psi} &\expval{A} = \expval{A}{\psi} 
-  \end{align*}
-\end{definition}
-
-\begin{property}
-  L'écart quadratique moyen d'une obserable $A$ dans l'état $\ket{\psi}$ est donnée par
-  \begin{align}
-    \label{ecart quadratique moyen}
-    \Delta A = \sqrt{\expval{A^2}{\psi} - \expval{A}{\psi}^2}
-  \end{align}
-\end{property}
+\begin{align}
+  \bra{\alpha(t)}a^\dagger &= \bra{\alpha(t)}\alpha^*e^{i\omega t}\label{eq:alpha a dagger}
+\end{align}
 
 \subsubsection{Evolution temporelle de l'opérateur position}
 \label{Evolution temporelle de l'opérateur position}
@@ -699,12 +696,12 @@ où nous avons utiliser la relation de commutation des bosons pour mettre l'équ
 \begin{align}
   \expval{X^2}{\alpha(t)} &= \frac{\h}{2m\omega} \left(\expval{a^2}{\alpha(t)}+\expval{\left(a^\dagger\right)^2}{\alpha(t)}+2\expval{a^\dagger a}{\alpha(t)}+\braket{\alpha(t)}\right)\notag\\
   &= \frac{\h}{2m\omega}\left[\left(\alpha e^{-i\omega t}\right)^2+\left(\alpha^*e^{i\omega t}\right)^2 +2\norm{\alpha}^2+1\right]\braket{\alpha(t)}\notag\\
-  &= \frac{\h}{2m\omega}\left[\left(\alpha e^{-i\omega t}+\alpha^*e^{i\omega t}\right)^2+1\right] = \frac{\h}{2m\omega}\left[\norm{\alpha}^2\left(e^{i\varphi}e^{-i\omega t}+e^{-i\varphi}e^{i\omega t}\right)^2+1\right]\label{Mean X^2}
+  &= \frac{\h}{2m\omega}\left[\left(\alpha e^{-i\omega t}+\alpha^*e^{i\omega t}\right)^2+1\right] = \frac{\h}{2m\omega}\left[\norm{\alpha}^2\left(e^{i\varphi}e^{-i\omega t}+e^{-i\varphi}e^{i\omega t}\right)^2+1\right]\notag
 \end{align}
 Où nous avons posé $\alpha = \norm{\alpha}e^{i\varphi}$. Nous trouvons finalement que 
-\begin{align*}
-  \expval{X^2}(t) &= \frac{\h}{2m\omega}\left[4\norm{\alpha}^2\cos^2(\omega t-\varphi)+1\right]
-\end{align*}
+\begin{align}
+  \expval{X^2}(t) &= \frac{\h}{2m\omega}\left[4\norm{\alpha}^2\cos^2(\omega t-\varphi)+1\right]\label{Mean X^2}
+\end{align}
 
 En vertue de \eqref{ecart quadratique moyen}, nous avons alors que l'incertitude sur la position est donnée par
 \begin{align}
@@ -740,7 +737,7 @@ Du système $\eqref{P and X}$, nous apprenons que
 \begin{align*}
   P^2 &= -\frac{m\h\omega}{2}\left(\left(a^\dagger\right)^2+a^2-2a^\dagger a-1\right)
 \end{align*}
-où nous avons exprimer l'égalité sous la \emph{forme normale}. Nous pouvons alors déterminer la moyenne de $P^2$, ce qui donne, sans surprise, un résultat tout à fais similaire à \eqref{Mean X^2}.
+où nous avons exprimé l'égalité sous la \emph{forme normale}. Nous pouvons alors déterminer la moyenne de $P^2$, ce qui donne, sans surprise, un résultat tout à fais similaire à \eqref{Mean X^2}.
 \begin{align}
   \label{Mean P^2}
   \expval{P^2}(t)&= \frac{m\h\omega}{2}\left[4\norm{\alpha}^2\sin^2(\omega t-\varphi)+1\right]
@@ -774,7 +771,14 @@ En vertue de l'expression de l'Hamiltonien d'un Oscillateur Harmonique, le calcu
   \expval{H} &= \frac{\h\omega}{2}\left(2\norm{\alpha}^2+1\right)\label{mean H}
 \end{align}
 \begin{remark}
-  Observons directement que, contrairement à la moyenne de la position et de l'impulsion, la moyenne de l'Hamiltonien semble être indépendant du temps. Cela fait sens: l'interprétation de l'Hamiltonien d'un système est celui de l'énergie totale présent dans celui-ci. Or, pour un système isolé - tel notre oscillateur harmonique - l'énergie totale doit être conservé, c'est à dire $\dot{H} = 0$.
+  Une méthode alternative aurait été de calculer la moyenne de H en exploitant la relation \eqref{Hamiltonien OH normale}. Il aurait alors été suffisant d'invoquer \eqref{eq:a alpha},\eqref{eq:alpha a dagger} et le fait que les états $\ket{\alpha(t)}$ sont normaux pour trouver \eqref{mean H}. 
+\end{remark}
+\begin{remark}
+  Observons directement que, contrairement à la moyenne de la position et de l'impulsion, la moyenne de l'Hamiltonien semble être indépendante du temps. Cela fait sens: l'interprétation de l'Hamiltonien d'un système est celui de l'énergie totale présent dans celui-ci. Or, pour un système isolé - tel notre oscillateur harmonique - l'énergie totale doit être conservé, c'est à dire $\dot{H} = 0$. On aurait pu prédire ce résultat en invoquant le \emph{théorème d'Ehrenfest}. En effet, le théorème nous apprend que pour toute observable A, l'évolution de A peut-être donnée par la relation
+  \begin{equation*}
+    \frac{d}{dt}\expval{A} = \frac{1}{i\h}\expval{[A,H]}+\expval{\frac{\partial A}{\partial t}}.
+  \end{equation*}
+  Si on applique ce résultat à l'observable H, le second terme du côté droit se simplifie car H ne dépend pas explicitement du temps. Naturellement, nous avons également que H commute avec lui-même: dès lors, le théorème d'Ehrenfest nous indique que la moyenne de H est \emph{indépendante du temps}, comme nous l'observons.
 \end{remark}
 
 Pour calculer l'incertitude sur $H$, il y a essentiellement deux méthodes: la première (la méthode longue) consiste à déterminer $H^2$ en utilisant \eqref{Hamiltonien OH}, ce qui reviendrait à faire le calcul de la moyenne de $X^4,P^4$, etc. La seconde méthode, plus courte, revient à déterminer $H^2$ en exploitant son expression en terme des bosons. Appliquons cette dernière méthode:
@@ -796,17 +800,16 @@ Sans surprise cette fois, la moyenne de $H^2$ est indépendante du temps. Pour f
 \end{align}
 
 \subsection{Comparaison avec un oscillateur harmonique classique}
-
-Nous voulons maintenant comprendre le lien entre la théorie classique de l'oscillateur harmonique et sa théorie quantique. En particulier, pour ce faire, considérons un oscillateur macroscopique correspondant à un pendule, de masse $m=1\si{kg}$ et de longueur $L = 10\si{cm}$. On suppose que ce pendule effectue des petites oscillations autour de sa position d'équilibre, d'amplitude $L\absolutevalue{\theta_{max}}=1\si{cm}$.
+Nous voulons maintenant comprendre le lien entre la théorique classique et la théorique quantique d'un oscillateur harmonique. En particulier, considérons dans le cadre classique un oscillateur harmonique (macroscopique) correspondant à un pendule. Un pendule consiste en un câble de longueur $L$ attaché par une extrémité à un point fixe, et par l'autre à une masse $m$. Supposons que le pendule oscille autour d'une position d'équilibre.
 
 De manière générale, un système possédant une énergie potentielle $V(x)$ peut-être approximée en $x=x_0$ par la série de Taylor
 \begin{align*}
   V(x) = V(x_0) + \left(x-x_0\right)\left.\frac{dV}{dx}\right|_{x_0} + \frac{\left(x-x_0\right)^2}{2!} \left.\frac{d^2V}{dx^2}\right|_{x_0} + \mathcal O(x-x_0)^3
 \end{align*} 
 
-Le système tendra à tourner autour de la configuration minimisant $V(x)$ - or, par définition, il s'agit de l'endroit où $\frac{dV}{dx}$ disparaît. Dès lors, nous avons que $V(x) = \frac{\left(x-x_0\right)^2}{2} \left.\frac{d^2V}{dx^2}\right|_{x_0} + \mathcal O(x-x_0)^3 \approx \frac{1}{2}k\left(x-x_0\right)^2$. Il s'agit du potentiel d'un oscillateur harmonique pour des petites oscillations autour de $x_0$.
+Le système tendra à tourner autour de la configuration minimisant $V(x)$ - or, par définition, il s'agit de l'endroit où $\frac{dV}{dx}$ disparaît. Dès lors, en posant $\Delta x = x-x_0$, nous avons que $V(x) = \frac{\Delta x^2}{2} \left.\frac{d^2V}{dx^2}\right|_{x_0} + \mathcal O(\Delta x^3) \approx \frac{1}{2}k\Delta x^2$. Il s'agit du potentiel d'un oscillateur harmonique pour des petites oscillations autour de $x_0$.\\
 
-Analysons le système décrit au premier paragraphe en exploitant la formulation Lagrangienne de la mécanique. Ce devoir ne traitant pas de mécanique classique, nous passerons les détails de calcul pour se focaliser sur l'interprétation physique. Placons-nous dans un champ gravitationel $\bm{g} = -g\bm{\bm{y}}$. La Lagrangien du système est 
+Analysons le système décrit au premier paragraphe en exploitant la formulation Lagrangienne de la mécanique classique. Ce devoir ne traitant pas de mécanique (classique), nous passerons les détails de calcul pour se focaliser sur l'interprétation physique. Placons-nous dans un champ gravitationel $\bm{g} = -g\bm{\bm{y}}$. La Lagrangien du système est 
 \begin{equation*}
   \mathcal{L} = \frac{1}{2}mL^2\dot{\theta}^2 + mg\cos\theta 
 \end{equation*}
@@ -823,7 +826,7 @@ où $A$ est l'amplitude et $\varphi$ est une phase quelconque ; ces deux constan
   l = \sqrt{\frac{\h}{m\omega}} = \sqrt{\frac{L\h}{mg}}\qquad
   A = \sqrt{2}l\norm{\alpha} = \sqrt{\frac{2L\h}{mg}}\norm{\alpha} \label{eq:46}
 \end{equation}
-Or, nous connaissons la valeur de $A$ pour notre OH classique! Elle est donnée par $A = L\absolutevalue{\theta_{max}} = 1\si{cm}$. En isolant le terme $\norm{\alpha}$ dans l'expression de $A$, nous avons alors que
+Or, nous pouvons empiriquement déterminé la valeur de l'amplitude $A$. Dès lors, nous pouvons isoler le terme $\norm{\alpha}$ dans l'expression de $A$. Cela nous permet d'obtenir
 \begin{equation}
   \label{89}
   \norm{\alpha}= A\sqrt{\frac{mg}{2L\h}}
@@ -831,10 +834,13 @@ Or, nous connaissons la valeur de $A$ pour notre OH classique! Elle est donnée 
 pour l'état cohérent reproduisant le plus fidèlement le mouvement du pendule.\\
 
 Finalement, en associant les résultats \eqref{mean H}, \eqref{delta H} et \eqref{89}, nous trouvons
-\begin{equation*}
-  \frac{\Delta H}{\expval{H}} = \frac{2\norm{\alpha}}{2\norm{\alpha}^2+1} = \frac{A\sqrt{2mgL\h}}{mgA^2+L\h}
-\end{equation*}
-Application numérique: FLEMME
+\begin{equation}
+  \frac{\Delta H}{\expval{H}} = \frac{2\norm{\alpha}}{2\norm{\alpha}^2+1} = \frac{A\sqrt{2mgL\h}}{mgA^2+L\h}\label{eq:Delta H/expval H}
+\end{equation}
+\subsubsection{Application numérique}
+Nous voulons appliquer nos résultats à un pendule de masse $m=1\si{kg}$ et de longueur $L=10\si{cm} = 10^{-2}\si{m}$. On supposera que le pendule est en oscillation autour de sa position d'équilibre, avec une amplitude $L\absolutevalue{\theta_{max}} = 1\si{cm} = 10^{-3}\si{m}$.\\
+
+Nous obtenons alors les valeurs suivantes: $\norm{\alpha}^2 \approx 10^{30}$ et $\frac{\Delta H}{\expval{H}} \approx 10^{-16}$ << $1$. L'énergie moyenne des états cohérents constitue alors une excellente approximation de la réalité macroscopique! Cela nous donne la véritable utilité de nos résultats.
 
 \newpage
 \section{Partie III - Décohérence}
@@ -896,7 +902,7 @@ Nous voulons montrer quelques relations les liants.
 \begin{align*}
   \bm{D}_a(\alpha) = \exp(\alpha\bm{a}^\dagger-\alpha^*\bm{a}) &= \exp(\alpha\frac{1}{\sqrt{2}}\left(\bm{A}+\bm{B}\right)^\dagger-\alpha^*\frac{1}{\sqrt{2}}\left(\bm{A}+\bm{B}\right)) = \exp(\frac{\alpha}{\sqrt{2}}\bm{A}^\dagger-\frac{\alpha^*}{\sqrt{2}}\bm{A}+\frac{\alpha}{\sqrt{2}}\bm{B}^\dagger-\frac{\alpha^*}{\sqrt{2}}\bm{B})
 \end{align*}
-Notons que nous avons l'exponentielle de la somme entre $\bm{\xi}=\frac{\alpha}{\sqrt{2}}\bm{A}^\dagger-\frac{\alpha^*}{\sqrt{2}}\bm{A}$ et $\bm{\eta} = \frac{\alpha}{\sqrt{2}}\bm{B}^\dagger-\frac{\alpha^*}{\sqrt{2}}\bm{B}$. En particulier, du fait que les conditions de \ref{prop Glaubert} sont respectées\footnote{En effet, $\bm{\eta}$ et $\bm{\xi}$ commutent avec $[\bm{\eta},\bm{\xi}]$.}, nous déduisons que 
+Notons que nous avons l'exponentielle de la somme entre $\bm{\xi}=\frac{\alpha}{\sqrt{2}}\bm{A}^\dagger-\frac{\alpha^*}{\sqrt{2}}\bm{A}$ et $\bm{\eta} = \frac{\alpha}{\sqrt{2}}\bm{B}^\dagger-\frac{\alpha^*}{\sqrt{2}}\bm{B}$. En particulier, du fait que les conditions de \ref{prop Glauber} sont respectées\footnote{En effet, $\bm{\eta}$ et $\bm{\xi}$ commutent avec $[\bm{\eta},\bm{\xi}]$.}, nous déduisons que 
 \begin{align}
   \exp(\bm{\xi}+\bm{\eta}) &= \exp(\bm{\xi})\exp(\bm{\eta})\exp(-\frac{1}{2}[\bm{\xi},\bm{\eta}]) = \bm{D}_A(\frac{\alpha}{\sqrt{2}})\bm{D}_B(\frac{\alpha}{\sqrt{2}})
 \end{align}
@@ -909,12 +915,9 @@ Avec un argument analogue à la discussion du point 1, nous retrouvons la formul
 \begin{align}
   \bm{D}_b(\alpha) = \bm{D}_A(\frac{\alpha}{\sqrt{2}})\bm{D}_B(-\frac{\alpha}{\sqrt{2}}).
 \end{align}
-  \item \emph{Lien entre $\bm{D}_A$ et $\bm{D}_a$,$\bm{D}_b$}. \color{red} Rédiger la preuve.\color{black}
-  \item \emph{Lien entre $\bm{D}_B$ et $\bm{D}_a$,$\bm{D}_b$}.  \color{red} Rédiger la preuve.\color{black}
-
-En continuant sur cette lancée, nous pouvons montrer les deux relations suivantes.
+  En continuant sur cette lancée, nous pouvons montrer les deux relations suivantes.
 \begin{align}
-  \bm{D}_A(\alpha) &= \bm{D}_a(\frac{\alpha}{\sqrt{2}}) &\bm{D}_B(\alpha) = \bm{D}_a(\frac{\alpha}{\sqrt{2}})\bm{D}_b(-\frac{\alpha}{\sqrt{2}})
+  \bm{D}_A(\alpha) &= \bm{D}_a(\frac{\alpha}{\sqrt{2}})\bm{D}_b(\frac{\alpha}{\sqrt{2}}) &\bm{D}_B(\alpha) = \bm{D}_a(\frac{\alpha}{\sqrt{2}})\bm{D}_b(-\frac{\alpha}{\sqrt{2}})
 \end{align}
 \end{enumerate}
 
@@ -953,8 +956,8 @@ Vérifions si \eqref{eq:evolution} est intriqué. Pour ce faire, réexprimons le
 \end{align*}
 On invoque à présent la relation \eqref{eq:deplacement sur etat coherent}.
 \begin{align}
-  \ket{\alpha}(t) &= e^{-i\omega t}\overbrace{e^{-Im\left[\frac{\norm{\alpha}^2}{4}e^{2i\lambda t}\right]}e^{-Im\left[-\frac{\norm{\alpha}^2}{4}e^{2i\lambda t}\right]}}^1\ket{\frac{\alpha}{2}\left(e^{-i\left(\omega-\lambda\right)t}+e^{-i\left(\omega+\lambda\right)t}\right),a}\otimes\ket{\frac{\alpha}{2}\left(e^{-i\left(\omega+\lambda\right)t}-e^{-i\left(\omega-\lambda\right)t}\right),b}\notag\\
-  &= e^{-i\omega t}\ket{\frac{\alpha}{2}e^{-i\omega t}\left(e^{i\lambda t}+e^{-\lambda t}\right),a}\otimes\ket{\frac{\alpha}{2}e^{-i\omega t}\left(e^{-i\lambda t}-e^{i\lambda t}\right),b} = e^{-i\omega t}\ket{\alpha e^{-i\omega t}\cos(\lambda t),a}\otimes\ket{\color{red}-\color{black}i\alpha e^{-i\omega t}\sin(\lambda t),b}\label{eq:etat naif evolue}
+  \ket{\alpha}(t) &= e^{-i\omega t}\overbrace{e^{-iIm\left[\frac{\norm{\alpha}^2}{4}e^{2i\lambda t}\right]}e^{-iIm\left[-\frac{\norm{\alpha}^2}{4}e^{2i\lambda t}\right]}}^1\ket{\frac{\alpha}{2}\left(e^{-i\left(\omega-\lambda\right)t}+e^{-i\left(\omega+\lambda\right)t}\right),a}\otimes\ket{\frac{\alpha}{2}\left(e^{-i\left(\omega+\lambda\right)t}-e^{-i\left(\omega-\lambda\right)t}\right),b}\notag\\
+  &= e^{-i\omega t}\ket{\frac{\alpha}{2}e^{-i\omega t}\left(e^{i\lambda t}+e^{-\lambda t}\right),a}\otimes\ket{\frac{\alpha}{2}e^{-i\omega t}\left(e^{-i\lambda t}-e^{i\lambda t}\right),b} = e^{-i\omega t}\ket{\alpha e^{-i\omega t}\cos(\lambda t),a}\otimes\ket{-i\alpha e^{-i\omega t}\sin(\lambda t),b}\label{eq:etat naif evolue}
 \end{align}
 On voit donc que l'état $\ket{\alpha}(t)$ n'est \textbf{pas} intriqué. Cela semble correspondre à notre expérience quotidienne: une particule en Haute-Savoie n'influe pas sur un.e physicien.ne en Normandie - les deux sont, d'après notre vécu, indépendant (en le sens de la définition \ref{def:systemes independants}).
 
@@ -1053,9 +1056,4 @@ Les éléments $\rho_{mn}$ pour tout $m\neq n$ de la matrice densité correspond
   \end{pmatrix}
 \end{align*}
 Nous avons donc une diagonalisation de l'opérateur densité. Observons que la matrice que nous obtenons après la décohérence \textbf{ne peut pas} correspondre à l'état inital \eqref{eq:prep initial state for density matrix}. Ainsi, nous voyons que tout état peut être écrit sous la forme d'une matrice densité, mais qu'une matrice densité ne correspond pas forcément à un état quantique.\\
-
-\color{red} Il est temps de dormir\footnote{Il est 1h20 ...}. Coucou Amandine, bonnne lecture ! (Même si à priori tu as fini de lire, là).
-
-
-
 \end{document}

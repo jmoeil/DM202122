@@ -198,14 +198,16 @@ Observons que la valeur moyenne de $\mathcal{O}(\lambda)$ est positive. En effet
 
 Or, $\expval{\mathcal{O}(\lambda)} = \lambda^2\expval{\tilde{\bm{B}^2}}+\lambda\expval{i[\tilde{\bm{A}},\tilde{\bm{B}}]}+\expval{\tilde{\bm{A}}^2}$. Notons qu'il s'agit d'une équation quadratique en $\lambda$ : ainsi, le minimum doit donc être donné par 
 \begin{align}
-  \au{\frac{d\expval{\mathcal{O}(\lambda)}}{d\lambda}}{\lambda=\lambda^*} = 0 &= 2\lambda^*\expval{\tilde{\bm{B}}^2}+\expval{i[\tilde{\bm{A}},\tilde{\bm{B}}]}\notag\\
-  \lambda^* &= -\frac{\expval{i[\tilde{\bm{A}},\tilde{\bm{B}}]}}{2\expval{\tilde{\bm{B}}^2}} = -\frac{\expval{i[\tilde{\bm{A}},\tilde{\bm{B}}]}}{2\left(\Delta \tilde{\bm{B}}\right)^2}
+  \au{\frac{d\expval{\mathcal{O}(\lambda)}}{d\lambda}}{\lambda=\lambda_{min}} = 0 &= 2\lambda_{min}\expval{\tilde{\bm{B}}^2}+\expval{i[\tilde{\bm{A}},\tilde{\bm{B}}]}\notag\\
+  \lambda_{min} &= -\frac{\expval{i[\tilde{\bm{A}},\tilde{\bm{B}}]}}{2\expval{\tilde{\bm{B}}^2}} = -\frac{\expval{i[\tilde{\bm{A}},\tilde{\bm{B}}]}}{2\left(\Delta \tilde{\bm{B}}\right)^2}
 \end{align}
 
+Notons que $\lambda_{min}$ est bien un minimum, car l'équation décrivant $\expval{\mathcal{O}(\lambda)}$ est une équation du second degré en $\lambda$ avec un coefficient en $\lambda^2$ positif.
+
 \paragraph{Application aux opérateurs position et impulsion}
-Posons $\bm{A} = \bm{X}$ et $\bm{B} = \bm{P}$. Le minimum, $\lambda^*$, s'exprime alors par $\frac{\h}{2\left(\Delta \bm{P}\right)^2}$. En particulier, nous trouvons alors que $\expval{\mathcal{O}(\lambda)} = 0$ si et seulement si 
+Posons $\bm{A} = \bm{X}$ et $\bm{B} = \bm{P}$. Le minimum, $\lambda_{min}$, s'exprime alors par $\frac{\h}{2\left(\Delta \bm{P}\right)^2}$. En particulier, nous trouvons alors que $\expval{\mathcal{O}(\lambda)} = 0$ si et seulement si 
 \begin{align}
-  \left(\tilde{\bm{X}}+i\lambda^*\tilde{\bm{P}}\right)\ket{\psi} = 0\notag
+  \left(\tilde{\bm{X}}+i\lambda_{min}\tilde{\bm{P}}\right)\ket{\psi} = 0\notag
 \end{align}
 Ce que nous réécrivons comme
 \begin{align}
@@ -852,19 +854,19 @@ où $A$ est l'amplitude et $\varphi$ est une phase quelconque ; ces deux constan
 \emph{Un état cohérent imite donc intimement l'évolution d'un oscillateur harmonique classique.} En particulier, en mettant en parallèle les équations \eqref{mean position} et \eqref{single pendulum}, nous trouvons les relations suivantes.
 \begin{equation}
   \omega = \sqrt{\frac{g}{L}}\qquad
-  l = \sqrt{\frac{\h}{m\omega}} = \sqrt{\frac{L\h}{mg}}\qquad
-  A = \sqrt{2}l\norm{\alpha} = \sqrt{\frac{2L\h}{mg}}\norm{\alpha} \label{eq:46}
+  l = \sqrt{\frac{\h}{m\omega}}\qquad
+  A = \sqrt{2}l\norm{\alpha}\label{eq:46}
 \end{equation}
 Or, nous pouvons empiriquement déterminé la valeur de l'amplitude $A$. Dès lors, nous pouvons isoler le terme $\norm{\alpha}$ dans l'expression de $A$. Cela nous permet d'obtenir
 \begin{equation}
   \label{89}
-  \norm{\alpha}= \frac{A}{\sqrt{2}l} = A\sqrt{\frac{mg}{2L\h}} 
+  \norm{\alpha}= \frac{A}{\sqrt{2}l} 
 \end{equation}
 pour l'état cohérent reproduisant le plus fidèlement le mouvement du pendule.\\
 
 Finalement, en associant les résultats \eqref{mean H}, \eqref{delta H} et \eqref{89}, nous trouvons
 \begin{equation}
-  \frac{\Delta \bm{H}}{\expval{H}} = \frac{2\norm{\alpha}}{2\norm{\alpha}^2+1} = \frac{A\sqrt{2mgL\h}}{mgA^2+L\h}\label{eq:Delta H/expval H}
+  \frac{\Delta \bm{H}}{\expval{H}} = \frac{2\norm{\alpha}}{2\norm{\alpha}^2+1}\label{eq:Delta H/expval H}
 \end{equation}
 \subsubsection{Application numérique}\label{sec:application numerique}
 Nous voulons appliquer nos résultats à un pendule de masse $m=1\si{kg}$ et de longueur $L=10\si{cm} = 10^{-2}\si{m}$. On supposera que le pendule est en oscillation autour de sa position d'équilibre, avec une amplitude $L\absolutevalue{\theta_{max}} = 1\si{cm} = \num{e-2}\unit{\meter}$.\\
@@ -1100,7 +1102,7 @@ Nous avons donc que la superposition - élément naturel dans un contexte quanti
   \item[\ding{108}] $\ket{d_0}$ représente l'état initial de l'appareil de mesure;
   \item[\ding{108}] $\ket{Env_0}$ décrit l'état initial de environnement.
 \end{itemize}
-On définit ensuite la \emph{prémesure} comme une intéraction entre l'appareil de mesure et le système étudié. Cette étape nous permet de réécrire $\ket{\psi_{ini}}$ sous la forme $\sum_n  \left(c_n\ket{n}\otimes\ket{d_n}\right)\otimes\ket{Env_0}$. Le processus de prémesure est inversible. Pour finir, il nous reste à définir la \emph{mesure}. Cette dernière est irréversible. Le mesure du système en $t_0$ nous donne alors $\sum_n \left(c_n\ket{n}\otimes\ket{d_n}\otimes\ket{Env_n}\right)$. Là où la prémesure est une intéraction entre le système et le dispositif expérimental, la mesure est une intéraction entre le système et l'environnement. Observons que dans cette description, la superposition \eqref{eq:quantum decoherence initial state} est le résultat de la prémesure de $\ket{n}$. Ainsi, la décohérence nous indique énormement d'intrications. En particulier, l'état étant décrit par une intrication d'états, \emph{some black magic going on here ...} : ainsi, nous ne pouvons pas trouver une base propre assurant la diagonalisation de nos opérateurs.\\
+On définit ensuite la \emph{prémesure} comme une intéraction entre l'appareil de mesure et le système étudié. Cette étape nous permet de réécrire $\ket{\psi_{ini}}$ sous la forme $\sum_n  \left(c_n\ket{n}\otimes\ket{d_n}\right)\otimes\ket{Env_0}$. Le processus de prémesure est inversible. Pour finir, il nous reste à définir la \emph{mesure}. Cette dernière est irréversible. Le mesure du système en $t_0$ nous donne alors $\sum_n \left(c_n\ket{n}\otimes\ket{d_n}\otimes\ket{Env_n}\right)$. Là où la prémesure est une intéraction entre le système et le dispositif expérimental, la mesure est une intéraction entre le système et l'environnement. Observons que dans cette description, la superposition \eqref{eq:quantum decoherence initial state} est le résultat de la prémesure de $\ket{n}$.
 
 La \emph{complémentarité} est probablement une des propriétés quantiques les plus importantes pour tout système physique. Bien la comprendre représente donc un point de départ important dans la compréhension de la théorie quantique. Deux observables $\bm{A},\bm{B}$ qui ne commutent pas - c'est à dire tel que $\left[\bm{A},\bm{B}\right]\neq 0$, sont dites complémentaires. Une telle paire d'observables suit alors l'inégalité de Heisenberg définie par \eqref{Heisenberg inequality}. Empiriquement, cette relation dicte l'impossibilité de mesurer les deux quantité avec une précision donnée. De plus, la non-commutation des opérateurs indique l'inexistence d'un ensemble complet d'états propres (elles ne forment pas une ECOC).\\
 \end{document}

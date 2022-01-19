@@ -923,9 +923,9 @@ Introduisons la notation $\bm{a}^\dagger\bm{a} = \bm{N}_a$, et idem en $\bm{b}$.
   H = \h\left(\omega+\lambda\right)\bm{N}_A+\h\left(\omega-\lambda\right)\bm{N}_B+\h\omega
 \end{equation}
 Notons que puisque $[\bm{N}_A,\bm{N}_B] = 0$, il doit exister une base orthonormée diagonalisant simultanément $\bm{N}_A$ et $\bm{N}_B$. Notons $\left\{\ket{n,A}\otimes\ket{m,B} = \ket{n,A;m,B}\right\}$ une telle base. Finalement, en remarquant que l'Hamiltonien commute à la fois avec $\bm{N}_A$ et $\bm{N}_B$, nous avons que la base que nous venons de définir diagonalise l'Hamiltonien.
-\begin{align*}
-  \ket{n,A;m,B} &= \frac{\left(\bm{A}^\dagger\right)^n}{\sqrt{n!}}\frac{\left(\bm{B}^\dagger\right)^m}{\sqrt{m!}}\ket{0,A;0,B} &H\ket{n,A;m,B} = E_{nm}\ket{n,A;m,B}
-\end{align*}
+\begin{align}
+  \ket{n,A;m,B} &= \frac{\left(\bm{A}^\dagger\right)^n}{\sqrt{n!}}\frac{\left(\bm{B}^\dagger\right)^m}{\sqrt{m!}}\ket{0,A;0,B} &H\ket{n,A;m,B} = E_{nm}\ket{n,A;m,B}\label{eq: Emn}
+\end{align}
 où $E_{nm} = \h\left(\omega+\lambda\right)n+\h\left(\omega-\lambda\right)m+\h\omega$. Appelons cette base $\left\{\ket{n,A;m,B}\right\}$ la \emph{base de Fock} de notre système.
 \subsection{Opérateurs déplacement}
 On introduit les opérateurs déplacement - tel que défini par \eqref{eq:operateur deplacement} - lié aux opérateurs d'échelle $\bm{a},\bm{b},\bm{A}$ et $\bm{B}$.
@@ -984,7 +984,10 @@ Or, $\ket{\alpha,a;0,b} = \bm{D}_a(\alpha\ket{0,a;0,b}) = \bm{D}_A(\frac{\alpha}
 Vérifions si \eqref{eq:evolution} est intriqué. Pour ce faire, réexprimons le dans la base $\ket{\alpha,a;\beta,b}$ en exploitant les relations démontrées en \ref{sec:quelques relations liant les operateurs deplacement}.
 
 \begin{align*}
-  \ket{\alpha}(t) &= e^{-i\omega t}\bm{D}_A(\frac{\alpha}{\sqrt{2}}e^{-i\left(\omega+\lambda\right)t})\bm{D}_B(\frac{\alpha}{\sqrt{2}}e^{-i\left(\omega-\lambda\right)t})\ket{0,A;0,B}\\
+  \ket{\alpha}(t) &= e^{-i\omega t}\bm{D}_A(\frac{\alpha}{\sqrt{2}}e^{-i\left(\omega+\lambda\right)t})\bm{D}_B(\frac{\alpha}{\sqrt{2}}e^{-i\left(\omega-\lambda\right)t})\ket{0,A;0,B}
+\end{align*}
+\color{purple} Notons que les états cohérents $\ket{0,A;0,B}$ et $\ket{0,a;0,b}$ sont égaux. En effet, en exploitant l'expression de l'énergie $E_{mn}$ dans \eqref{eq: Emn}, nous voyons que $\bm{H}\ket{0,A;0,B} = \h\omega = \bm{H}\ket{0,a;0,b} = \frac{1}{2}\h\omega+\frac{1}{2}\h\omega$ ; soit la somme des états fondamentaux de l'oscillateur macroscopique et de l'environnement. Ainsi, \color{black}
+\begin{align*}
   &= e^{-i\omega t}\bm{D}_a(\frac{\alpha}{2}e^{-i\left(\omega+\lambda\right)t})\bm{D}_b(\frac{\alpha}{2}e^{-i\left(\omega+\lambda\right)t})\bm{D}_a(\frac{\alpha}{2}e^{-i\left(\omega-\lambda\right)t})\bm{D}_b(-\frac{\alpha}{2}e^{-i\left(\omega-\lambda\right)t})\ket{0,a;0,b}\\
   &= e^{-i\omega t}\bm{D}_a(\frac{\alpha}{2}e^{-i\left(\omega+\lambda\right)t})\bm{D}_b(\frac{\alpha}{2}e^{-i\left(\omega+\lambda\right)t})\ket{\frac{\alpha}{2}e^{-i\left(\omega-\lambda\right)t},a;-\frac{\alpha}{2}e^{-i\left(\omega-\lambda\right)t},b}
 \end{align*}

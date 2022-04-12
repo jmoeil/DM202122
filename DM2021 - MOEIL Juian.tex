@@ -344,7 +344,7 @@ Nous voulons déterminer la valeur de $\braket{0}{\alpha}$. Pour ce faire, nous 
 
 En exploitant cette propriété, nous pouvons résoudre le problème assez facilement. En effet,
 \begin{align*}
-  \ketbra{0}{\alpha} &= \int_{-\infty}^{+\infty}dx \; \braket{0}{x}\braket{x}{\alpha}
+  \braket{0}{\alpha} &= \int_{-\infty}^{+\infty}dx \; \braket{0}{x}\braket{x}{\alpha}
 \end{align*}
 Or, le terme $\braket{x}{0}$ correspond à l'état fondamental d'un état cohérent! Sa valeur est donnée dans le cours théorique. Le terme $\braket{x}{\alpha}$ correspond à la fonction gaussienne déterminée en \ref{fonction d'onde d'un état cohérent}.
 
@@ -407,12 +407,11 @@ Finalement, ces propriétés nous permettent de voir le résultat suivant.
   Soit l'opérateur nombre $\bm{N} = \bm{a}^\dagger\bm{a}$. Le spectre de $\bm{N}$ est un sous-ensemble des naturels : $Spectre \bm{N}\subseteq\mathbb{N}$.
 \end{theorem}
 
-
-De ce théorème, nous tirons notre interprétation des états $\ket{n}$. Il s'agit de l'ensemble des vecteurs - linéairement indépendant les uns des autres - diagonalisant l'opérateur $\bm{N}$. Ces états forment une base - la \emph{base de Fock}, orthonormée. 
+De ce théorème, nous tirons notre interprétation des états $\ket{n}$. Il s'agit de l'ensemble des vecteurs - linéairement indépendant les uns des autres - diagonalisant l'opérateur $\bm{N}$. Ces états forment une base - la \emph{base de Fock}, orthonormée.\\ 
 
 Cette dernière base est bien à distinguer de la base des états cohérents : en effet, si $\ket{n}$ est un élément de l'espace de Fock, rien n'assure que $\ket{n}$ diagonalise l'opérateur annihilation $\bm{a}$. De même, si $\ket{\alpha}$ est un état cohérent, $\bm{a}^\dagger \bm{a}\ket{\alpha} = \alpha \bm{\alpha}^\dagger\ket{\alpha}$ ne donne aucune information sur les états propres de $\bm{N}$. A la différence des états propres de $\bm{N}$ - décrivant un nombre fixe d'excitations - les états $\ket{\alpha}$ en possèdent un nombre indéterminé: elles se dotent cependant d'une \emph{phase fixe}. Nous avons bien deux bases distinctent, donnant des informations différentes sur les opérateurs introduit par la solution de Dirac de l'Oscillateur Harmonique.\\
 
-Maintenant que la différence entre les deux bases est claire, attelons-nous à montrer ce qui les relie. Introduisons la relation $\ket{n} = \frac{\left(\bm{a}^\dagger\right)^n}{\sqrt{n!}}\ket{0}$. Notons que tout état cohérent $\ket{\alpha}$ peut se réécrire sous la forme $\sum_n \ket{n}\braket{n}{\alpha}$, où nous avons utilisé la relation de fermeture des états de Focks. En particulier, cela nous incline à déterminer la valeur du produit scalaire $\braket{n}{\alpha}$. Rappelons la relation $\bm{a}^\dagger\ket{n} = \sqrt{n+1}\ket{n+1}$, dont l'adjointe est $\bra{n}\bm{a} = \bra{n+1}\sqrt{n+1}$.
+Maintenant que la différence entre les deux bases est claire, attelons-nous à montrer ce qui les relie. Introduisons la relation $\ket{n} = \frac{\left(\bm{a}^\dagger\right)^n}{\sqrt{n!}}\ket{0}$. Notons que tout état cohérent $\ket{\alpha}$ peut se réécrire sous la forme $\sum_n \ket{n}\braket{n}{\alpha}$, où nous avons utilisé la relation de fermeture des états de Fock. En particulier, cela nous incline à déterminer la valeur du produit scalaire $\braket{n}{\alpha}$. Rappelons la relation $\bm{a}^\dagger\ket{n} = \sqrt{n+1}\ket{n+1}$, dont l'adjointe est $\bra{n}\bm{a} = \bra{n+1}\sqrt{n+1}$.
 \begin{align}
   \bra{n}\bm{a}\ket{\alpha} = \alpha\braket{n}{\alpha} &= \sqrt{n+1}\braket{n+1}{\alpha}\notag
 \end{align}
@@ -493,6 +492,10 @@ Rappelons la relation suivante: elle sera particulièrement utile dans les discu
   \end{align}
   tient si et seulement si les opérateurs commutent avec $\left[\bm{A},\bm{B}\right]$.
 \end{property}
+
+\begin{proof}
+  Le lecteur pourra trouver une preuve dans les séances d'exercices associés à ce cours.
+\end{proof}
 
 \begin{lemma}
   \label{lemme displacement}

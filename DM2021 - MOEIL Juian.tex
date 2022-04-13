@@ -519,10 +519,14 @@ On introduit à présent la proposition suivante - elle nous permettra d'énonce
   \end{align*}
   Or, nous avons que $\sum_k \bm{a}^k\ket{0} = \bm{a}^0\ket{0} = \ket{0}$.
   \begin{align*}
-    \bm{D}(\alpha)\ket{0} &= e^{-\frac{1}{2}\norm{\alpha}^2}e^{\alpha\bm{a}^\dagger}\ket{0} =  e^{-\frac{1}{2}\norm{\alpha}^2} \sum_n \frac{\alpha^n}{n!}\left(\bm{a}^\dagger\right)^n\ket{0} = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_n \frac{\alpha^n}{n!}\ket{n} = \ket{\alpha}
+    \bm{D}(\alpha)\ket{0} &= e^{-\frac{1}{2}\norm{\alpha}^2}e^{\alpha\bm{a}^\dagger}\ket{0} =  e^{-\frac{1}{2}\norm{\alpha}^2} \sum_n \frac{\alpha^n}{n!}\left(\bm{a}^\dagger\right)^n\ket{0} = e^{-\frac{1}{2}\norm{\alpha}^2} \sum_n \frac{\alpha^n}{\sqrt{n!}}\ket{n} = \ket{\alpha}
   \end{align*}
-  Ce qui met en lumière la logique derrière le nom de cet opérateur déplacement $\bm{D}(\alpha)$.
+  où nous avons exploité la proposition \eqref{coherent in fock}.
 \end{proof}
+
+\begin{remark}
+  Nous pouvons dès lors mettre en lumière la logique derrière le nom de l'opérateur déplacement $\bm{D}(\alpha)$ !
+\end{remark}
 
 \begin{theorem}
   $\ket{\alpha}$ est un état cohérent si et seulement si $\ket{\alpha}$ vérifie la relation

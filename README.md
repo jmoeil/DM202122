@@ -4,4 +4,4 @@ Résolution personnelle du devoir 2021-2022 du premier quadrimestre de [PHYS-F30
 
 Résultat : 19.22/20.
 
-## Un feedback a été demandé; une version corrigée du document sera ajoutée avec les suggestions/remarques des titulaires.
+## Les éventuelles modifications push après la date de remise du devoir ont pour objectif de corriger des typos que j'aurai repéré après la date de rendu. Le fichier `MOEIL.Juian.DevoirMQ2021-2022.pdf` est la version remise aux titulaires du cours.
